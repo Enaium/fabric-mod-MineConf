@@ -1,0 +1,18 @@
+rootProject.name = "MineConf"
+
+include(":core")
+include(":game:1.7.10")
+include(":game:1.8.9")
+include(":game:1.9.4")
+include(":game:1.10.2")
+include(":game:1.11.2")
+include(":game:1.12.2")
+include(":game:1.14.4")
+include(":game:1.15.2")
+include(":game:1.16.5")
+include(":game:1.17.1")
+include(":game:1.18.2")
+include(":game:1.19.4")
+include(":game:1.20.6")
+include(":game:1.21.11")
+include(":game:26.1")

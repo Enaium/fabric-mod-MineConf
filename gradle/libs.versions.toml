@@ -1,0 +1,19 @@
+[versions]
+kotlin = "2.3.10"
+fabricKotlin = "1.13.9+kotlin.2.3.10"
+publish = "0.8.4"
+fmg = "0.0.3"
+loom = "1.15-SNAPSHOT"
+jackson = "2.21.1"
+
+[libraries]
+kotlin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
+fabric-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabricKotlin" }
+loom = { module = "net.fabricmc:fabric-loom", version.ref = "loom" }
+legacy-looming = { module = "net.legacyfabric:legacy-looming", version.ref = "loom" }
+publish = { module = "me.modmuss50.mod-publish-plugin:me.modmuss50.mod-publish-plugin.gradle.plugin", version.ref = "publish" }
+fmg = { module = "cn.enaium.fabric-multi-game:cn.enaium.fabric-multi-game.gradle.plugin", version.ref = "fmg" }
+jackson = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm" }

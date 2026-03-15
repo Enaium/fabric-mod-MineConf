@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "mineconf",
+  "version": "@version@",
+  "name": "MineConf",
+  "description": "A config library!",
+  "authors": [
+    "Enaium"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Enaium/fabric-mod-AntiDrop",
+    "sources": "https://github.com/Enaium/fabric-mod-AntiDrop",
+    "issues": "https://github.com/Enaium/fabric-mod-AntiDrop/issues"
+  },
+  "license": "Apache-2.0",
+  "icon": "assets/mineconf/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "cn.enaium.mineconf.Commands::client"
+    ]
+  },
+  "mixins": [
+    "mineconf.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "@minecraft_version@",
+    "java": ">=@java_version@",
+    "fabric-language-kotlin": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
