@@ -18,6 +18,7 @@ package cn.enaium.mineconf;
 
 import cn.enaium.mineconf.annotation.ConfField;
 import cn.enaium.mineconf.conf.Conf;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -42,11 +43,19 @@ public class MineConf {
      * Unique name of the conf.
      */
     private final String name;
+
+    /**
+     * Config object instance
+     */
+    private final Object instance;
     private final Map<String, Conf<?>> confMap = new HashMap<>();
 
-    public MineConf(String id, String name) {
+    public MineConf(String id, String name, Object instance) {
         this.id = id;
         this.name = name;
+        this.instance = instance;
+
+        register(instance);
     }
 
     public String getId() {
@@ -57,30 +66,28 @@ public class MineConf {
         return name;
     }
 
-    public MineConf register(Conf<?> conf) {
-        confMap.put(conf.getId(), conf);
-        return this;
-    }
-
-    public MineConf register(Object o) {
-        for (Field declaredField : o.getClass().getDeclaredFields()) {
+    private void register(Object instance) {
+        for (Field declaredField : instance.getClass().getDeclaredFields()) {
             try {
                 declaredField.setAccessible(true);
                 final ConfField annotation = declaredField.getAnnotation(ConfField.class);
                 if (annotation == null) {
                     continue;
                 }
-                final Conf<?> conf = (Conf<?>) declaredField.get(o);
+                final Conf<?> conf = (Conf<?>) declaredField.get(instance);
                 confMap.put(conf.getId(), conf);
             } catch (Throwable e) {
                 throw new RuntimeException("Unable to register the conf: " + declaredField.getName(), e);
             }
         }
-        return this;
+
+        if (confMap.isEmpty()) {
+            throw new IllegalStateException("The config is empty.");
+        }
     }
 
     public String write() throws JsonProcessingException {
-        return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(confMap);
+        return new ObjectMapper().setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL).writerWithDefaultPrettyPrinter().writeValueAsString(confMap);
     }
 
     @SuppressWarnings("unchecked")
@@ -90,15 +97,20 @@ public class MineConf {
                 .readValue(text, new TypeReference<Map<String, ObjectNode>>() {
                 });
 
-        for (Map.Entry<String, ObjectNode> stringObjectNodeEntry : stringValueMap.entrySet()) {
-            if (confMap.containsKey(stringObjectNodeEntry.getKey())) {
-                final Conf<Object> conf = (Conf<Object>) confMap.get(stringObjectNodeEntry.getKey());
+        stringValueMap.forEach((id, o) -> {
+            if (confMap.containsKey(id)) {
+                final Conf<Object> conf = (Conf<Object>) confMap.get(id);
                 final Object value = conf.getValue();
                 if (value != null) {
-                    conf.setValue(new ObjectMapper().readValue(stringObjectNodeEntry.getValue().get("value").toString(), value.getClass()));
+                    try {
+                        conf.setValue(new ObjectMapper().readValue(o.get("value").toString(), value.getClass()));
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException("Unable to read config: " + conf.getId(), e);
+                    }
                 }
             }
-        }
+        });
+        getConf(instance);
     }
 
     @SuppressWarnings("unchecked")
@@ -117,5 +129,9 @@ public class MineConf {
 
     public Conf<?> getConf(String id) {
         return confMap.get(id);
+    }
+
+    public Map<String, Conf<?>> getConfMap() {
+        return confMap;
     }
 }

@@ -50,6 +50,7 @@ public class MineConfLoader {
             }
             MINE_CONF.put(conf.getId(), conf);
         }
+        Runtime.getRuntime().addShutdownHook(new Thread(MineConfLoader::save));
     }
 
     public static void save(MineConf conf) {

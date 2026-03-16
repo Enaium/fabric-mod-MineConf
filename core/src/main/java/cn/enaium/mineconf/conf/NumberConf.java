@@ -16,19 +16,28 @@
 
 package cn.enaium.mineconf.conf;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * @author Enaium
  */
 public class NumberConf<T extends Number> extends Conf<T> {
 
+    @Nullable
     private final Range<T> range;
+    private final T step;
 
-    public NumberConf(String id, String name, String description, Widget widget, Range<T> range) {
+    public NumberConf(String id, String name, String description, Widget widget, @Nullable Range<T> range, T step) {
         super(id, name, description, widget);
         this.range = range;
+        this.step = step;
     }
 
-    public Range<T> getRange() {
+    public @Nullable Range<T> getRange() {
         return range;
+    }
+
+    public T getStep() {
+        return step;
     }
 }

@@ -4,7 +4,6 @@ import cn.enaium.mineconf.ConfBuilder
 import cn.enaium.mineconf.MineConf
 import cn.enaium.mineconf.annotation.ConfField
 import cn.enaium.mineconf.conf.*
-import cn.enaium.mineconf.java.MineConfTest
 import cn.enaium.mineconf.type.Vec2
 import cn.enaium.mineconf.type.Vec3
 import cn.enaium.mineconf.type.Vec4
@@ -17,8 +16,7 @@ import org.junit.jupiter.api.Test
 class MineConfTest {
     @Test
     fun mineConf() {
-        val conf = MineConf("test", "Test")
-        conf.register(Config())
+        val conf = MineConf("test", "Test", Config())
         val write = conf.write()
         conf.read(write)
         val out = conf.getConf(Config())

@@ -108,6 +108,7 @@ public class ConfBuilder {
         public class NumberBuilder<T extends Number> {
 
             public Range<T> range;
+            public T step;
 
             public NumberBuilder<T> range(Consumer<RangeBuilder<T>> range) {
                 final RangeBuilder<T> rangeBuilder = new RangeBuilder<>();
@@ -116,8 +117,13 @@ public class ConfBuilder {
                 return this;
             }
 
+            public NumberBuilder<T> step(T step) {
+                this.step = step;
+                return this;
+            }
+
             public <T extends Number> NumberConf<T> build(T defaultValue) {
-                final NumberConf<T> numberConf = new NumberConf<>(id, name, description, widget, (Range<T>) range);
+                final NumberConf<T> numberConf = new NumberConf<>(id, name, description, widget, (Range<T>) range, (T) step);
                 numberConf.setValue(defaultValue);
                 return numberConf;
             }

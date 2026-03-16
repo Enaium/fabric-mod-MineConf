@@ -17,6 +17,7 @@
 package cn.enaium.mineconf.conf;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.jspecify.annotations.Nullable;
 
 /**
  * @author Enaium
@@ -42,6 +43,8 @@ public class Conf<T> {
     /**
      * Widget of the conf.
      */
+    @JsonIgnore
+    @Nullable
     private final Widget widget;
 
     /**
@@ -49,7 +52,7 @@ public class Conf<T> {
      */
     private T value;
 
-    public Conf(String id, String name, String description, Widget widget) {
+    public Conf(String id, String name, String description, @Nullable Widget widget) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -68,7 +71,7 @@ public class Conf<T> {
         return description;
     }
 
-    public Widget getWidget() {
+    public @Nullable Widget getWidget() {
         return widget;
     }
 

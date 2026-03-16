@@ -6,6 +6,8 @@ plugins {
 dependencies {
     implementation(libs.jackson)
     implementation(libs.fabric.kotlin)
+    implementation(libs.imgui)
+    implementation(libs.jspecify)
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

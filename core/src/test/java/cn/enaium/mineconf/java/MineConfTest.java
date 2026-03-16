@@ -15,7 +15,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Enaium
@@ -23,8 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MineConfTest {
     @Test
     public void mineConf() throws JsonProcessingException {
-        final MineConf conf = new MineConf("test", "Test");
-        conf.register(new Config());
+        final MineConf conf = new MineConf("test", "Test", new Config());
         final String write = conf.write();
         conf.read(write);
         final Config out = conf.getConf(new Config());

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 class MineConfLoaderTest {
     @Test
     fun loader() {
+        System.setProperty("user.dir", "run")
         MineConfLoader.load()
-        Runtime.getRuntime().addShutdownHook(Thread(MineConfLoader::save))
     }
 }

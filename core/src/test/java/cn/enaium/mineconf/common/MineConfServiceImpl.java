@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-package cn.enaium.mineconf.conf;
+package cn.enaium.mineconf.common;
+
+import cn.enaium.mineconf.MineConf;
+import cn.enaium.mineconf.MineConfService;
 
 /**
  * @author Enaium
  */
-public enum Widget {
-    INPUT,
-    CHECKBOX,
-    RADIO,
-    COMBO,
-    DRAG,
-    SLIDER,
-    COLOR
+public class MineConfServiceImpl implements MineConfService {
+
+    public final static FullConfig CONFIG = new FullConfig();
+
+    @Override
+    public MineConf conf() {
+        return new MineConf("test", "Test", CONFIG);
+    }
 }
