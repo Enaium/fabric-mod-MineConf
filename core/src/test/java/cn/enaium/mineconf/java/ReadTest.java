@@ -51,6 +51,6 @@ public class ReadTest {
                 .id("literal.type.string")
                 .name("Good Name")
                 .description("Good Description")
-                .literal().build("Goodbye World!");
+                .<String>literal().build("Goodbye World!");
     }
 }

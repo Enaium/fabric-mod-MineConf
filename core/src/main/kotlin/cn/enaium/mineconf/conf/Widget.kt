@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package cn.enaium.mineconf.conf;
+package cn.enaium.mineconf.conf
 
 /**
  * @author Enaium
  */
-public enum Widget {
+enum class Widget {
     INPUT,
     CHECKBOX,
     RADIO,

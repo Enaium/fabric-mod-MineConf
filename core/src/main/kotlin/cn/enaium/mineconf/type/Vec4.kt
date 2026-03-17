@@ -13,22 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package cn.enaium.mineconf.type
 
-package cn.enaium.mineconf.common;
+import com.fasterxml.jackson.annotation.JsonProperty
 
-import cn.enaium.mineconf.MineConf;
-import cn.enaium.mineconf.MineConfService;
-import org.jspecify.annotations.NonNull;
-
-/**
- * @author Enaium
- */
-public class MineConfServiceImpl implements MineConfService {
-
-    public final static FullConfig CONFIG = new FullConfig();
-
-    @Override
-    public @NonNull MineConf conf() {
-        return new MineConf("test", "Test", CONFIG);
-    }
-}
+data class Vec4<T : Number>(
+    @param:JsonProperty("x") val x: T,
+    @param:JsonProperty("y") val y: T,
+    @param:JsonProperty("z") val z: T,
+    @param:JsonProperty("w") val w: T
+)

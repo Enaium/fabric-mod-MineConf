@@ -13,16 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package cn.enaium.mineconf.conf;
-
-import java.util.Collection;
+package cn.enaium.mineconf.conf
 
 /**
  * @author Enaium
  */
-public class CollectionConf<T> extends Conf<Collection<T>> {
-    public CollectionConf(String id, String name, String description, Widget widget) {
-        super(id, name, description, widget);
-    }
-}
+data class Range<T : Number?>(val min: T, val max: T)

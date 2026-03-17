@@ -13,30 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package cn.enaium.mineconf.conf;
-
-import cn.enaium.mineconf.type.Vec2;
+package cn.enaium.mineconf.conf
 
 /**
  * @author Enaium
  */
-public class Vec2Conf<T extends Number> extends Conf<Vec2<T>> {
-
-    private final Range<T> xRange;
-    private final Range<T> yRange;
-
-    public Vec2Conf(String id, String name, String description, Widget widget, Range<T> xRange, Range<T> yRange) {
-        super(id, name, description, widget);
-        this.xRange = xRange;
-        this.yRange = yRange;
-    }
-
-    public Range<T> getXRange() {
-        return xRange;
-    }
-
-    public Range<T> getYRange() {
-        return yRange;
-    }
-}
+class MultimapConf<O, M>(
+    id: String,
+    name: String,
+    description: String,
+    value: Map<O, Collection<M>>,
+    widget: Widget?
+) : Conf<Map<O, Collection<M>>>(id, name, description, value, widget)

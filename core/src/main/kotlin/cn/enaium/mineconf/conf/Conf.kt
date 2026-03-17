@@ -13,26 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package cn.enaium.mineconf.conf
 
-package cn.enaium.mineconf.conf;
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 /**
  * @author Enaium
  */
-public class Range<T extends Number> {
-    private final T min;
-    private final T max;
-
-    public Range(T min, T max) {
-        this.min = min;
-        this.max = max;
-    }
-
-    public T getMin() {
-        return min;
-    }
-
-    public T getMax() {
-        return max;
-    }
-}
+open class Conf<T>(
+    /**
+     * Unique id of the conf.
+     */
+    @field:JsonIgnore
+    val id: String,
+    /**
+     * Name of the conf.
+     */
+    val name: String,
+    /**
+     * Description of the conf.
+     */
+    val description: String,
+    /**
+     * Value of the conf.
+     */
+    var value: T,
+    /**
+     * Widget of the conf.
+     */
+    @field:JsonIgnore
+    val widget: Widget?
+)

@@ -50,7 +50,7 @@ public class MineConfTest {
                 .id("literal.type.string")
                 .name("String Conf")
                 .description("This is a string conf")
-                .literal()
+                .<String>literal()
                 .build("Hello World!");
 
         @ConfField
@@ -59,7 +59,7 @@ public class MineConfTest {
                 .id("literal.type.long")
                 .name("Long Conf")
                 .description("This is a string conf")
-                .literal()
+                .<Long>literal()
                 .build(Long.MAX_VALUE);
 
         @ConfField
@@ -68,7 +68,7 @@ public class MineConfTest {
                 .id("literal.type.integer")
                 .name("Integer Conf")
                 .description("This is an integer conf")
-                .literal()
+                .<Integer>literal()
                 .build(Integer.MAX_VALUE);
 
         @ConfField
@@ -77,7 +77,7 @@ public class MineConfTest {
                 .id("literal.type.short")
                 .name("Short Conf")
                 .description("This is a short conf")
-                .literal()
+                .<Short>literal()
                 .build(Short.MAX_VALUE);
 
         @ConfField
@@ -86,7 +86,7 @@ public class MineConfTest {
                 .id("literal.type.byte")
                 .name("Byte Conf")
                 .description("This is a byte conf")
-                .literal()
+                .<Byte>literal()
                 .build(Byte.MAX_VALUE);
 
         @ConfField
@@ -95,7 +95,7 @@ public class MineConfTest {
                 .id("literal.type.boolean")
                 .name("Boolean Conf")
                 .description("This is a boolean conf")
-                .literal()
+                .<Boolean>literal()
                 .build(true);
 
         @ConfField
@@ -104,7 +104,7 @@ public class MineConfTest {
                 .id("literal.type.double")
                 .name("Double Conf")
                 .description("This is a double conf")
-                .literal()
+                .<Double>literal()
                 .build(Double.MAX_VALUE);
 
         @ConfField
@@ -113,7 +113,7 @@ public class MineConfTest {
                 .id("literal.type.float")
                 .name("Float Conf")
                 .description("This is a float conf")
-                .literal()
+                .<Float>literal()
                 .build(Float.MAX_VALUE);
 
         @ConfField
@@ -132,7 +132,7 @@ public class MineConfTest {
                 .id("vec2.type.integer")
                 .name("Vec2 Conf")
                 .description("This is a vec2 conf")
-                .vec2().build(0, 0);
+                .<Integer>vec2().build(0, 0);
 
         @ConfField
         Vec3Conf<Integer> vec3Conf
@@ -140,7 +140,7 @@ public class MineConfTest {
                 .id("vec3.type.integer")
                 .name("Vec3 Conf")
                 .description("This is a vec3 conf")
-                .vec3().build(0, 0, 0);
+                .<Integer>vec3().build(0, 0, 0);
 
 
         @ConfField
@@ -149,16 +149,16 @@ public class MineConfTest {
                 .id("vec4.type.integer")
                 .name("Vec4 Conf")
                 .description("This is a vec4 conf")
-                .vec4().build(0, 0, 0, 0);
+                .<Integer>vec4().build(0, 0, 0, 0);
 
         @ConfField
         CollectionConf<String> collectionConf = ConfBuilder.create()
                 .id("collection.type.string")
                 .name("Collection Conf")
                 .description("This is a collection conf")
-                .build(Arrays.asList("1", "2", "3"));
+                .<String>collection().build(Arrays.asList("1", "2", "3"));
 
-        public Map<String, Collection<String>> oneToMany() {
+        public Map<String, Collection<String>> multimap() {
             Map<String, Collection<String>> map = new HashMap<>();
             map.put("1", Arrays.asList("1-1", "1-2", "1-3"));
             map.put("2", Arrays.asList("2-1", "2-2", "2-3"));
@@ -166,10 +166,10 @@ public class MineConfTest {
         }
 
         @ConfField
-        OneToManyConf<String, String> oneToManyConf = ConfBuilder.create()
+        MultimapConf<String, String> multimapConf = ConfBuilder.create()
                 .id("one-to-many.type.string")
                 .name("One-to-Many Conf")
                 .description("This is a one-to-many conf")
-                .build(oneToMany());
+                .<String, String>multimap().build(multimap());
     }
 }

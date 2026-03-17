@@ -48,10 +48,10 @@ class ReadTest {
 
     internal class TestConfig {
         @ConfField
-        var string: Conf<String?> = ConfBuilder.create()
+        var string: Conf<String> = ConfBuilder.create()
             .id("literal.type.string")
             .name("Good Name")
             .description("Good Description")
-            .literal().build<String?>("Goodbye World!")
+            .literal<String>().build("Goodbye World!")
     }
 }

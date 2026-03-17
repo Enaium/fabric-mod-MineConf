@@ -13,22 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package cn.enaium.mineconf.common;
-
-import cn.enaium.mineconf.MineConf;
-import cn.enaium.mineconf.MineConfService;
-import org.jspecify.annotations.NonNull;
+package cn.enaium.mineconf.conf
 
 /**
  * @author Enaium
  */
-public class MineConfServiceImpl implements MineConfService {
-
-    public final static FullConfig CONFIG = new FullConfig();
-
-    @Override
-    public @NonNull MineConf conf() {
-        return new MineConf("test", "Test", CONFIG);
-    }
-}
+class NumberConf<T : Number?>(
+    id: String,
+    name: String,
+    description: String,
+    value: T,
+    widget: Widget?,
+    val range: Range<T>?,
+    val step: T
+) : Conf<T>(id, name, description, value, widget)

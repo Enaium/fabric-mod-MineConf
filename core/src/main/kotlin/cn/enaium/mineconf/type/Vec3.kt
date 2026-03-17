@@ -13,17 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package cn.enaium.mineconf.type
 
-package cn.enaium.mineconf.conf;
+import com.fasterxml.jackson.annotation.JsonProperty
 
-import java.util.Collection;
-import java.util.Map;
-
-/**
- * @author Enaium
- */
-public class OneToManyConf<O, M> extends Conf<Map<O, ? extends Collection<M>>> {
-    public OneToManyConf(String id, String name, String description, Widget widget) {
-        super(id, name, description, widget);
-    }
-}
+data class Vec3<T : Number>(
+    @param:JsonProperty("x") val x: T,
+    @param:JsonProperty("y") val y: T,
+    @param:JsonProperty("z") val z: T
+) 

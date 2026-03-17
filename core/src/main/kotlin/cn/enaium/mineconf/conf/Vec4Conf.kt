@@ -13,18 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package cn.enaium.mineconf.conf
 
-package cn.enaium.mineconf.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import cn.enaium.mineconf.type.Vec4
 
 /**
  * @author Enaium
  */
-@Target(ElementType.FIELD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ConfField {
-}
+class Vec4Conf<T : Number>(
+    id: String,
+    name: String,
+    description: String,
+    value: Vec4<T>,
+    widget: Widget?,
+    val xRange: Range<T>?,
+    val yRange: Range<T>?,
+    val zRange: Range<T>?,
+    val wRange: Range<T>?
+) : Conf<Vec4<T>>(id, name, description, value, widget)

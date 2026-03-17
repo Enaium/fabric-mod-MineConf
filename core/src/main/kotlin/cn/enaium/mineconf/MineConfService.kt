@@ -13,24 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package cn.enaium.mineconf.conf;
-
-import java.util.Collection;
+package cn.enaium.mineconf
 
 /**
  * @author Enaium
  */
-public class OptionConf<T> extends Conf<T> {
-
-    private final Collection<T> options;
-
-    public OptionConf(String id, String name, String description, Widget widget, Collection<T> options) {
-        super(id, name, description, widget);
-        this.options = options;
-    }
-
-    public Collection<T> getOptions() {
-        return options;
-    }
+interface MineConfService {
+    fun conf(): MineConf
 }

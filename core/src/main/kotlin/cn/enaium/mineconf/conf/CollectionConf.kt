@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package cn.enaium.mineconf;
+package cn.enaium.mineconf.conf
 
 /**
  * @author Enaium
  */
-public interface MineConfService {
-    MineConf conf();
-}
+class CollectionConf<T>(id: String, name: String, description: String, value: MutableCollection<T>, widget: Widget?) :
+    Conf<MutableCollection<T>>(id, name, description, value, widget)

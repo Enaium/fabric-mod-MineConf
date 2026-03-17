@@ -32,10 +32,10 @@ class GuiTest {
     @Test
     fun mineConf() {
         System.setProperty("user.dir", "run")
-        MineConfLoader.load()
 
         launch(object : Application() {
             override fun init(config: Configuration) {
+                MineConfLoader.load()
                 super.init(config)
                 ImGui.getIO().iniFilename = null
                 MineConfGui.initFonts()
@@ -43,6 +43,11 @@ class GuiTest {
 
             override fun process() {
                 MainPane.main()
+            }
+
+            override fun dispose() {
+                MineConfLoader.save()
+                super.dispose()
             }
         })
     }

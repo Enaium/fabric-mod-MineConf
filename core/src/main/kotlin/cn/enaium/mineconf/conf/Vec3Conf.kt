@@ -13,22 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package cn.enaium.mineconf.conf
 
-package cn.enaium.mineconf.common;
-
-import cn.enaium.mineconf.MineConf;
-import cn.enaium.mineconf.MineConfService;
-import org.jspecify.annotations.NonNull;
+import cn.enaium.mineconf.type.Vec3
 
 /**
  * @author Enaium
  */
-public class MineConfServiceImpl implements MineConfService {
-
-    public final static FullConfig CONFIG = new FullConfig();
-
-    @Override
-    public @NonNull MineConf conf() {
-        return new MineConf("test", "Test", CONFIG);
-    }
-}
+class Vec3Conf<T : Number>(
+    id: String,
+    name: String,
+    description: String,
+    value: Vec3<T>,
+    widget: Widget?,
+    val xRange: Range<T>?,
+    val yRange: Range<T>?,
+    val zRange: Range<T>?
+) : Conf<Vec3<T>>(id, name, description, value, widget)
