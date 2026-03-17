@@ -19,6 +19,7 @@ package cn.enaium.mineconf.gui.pane
 import cn.enaium.mineconf.MineConf
 import cn.enaium.mineconf.conf.Conf
 import cn.enaium.mineconf.conf.NumberConf
+import cn.enaium.mineconf.conf.OptionConf
 import cn.enaium.mineconf.conf.Widget
 import imgui.ImGui
 import imgui.ImVec2
@@ -406,11 +407,22 @@ object MineConfPane {
                 }
             }
 
-            is String -> {
-                val value = conf.value as String? ?: ""
-                val imString = ImString(value, 100)
-                if (ImGui.inputText(id, imString)) {
-                    conf.value = imString.get()
+            else -> {
+                if (conf is OptionConf<in Any>) {
+                    if (ImGui.beginCombo(id, conf.value?.toString() ?: "")) {
+                        conf.options.forEach {
+                            if (ImGui.selectable(it.toString())) {
+                                conf.value = it!!
+                            }
+                        }
+                        ImGui.endCombo()
+                    }
+                } else if (conf.value is String) {
+                    val value = conf.value as String? ?: ""
+                    val imString = ImString(value, 300)
+                    if (ImGui.inputText(id, imString)) {
+                        conf.value = imString.get()
+                    }
                 }
             }
         }
