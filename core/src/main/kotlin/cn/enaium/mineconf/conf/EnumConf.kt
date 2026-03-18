@@ -13,21 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.enaium.mineconf.conf
 
-import cn.enaium.mineconf.type.Vec2
+package cn.enaium.mineconf.conf
 
 /**
  * @author Enaium
  */
-class Vec2Conf<T : Number>(
+class EnumConf<T : Enum<T>>(
     id: String,
     name: String,
     description: String,
-    value: Vec2<T>,
+    value: T,
     widget: Widget?,
-    val rangeX: Range<T>?,
-    val rangeY: Range<T>?,
-    val stepX: T?,
-    val stepY: T?,
-) : Conf<Vec2<T>>(id, name, description, value, widget)
+    val type: Class<T>
+) : Conf<T>(id, name, description, value, widget)

@@ -26,7 +26,10 @@ class Vec3Conf<T : Number>(
     description: String,
     value: Vec3<T>,
     widget: Widget?,
-    val xRange: Range<T>?,
-    val yRange: Range<T>?,
-    val zRange: Range<T>?
+    val rangeX: Range<T>?,
+    val rangeY: Range<T>?,
+    val rangeZ: Range<T>?,
+    val stepX: T?,
+    val stepY: T?,
+    val stepZ: T?,
 ) : Conf<Vec3<T>>(id, name, description, value, widget)

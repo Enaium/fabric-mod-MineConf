@@ -162,6 +162,21 @@ public class FullConfig {
             .options(Arrays.asList("Option 1", "Option 2", "Option 3"))
             .build("Option 3");
 
+    enum Method {
+        METHOD1,
+        METHOD2,
+        METHOD3,
+    }
+
+    @ConfField
+    EnumConf<Method> enumConf = ConfBuilder.create()
+            .id("enum.type.method")
+            .name("Enum Conf")
+            .description("This is a enum conf")
+            .<Method>enumeration()
+            .type(Method.class)
+            .build(Method.METHOD1);
+
     @ConfField
     Vec2Conf<Integer> vec2Conf
             = ConfBuilder.create()
@@ -203,9 +218,9 @@ public class FullConfig {
 
     @ConfField
     MultimapConf<String, String> multimapConf = ConfBuilder.create()
-            .id("one-to-many.type.string")
-            .name("One-to-Many Conf")
-            .description("This is a one-to-many conf")
+            .id("multimap.type.string")
+            .name("Multimap Conf")
+            .description("This is a Multimap conf")
             .<String, String>multimap()
             .build(multimap());
 }

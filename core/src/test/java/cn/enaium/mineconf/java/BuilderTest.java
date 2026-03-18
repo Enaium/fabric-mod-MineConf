@@ -49,14 +49,14 @@ public class BuilderTest {
                 .name("Vec2 Conf")
                 .description("This is a vec2 conf")
                 .<Integer>vec2()
-                .xRange(x -> x.min(1).max(10))
-                .yRange(y -> y.min(1).max(10))
+                .rangeX(x -> x.min(1).max(10))
+                .rangeY(y -> y.min(1).max(10))
                 .build(1, 1);
-        assertEquals(1, Objects.requireNonNull(build.getXRange()).getMin());
-        assertEquals(10, build.getXRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeX()).getMin());
+        assertEquals(10, build.getRangeX().getMax());
 
-        assertEquals(1, Objects.requireNonNull(build.getYRange()).getMin());
-        assertEquals(10, build.getYRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeY()).getMin());
+        assertEquals(10, build.getRangeY().getMax());
 
         assertEquals(1, build.getValue().getX());
         assertEquals(1, build.getValue().getY());
@@ -69,18 +69,18 @@ public class BuilderTest {
                 .name("Vec3 Conf")
                 .description("This is a vec2 conf")
                 .<Integer>vec3()
-                .xRange(x -> x.min(1).max(10))
-                .yRange(y -> y.min(1).max(10))
-                .zRange(z -> z.min(1).max(10))
+                .rangeX(x -> x.min(1).max(10))
+                .rangeY(y -> y.min(1).max(10))
+                .rangeZ(z -> z.min(1).max(10))
                 .build(1, 1, 1);
-        assertEquals(1, Objects.requireNonNull(build.getXRange()).getMin());
-        assertEquals(10, build.getXRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeX()).getMin());
+        assertEquals(10, build.getRangeX().getMax());
 
-        assertEquals(1, Objects.requireNonNull(build.getYRange()).getMin());
-        assertEquals(10, build.getYRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeY()).getMin());
+        assertEquals(10, build.getRangeY().getMax());
 
-        assertEquals(1, Objects.requireNonNull(build.getZRange()).getMin());
-        assertEquals(10, build.getZRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeZ()).getMin());
+        assertEquals(10, build.getRangeZ().getMax());
 
         assertEquals(1, build.getValue().getX());
         assertEquals(1, build.getValue().getY());
@@ -94,22 +94,22 @@ public class BuilderTest {
                 .name("Vec4 Conf")
                 .description("This is a vec4 conf")
                 .<Integer>vec4()
-                .xRange(x -> x.min(1).max(10))
-                .yRange(y -> y.min(1).max(10))
-                .zRange(z -> z.min(1).max(10))
-                .wRange(w -> w.min(1).max(10))
+                .rangeX(x -> x.min(1).max(10))
+                .rangeY(y -> y.min(1).max(10))
+                .rangeZ(z -> z.min(1).max(10))
+                .rangeW(w -> w.min(1).max(10))
                 .build(1, 1, 1, 1);
-        assertEquals(1, Objects.requireNonNull(build.getXRange()).getMin());
-        assertEquals(10, build.getXRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeX()).getMin());
+        assertEquals(10, build.getRangeX().getMax());
 
-        assertEquals(1, Objects.requireNonNull(build.getYRange()).getMin());
-        assertEquals(10, build.getYRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeY()).getMin());
+        assertEquals(10, build.getRangeY().getMax());
 
-        assertEquals(1, Objects.requireNonNull(build.getZRange()).getMin());
-        assertEquals(10, build.getZRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeZ()).getMin());
+        assertEquals(10, build.getRangeZ().getMax());
 
-        assertEquals(1, Objects.requireNonNull(build.getWRange()).getMin());
-        assertEquals(10, build.getWRange().getMax());
+        assertEquals(1, Objects.requireNonNull(build.getRangeW()).getMin());
+        assertEquals(10, build.getRangeW().getMax());
 
         assertEquals(1, build.getValue().getX());
         assertEquals(1, build.getValue().getY());

@@ -17,10 +17,11 @@
 package cn.enaium.mineconf.gui.pane
 
 import cn.enaium.mineconf.MineConf
-import cn.enaium.mineconf.conf.Conf
-import cn.enaium.mineconf.conf.NumberConf
-import cn.enaium.mineconf.conf.OptionConf
-import cn.enaium.mineconf.conf.Widget
+import cn.enaium.mineconf.conf.*
+import cn.enaium.mineconf.gui.widget.InputWidget
+import cn.enaium.mineconf.gui.widget.Vec2Widget
+import cn.enaium.mineconf.gui.widget.Vec3Widget
+import cn.enaium.mineconf.gui.widget.Vec4Widget
 import imgui.ImGui
 import imgui.ImVec2
 import imgui.flag.ImGuiSelectableFlags
@@ -59,364 +60,159 @@ object MineConfPane {
         val id = "##id_${conf.id}"
         var widget = conf.widget
 
-        if (conf.value is Number) {
-            if (conf.widget == null) {
-                widget = Widget.INPUT
+        when (conf) {
+            is NumberConf<*>,
+            is Vec2Conf<*>,
+            is Vec3Conf<*>,
+            is Vec4Conf<*> -> {
+                if (conf.widget == null) {
+                    widget = Widget.INPUT
+                }
+            }
+
+            else -> when (conf.value) {
+                is Number -> {
+                    if (conf.widget == null) {
+                        widget = Widget.INPUT
+                    }
+                }
             }
         }
 
         when (conf.value) {
             is Long -> {
                 val value = conf.value as Long? ?: 0
-                run {
-                    val imLong = ImLong(value)
-                    val pData = longArrayOf(value)
-                    if (conf is NumberConf<in Number>) {
-                        val min = conf.range?.min?.toLong() ?: 0
-                        val max = conf.range?.max?.toLong() ?: 0
-                        val step = conf.step?.toLong()
-                        when (widget) {
-                            Widget.INPUT -> {
-                                if (step != null) {
-                                    if (ImGui.inputScalar(id, imLong, step)) {
-                                        val get = imLong.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                } else {
-                                    if (ImGui.inputScalar(id, imLong)) {
-                                        val get = imLong.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                }
-                                return@run
-                            }
+                val imLong = ImLong(value)
+                if (conf is NumberConf<in Number>) {
+                    val min = conf.range?.min?.toLong()
+                    val max = conf.range?.max?.toLong()
+                    val step = conf.step?.toLong()
 
-                            Widget.DRAG -> {
-                                if (ImGui.dragScalar(id, pData, 1f, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            Widget.SLIDER -> {
-                                if (ImGui.sliderScalar(id, pData, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            else -> {
-                                throw UnsupportedOperationException("Unsupported widget type: $widget")
-                            }
-                        }
-                    }
-
-                    if (ImGui.inputScalar(id, imLong)) {
+                    if (InputWidget.input(id, widget, imLong, min, max, step)) {
                         conf.value = imLong.get()
                     }
-                    return@run
+                } else {
+                    if (InputWidget.input(id, widget, imLong)) {
+                        conf.value = imLong.get()
+                    }
                 }
             }
 
             is Int -> {
                 val value = conf.value as Int? ?: 0
                 val imInt = ImInt(value)
-                val pData = intArrayOf(value)
-                run {
-                    if (conf is NumberConf<in Number>) {
-                        val min = conf.range?.min?.toInt() ?: 0
-                        val max = conf.range?.max?.toInt() ?: 0
-                        val step = conf.step?.toInt()
+                if (conf is NumberConf<in Number>) {
+                    val min = conf.range?.min?.toInt()
+                    val max = conf.range?.max?.toInt()
+                    val step = conf.step?.toInt()
 
-                        when (widget) {
-                            Widget.INPUT -> {
-                                if (step != null) {
-                                    if (ImGui.inputScalar(id, imInt, step)) {
-                                        val get = imInt.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                } else {
-                                    if (ImGui.inputScalar(id, imInt)) {
-                                        val get = imInt.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                }
-                                return@run
-                            }
-
-                            Widget.DRAG -> {
-                                if (ImGui.dragScalar(id, pData, 1f, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            Widget.SLIDER -> {
-                                if (ImGui.sliderScalar(id, pData, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            else -> {
-                                throw UnsupportedOperationException("Unsupported widget type: $widget")
-                            }
-                        }
-                    }
-
-                    if (ImGui.inputScalar(id, imInt)) {
+                    if (InputWidget.input(id, widget, imInt, min, max, step)) {
                         conf.value = imInt.get()
                     }
-                    return@run
+                } else {
+                    if (InputWidget.input(id, widget, imInt)) {
+                        conf.value = imInt.get()
+                    }
                 }
             }
 
             is Short -> {
                 val value = conf.value as Short? ?: 0
                 val imShort = ImShort(value)
-                val pData = shortArrayOf(value)
-                run {
-                    if (conf is NumberConf<in Number>) {
-                        val min = conf.range?.min?.toShort() ?: 0
-                        val max = conf.range?.max?.toShort() ?: 0
-                        val step = conf.step?.toShort()
+                if (conf is NumberConf<in Number>) {
+                    val min = conf.range?.min?.toShort()
+                    val max = conf.range?.max?.toShort()
+                    val step = conf.step?.toShort()
 
-                        when (widget) {
-                            Widget.INPUT -> {
-                                if (step != null) {
-                                    if (ImGui.inputScalar(id, imShort, step)) {
-                                        val get = imShort.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                } else {
-                                    if (ImGui.inputScalar(id, imShort)) {
-                                        val get = imShort.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                }
-                                return@run
-                            }
-
-                            Widget.DRAG -> {
-                                if (ImGui.dragScalar(id, pData, 1f, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            Widget.SLIDER -> {
-                                if (ImGui.sliderScalar(id, pData, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            else -> {
-                                throw UnsupportedOperationException("Unsupported widget type: $widget")
-                            }
-                        }
-                    }
-
-                    if (ImGui.inputScalar(id, imShort)) {
+                    if (InputWidget.input(id, widget, imShort, min, max, step)) {
                         conf.value = imShort.get()
                     }
-                    return@run
+                } else {
+                    if (InputWidget.input(id, widget, imShort)) {
+                        conf.value = imShort.get()
+                    }
                 }
             }
 
             is Byte -> {
                 val value = conf.value as Byte? ?: 0
                 val imShort = ImShort(value.toShort())
-                val pData = shortArrayOf(value.toShort())
-                run {
-                    if (conf is NumberConf<in Number>) {
-                        val min = conf.range?.min?.toShort() ?: 0
-                        val max = conf.range?.max?.toShort() ?: 0
-                        val step = conf.step?.toShort()
+                if (conf is NumberConf<in Number>) {
+                    val min = conf.range?.min?.toByte()
+                    val max = conf.range?.max?.toByte()
+                    val step = conf.step?.toByte()
 
-                        when (widget) {
-                            Widget.INPUT -> {
-                                if (step != null) {
-                                    if (ImGui.inputScalar(id, imShort, step)) {
-                                        val get = imShort.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                } else {
-                                    if (ImGui.inputScalar(id, imShort)) {
-                                        val get = imShort.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                }
-                                return@run
-                            }
-
-                            Widget.DRAG -> {
-                                if (ImGui.dragScalar(id, pData, 1f, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            Widget.SLIDER -> {
-                                if (ImGui.sliderScalar(id, pData, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            else -> {
-                                throw UnsupportedOperationException("Unsupported widget type: $widget")
-                            }
-                        }
-                    }
-
-                    if (ImGui.inputScalar(id, imShort)) {
+                    if (InputWidget.input(id, widget, imShort, min, max, step)) {
                         conf.value = imShort.get()
                     }
-                    return@run
+                } else {
+                    if (InputWidget.input(id, widget, imShort)) {
+                        conf.value = imShort.get()
+                    }
                 }
             }
 
             is Float -> {
-                val value = conf.value as Float? ?: 0f
+                val value = conf.value as Float? ?: 0.0f
                 val imFloat = ImFloat(value)
-                val pData = floatArrayOf(value)
-                run {
-                    if (conf is NumberConf<in Number>) {
-                        val min = conf.range?.min?.toFloat() ?: 0f
-                        val max = conf.range?.max?.toFloat() ?: 0f
-                        val step = conf.step?.toFloat()
+                if (conf is NumberConf<in Number>) {
+                    val min = conf.range?.min?.toFloat()
+                    val max = conf.range?.max?.toFloat()
+                    val step = conf.step?.toFloat()
 
-                        when (widget) {
-                            Widget.INPUT -> {
-                                if (step != null) {
-                                    if (ImGui.inputScalar(id, imFloat, step)) {
-                                        val get = imFloat.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                } else {
-                                    if (ImGui.inputScalar(id, imFloat)) {
-                                        val get = imFloat.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                }
-                                return@run
-                            }
-
-                            Widget.DRAG -> {
-                                if (ImGui.dragScalar(id, pData, 1f, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            Widget.SLIDER -> {
-                                if (ImGui.sliderScalar(id, pData, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            else -> {
-                                throw UnsupportedOperationException("Unsupported widget type: $widget")
-                            }
-                        }
-                    }
-
-                    if (ImGui.inputScalar(id, imFloat)) {
+                    if (InputWidget.input(id, widget, imFloat, min, max, step)) {
                         conf.value = imFloat.get()
                     }
-                    return@run
+                } else {
+                    if (InputWidget.input(id, widget, imFloat)) {
+                        conf.value = imFloat.get()
+                    }
                 }
             }
 
             is Double -> {
                 val value = conf.value as Double? ?: 0.0
                 val imDouble = ImDouble(value)
-                val pData = doubleArrayOf(value)
-                run {
-                    if (conf is NumberConf<in Number>) {
-                        val min = conf.range?.min?.toDouble() ?: 0.0
-                        val max = conf.range?.max?.toDouble() ?: 0.0
-                        val step = conf.step?.toDouble()
+                if (conf is NumberConf<in Number>) {
+                    val min = conf.range?.min?.toDouble()
+                    val max = conf.range?.max?.toDouble()
+                    val step = conf.step?.toDouble()
 
-                        when (widget) {
-                            Widget.INPUT -> {
-                                if (step != null) {
-                                    if (ImGui.inputScalar(id, imDouble, step)) {
-                                        val get = imDouble.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                } else {
-                                    if (ImGui.inputScalar(id, imDouble)) {
-                                        val get = imDouble.get()
-                                        if (get in min..max) {
-                                            conf.value = get
-                                        }
-                                    }
-                                }
-                                return@run
-                            }
-
-                            Widget.DRAG -> {
-                                if (ImGui.dragScalar(id, pData, 1f, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            Widget.SLIDER -> {
-                                if (ImGui.sliderScalar(id, pData, min, max)) {
-                                    conf.value = pData[0]
-                                }
-                                return@run
-                            }
-
-                            else -> {
-                                throw UnsupportedOperationException("Unsupported widget type: $widget")
-                            }
-                        }
-                    }
-
-                    if (ImGui.inputScalar(id, imDouble)) {
+                    if (InputWidget.input(id, widget, imDouble, min, max, step)) {
                         conf.value = imDouble.get()
                     }
-                    return@run
+                } else {
+                    if (InputWidget.input(id, widget, imDouble)) {
+                        conf.value = imDouble.get()
+                    }
                 }
             }
 
             else -> {
-                if (conf is OptionConf<in Any>) {
-                    if (ImGui.beginCombo(id, conf.value?.toString() ?: "")) {
+                if (conf is OptionConf<Any>) {
+                    if (ImGui.beginCombo(id, conf.value.toString())) {
                         conf.options.forEach {
+                            if (ImGui.selectable(it.toString())) {
+                                conf.value = it
+                            }
+                        }
+                        ImGui.endCombo()
+                    }
+                } else if (conf is EnumConf<Any>) {
+                    if (ImGui.beginCombo(id, conf.value.toString())) {
+                        conf.type.enumConstants.forEach {
                             if (ImGui.selectable(it.toString())) {
                                 conf.value = it!!
                             }
                         }
                         ImGui.endCombo()
                     }
+                } else if (conf is Vec2Conf<*>) {
+                    Vec2Widget.vec2(id, widget, conf)
+                } else if (conf is Vec3Conf<*>) {
+                    Vec3Widget.vec3(id, widget, conf)
+                } else if (conf is Vec4Conf<*>) {
+                    Vec4Widget.vec4(id, widget, conf)
                 } else if (conf.value is String) {
                     val value = conf.value as String? ?: ""
                     val imString = ImString(value, 300)
@@ -427,4 +223,5 @@ object MineConfPane {
             }
         }
     }
+
 }

@@ -42,14 +42,14 @@ class BuilderTest {
             .name("Vec2 Conf")
             .description("This is a vec2 conf")
             .vec2<Number>()
-            .xRange { it.min(1).max(10) }
-            .yRange { it.min(1).max(10) }
+            .rangeX { it.min(1).max(10) }
+            .rangeY { it.min(1).max(10) }
             .build(1, 1)
-        Assertions.assertEquals(1, build.xRange?.min)
-        Assertions.assertEquals(10, build.xRange?.max)
+        Assertions.assertEquals(1, build.rangeX?.min)
+        Assertions.assertEquals(10, build.rangeX?.max)
 
-        Assertions.assertEquals(1, build.yRange?.min)
-        Assertions.assertEquals(10, build.yRange?.max)
+        Assertions.assertEquals(1, build.rangeY?.min)
+        Assertions.assertEquals(10, build.rangeY?.max)
 
         Assertions.assertEquals(1, build.value.x)
         Assertions.assertEquals(1, build.value.y)
@@ -62,18 +62,18 @@ class BuilderTest {
             .name("Vec3 Conf")
             .description("This is a vec2 conf")
             .vec3<Int>()
-            .xRange { it.min(1).max(10) }
-            .yRange { it.min(1).max(10) }
-            .zRange { it.min(1).max(10) }
+            .rangeX { it.min(1).max(10) }
+            .rangeY { it.min(1).max(10) }
+            .rangeZ { it.min(1).max(10) }
             .build(1, 1, 1)
-        Assertions.assertEquals(1, build.xRange?.min)
-        Assertions.assertEquals(10, build.xRange?.max)
+        Assertions.assertEquals(1, build.rangeX?.min)
+        Assertions.assertEquals(10, build.rangeX?.max)
 
-        Assertions.assertEquals(1, build.yRange?.min)
-        Assertions.assertEquals(10, build.yRange?.max)
+        Assertions.assertEquals(1, build.rangeY?.min)
+        Assertions.assertEquals(10, build.rangeY?.max)
 
-        Assertions.assertEquals(1, build.zRange?.min)
-        Assertions.assertEquals(10, build.zRange?.max)
+        Assertions.assertEquals(1, build.rangeZ?.min)
+        Assertions.assertEquals(10, build.rangeZ?.max)
 
         Assertions.assertEquals(1, build.value.x)
         Assertions.assertEquals(1, build.value.y)
@@ -87,22 +87,22 @@ class BuilderTest {
             .name("Vec4 Conf")
             .description("This is a vec4 conf")
             .vec4<Int>()
-            .xRange { it.min(1).max(10) }
-            .yRange { it.min(1).max(10) }
-            .zRange { it.min(1).max(10) }
-            .wRange { it.min(1).max(10) }
+            .rangeX { it.min(1).max(10) }
+            .rangeY { it.min(1).max(10) }
+            .rangeZ { it.min(1).max(10) }
+            .rangeW { it.min(1).max(10) }
             .build(1, 1, 1, 1)
-        Assertions.assertEquals(1, build.xRange?.min)
-        Assertions.assertEquals(10, build.xRange?.max)
+        Assertions.assertEquals(1, build.rangeX?.min)
+        Assertions.assertEquals(10, build.rangeX?.max)
 
-        Assertions.assertEquals(1, build.yRange?.min)
-        Assertions.assertEquals(10, build.yRange?.max)
+        Assertions.assertEquals(1, build.rangeY?.min)
+        Assertions.assertEquals(10, build.rangeY?.max)
 
-        Assertions.assertEquals(1, build.zRange?.min)
-        Assertions.assertEquals(10, build.zRange?.max)
+        Assertions.assertEquals(1, build.rangeZ?.min)
+        Assertions.assertEquals(10, build.rangeZ?.max)
 
-        Assertions.assertEquals(1, build.wRange?.min)
-        Assertions.assertEquals(10, build.wRange?.max)
+        Assertions.assertEquals(1, build.rangeW?.min)
+        Assertions.assertEquals(10, build.rangeW?.max)
 
         Assertions.assertEquals(1, build.value.x)
         Assertions.assertEquals(1, build.value.y)

@@ -93,8 +93,8 @@ object ConfBuilder {
         }
 
         inner class NumberBuilder<T : Number?> {
-            var range: Range<T>? = null
-            var step: T? = null
+            private var range: Range<T>? = null
+            private var step: T? = null
 
             fun range(range: Consumer<RangeBuilder<T>>): NumberBuilder<T> {
                 val rangeBuilder = RangeBuilder<T>()
@@ -120,18 +120,30 @@ object ConfBuilder {
         inner class Vec2Builder<T : Number> {
             private var xRange: Range<T>? = null
             private var yRange: Range<T>? = null
+            private var xStep: T? = null
+            private var yStep: T? = null
 
-            fun xRange(xRange: Consumer<RangeBuilder<T>>): Vec2Builder<T> {
+            fun rangeX(xRange: Consumer<RangeBuilder<T>>): Vec2Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 xRange.accept(rangeBuilder)
                 this.xRange = rangeBuilder.build()
                 return this
             }
 
-            fun yRange(yRange: Consumer<RangeBuilder<T>>): Vec2Builder<T> {
+            fun rangeY(yRange: Consumer<RangeBuilder<T>>): Vec2Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 yRange.accept(rangeBuilder)
                 this.yRange = rangeBuilder.build()
+                return this
+            }
+
+            fun stepX(xStep: T): Vec2Builder<T> {
+                this.xStep = xStep
+                return this
+            }
+
+            fun stepY(yStep: T): Vec2Builder<T> {
+                this.yStep = yStep
                 return this
             }
 
@@ -143,7 +155,9 @@ object ConfBuilder {
                     Vec2(defaultValueX, defaultValueY),
                     widget,
                     xRange,
-                    yRange
+                    yRange,
+                    xStep,
+                    yStep
                 )
             }
         }
@@ -156,25 +170,43 @@ object ConfBuilder {
             private var xRange: Range<T>? = null
             private var yRange: Range<T>? = null
             private var zRange: Range<T>? = null
+            private var xStep: T? = null
+            private var yStep: T? = null
+            private var zStep: T? = null
 
-            fun xRange(xRange: Consumer<RangeBuilder<T>>): Vec3Builder<T> {
+            fun rangeX(xRange: Consumer<RangeBuilder<T>>): Vec3Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 xRange.accept(rangeBuilder)
                 this.xRange = rangeBuilder.build()
                 return this
             }
 
-            fun yRange(yRange: Consumer<RangeBuilder<T>>): Vec3Builder<T> {
+            fun rangeY(yRange: Consumer<RangeBuilder<T>>): Vec3Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 yRange.accept(rangeBuilder)
                 this.yRange = rangeBuilder.build()
                 return this
             }
 
-            fun zRange(zRange: Consumer<RangeBuilder<T>>): Vec3Builder<T> {
+            fun rangeZ(zRange: Consumer<RangeBuilder<T>>): Vec3Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 zRange.accept(rangeBuilder)
                 this.zRange = rangeBuilder.build()
+                return this
+            }
+
+            fun stepX(xStep: T): Vec3Builder<T> {
+                this.xStep = xStep
+                return this
+            }
+
+            fun stepY(yStep: T): Vec3Builder<T> {
+                this.yStep = yStep
+                return this
+            }
+
+            fun stepZ(yStep: T): Vec3Builder<T> {
+                this.yStep = yStep
                 return this
             }
 
@@ -187,7 +219,10 @@ object ConfBuilder {
                     widget,
                     xRange,
                     yRange,
-                    zRange
+                    zRange,
+                    xStep,
+                    yStep,
+                    zStep
                 )
             }
         }
@@ -201,32 +236,56 @@ object ConfBuilder {
             private var yRange: Range<T>? = null
             private var zRange: Range<T>? = null
             private var wRange: Range<T>? = null
+            private var xStep: T? = null
+            private var yStep: T? = null
+            private var zStep: T? = null
+            private var wStep: T? = null
 
-            fun xRange(xRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
+            fun rangeX(xRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 xRange.accept(rangeBuilder)
                 this.xRange = rangeBuilder.build()
                 return this
             }
 
-            fun yRange(yRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
+            fun rangeY(yRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 yRange.accept(rangeBuilder)
                 this.yRange = rangeBuilder.build()
                 return this
             }
 
-            fun zRange(zRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
+            fun rangeZ(zRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 zRange.accept(rangeBuilder)
                 this.zRange = rangeBuilder.build()
                 return this
             }
 
-            fun wRange(wRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
+            fun rangeW(wRange: Consumer<RangeBuilder<T>>): Vec4Builder<T> {
                 val rangeBuilder = RangeBuilder<T>()
                 wRange.accept(rangeBuilder)
                 this.wRange = rangeBuilder.build()
+                return this
+            }
+
+            fun stepX(xStep: T): Vec4Builder<T> {
+                this.xStep = xStep
+                return this
+            }
+
+            fun stepY(yStep: T): Vec4Builder<T> {
+                this.yStep = yStep
+                return this
+            }
+
+            fun stepZ(yStep: T): Vec4Builder<T> {
+                this.yStep = yStep
+                return this
+            }
+
+            fun stepW(yStep: T): Vec4Builder<T> {
+                this.yStep = yStep
                 return this
             }
 
@@ -245,7 +304,11 @@ object ConfBuilder {
                     xRange,
                     yRange,
                     zRange,
-                    wRange
+                    wRange,
+                    xStep,
+                    yStep,
+                    zStep,
+                    wStep
                 )
             }
         }
@@ -255,9 +318,9 @@ object ConfBuilder {
         }
 
         inner class OptionBuilder<T> {
-            private var options: MutableList<T>? = null
+            private lateinit var options: Collection<T>
 
-            fun options(options: MutableList<T>?): OptionBuilder<T> {
+            fun options(options: Collection<T>): OptionBuilder<T> {
                 this.options = options
                 return this
             }
@@ -269,7 +332,31 @@ object ConfBuilder {
                     description,
                     defaultValue,
                     widget,
-                    options as MutableCollection<T>
+                    options
+                ) as OptionConf<T>
+            }
+        }
+
+        fun <T : Enum<T>> enumeration(): EnumBuilder<T> {
+            return EnumBuilder()
+        }
+
+        inner class EnumBuilder<T : Enum<T>> {
+            private lateinit var type: Class<T>
+
+            fun type(type: Class<T>): EnumBuilder<T> {
+                this.type = type
+                return this
+            }
+
+            fun build(defaultValue: T): EnumConf<T> {
+                return EnumConf(
+                    id,
+                    name,
+                    description,
+                    defaultValue,
+                    widget,
+                    type
                 )
             }
         }
