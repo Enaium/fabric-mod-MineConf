@@ -13,17 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.enaium.mineconf.conf
+
+package cn.enaium.mineconf.gui.widget
+
+import cn.enaium.mineconf.conf.OptionConf
+import imgui.ImGui
 
 /**
  * @author Enaium
  */
-class NumberConf<T : Number?>(
-    id: String,
-    name: String,
-    description: String,
-    value: T,
-    widget: Widget?,
-    val range: Range<T>?,
-    val step: T?
-) : Conf<T>(id, name, description, value, widget)
+fun OptionConf<Any>.option(id: String) {
+    if (ImGui.beginCombo(id, this.value.toString())) {
+        this.options.forEach {
+            if (ImGui.selectable(it.toString())) {
+                this.value = it
+            }
+        }
+        ImGui.endCombo()
+    }
+}

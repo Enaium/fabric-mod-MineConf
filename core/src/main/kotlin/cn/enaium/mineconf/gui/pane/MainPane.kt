@@ -16,6 +16,7 @@
 package cn.enaium.mineconf.gui.pane
 
 import cn.enaium.mineconf.MineConfLoader
+import cn.enaium.mineconf.utility.ImRemember
 import imgui.ImGui
 import imgui.flag.ImGuiWindowFlags
 
@@ -30,6 +31,7 @@ object MainPane {
         ImGui.setNextWindowSize(viewport.sizeX, viewport.sizeY)
         ImGui.setNextWindowViewport(viewport.id)
 
+        ImRemember.beginState()
         if (ImGui.begin(
                 "MineConf",
                 (ImGuiWindowFlags.NoDecoration
@@ -44,5 +46,6 @@ object MainPane {
             }
             ImGui.end()
         }
+        ImRemember.endState()
     }
 }

@@ -13,17 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.enaium.mineconf.conf
+
+package cn.enaium.mineconf.gui.widget
+
+import cn.enaium.mineconf.conf.EnumConf
+import imgui.ImGui
 
 /**
  * @author Enaium
  */
-class NumberConf<T : Number?>(
-    id: String,
-    name: String,
-    description: String,
-    value: T,
-    widget: Widget?,
-    val range: Range<T>?,
-    val step: T?
-) : Conf<T>(id, name, description, value, widget)
+@Suppress("UNCHECKED_CAST", "UPPER_BOUND_VIOLATED_IN_TYPE_OPERATOR_OR_PARAMETER_BOUNDS_WARNING")
+fun EnumConf<*>.enum(id: String) {
+    this as EnumConf<Enum<*>>
+    if (ImGui.beginCombo(id, this.value.toString())) {
+        this.type.enumConstants.forEach {
+            if (ImGui.selectable(it.toString())) {
+                this.value = it
+            }
+        }
+        ImGui.endCombo()
+    }
+}

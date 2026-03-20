@@ -207,7 +207,8 @@ public class FullConfig {
             .id("collection.type.string")
             .name("Collection Conf")
             .description("This is a collection conf")
-            .collection().build(Arrays.asList("1", "2", "3"));
+            .<String>collection()
+            .options(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")).build(Arrays.asList("1", "2", "3"));
 
     public Map<String, Collection<String>> multimap() {
         Map<String, Collection<String>> map = new HashMap<>();

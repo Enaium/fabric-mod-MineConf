@@ -15,6 +15,8 @@
  */
 package cn.enaium.mineconf.conf
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+
 /**
  * @author Enaium
  */
@@ -23,5 +25,11 @@ class MultimapConf<O, M>(
     name: String,
     description: String,
     value: Map<O, Collection<M>>,
-    widget: Widget?
+    widget: Widget?,
+    @field:JsonIgnore
+    val keyConverter: (String) -> O,
+    val keyOptions: Collection<O>?,
+    @field:JsonIgnore
+    val valueConverter: (String) -> M,
+    val valueOptions: Collection<M>?
 ) : Conf<Map<O, Collection<M>>>(id, name, description, value, widget)

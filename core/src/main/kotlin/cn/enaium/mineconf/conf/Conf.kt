@@ -42,5 +42,5 @@ open class Conf<T>(
      * Widget of the conf.
      */
     @field:JsonIgnore
-    val widget: Widget?
+    var widget: Widget?
 )

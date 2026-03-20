@@ -366,8 +366,29 @@ object ConfBuilder {
         }
 
         inner class CollectionBuilder<T> {
-            fun <T> build(defaultValue: MutableCollection<T>): CollectionConf<T> {
-                return CollectionConf(id, name, description, defaultValue, widget)
+            private var options: Collection<T>? = null
+            private var converter: (String) -> T = { it as T }
+
+            fun options(options: Collection<T>): CollectionBuilder<T> {
+                this.options = options
+                return this
+            }
+
+            fun converter(converter: (String) -> T): CollectionBuilder<T> {
+                this.converter = converter
+                return this
+            }
+
+            fun build(defaultValue: MutableCollection<T>): CollectionConf<T> {
+                return CollectionConf(
+                    id,
+                    name,
+                    description,
+                    defaultValue,
+                    widget,
+                    converter,
+                    options
+                )
             }
         }
 
@@ -376,8 +397,43 @@ object ConfBuilder {
         }
 
         inner class MultimapBuilder<O, M> {
-            fun build(defaultValue: MutableMap<O, out MutableCollection<M>>): MultimapConf<O, M> {
-                return MultimapConf(id, name, description, defaultValue, widget)
+            private var keyOptions: Collection<O>? = null
+            private var keyConverter: (String) -> O = { it as O }
+            private var valueOptions: Collection<M>? = null
+            private var valueConverter: (String) -> M = { it as M }
+
+            fun keyOptions(options: Collection<O>): MultimapBuilder<O, M> {
+                this.keyOptions = options
+                return this
+            }
+
+            fun keyConverter(keyConverter: (String) -> O): MultimapBuilder<O, M> {
+                this.keyConverter = keyConverter
+                return this
+            }
+
+            fun valueOptions(options: Collection<O>): MultimapBuilder<O, M> {
+                this.keyOptions = options
+                return this
+            }
+
+            fun valueConverter(valueConverter: (String) -> M): MultimapBuilder<O, M> {
+                this.valueConverter = valueConverter
+                return this
+            }
+
+            fun build(defaultValue: MutableMap<O, Collection<M>>): MultimapConf<O, M> {
+                return MultimapConf(
+                    id,
+                    name,
+                    description,
+                    defaultValue,
+                    widget,
+                    keyConverter,
+                    keyOptions,
+                    valueConverter,
+                    valueOptions
+                )
             }
         }
     }

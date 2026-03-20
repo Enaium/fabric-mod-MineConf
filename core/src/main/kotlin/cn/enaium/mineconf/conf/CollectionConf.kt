@@ -15,8 +15,18 @@
  */
 package cn.enaium.mineconf.conf
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+
 /**
  * @author Enaium
  */
-class CollectionConf<T>(id: String, name: String, description: String, value: MutableCollection<T>, widget: Widget?) :
-    Conf<MutableCollection<T>>(id, name, description, value, widget)
+class CollectionConf<T>(
+    id: String,
+    name: String,
+    description: String,
+    value: Collection<T>,
+    widget: Widget?,
+    @field:JsonIgnore
+    val converter: (String) -> T,
+    val options: Collection<T>?
+) : Conf<Collection<T>>(id, name, description, value, widget)
