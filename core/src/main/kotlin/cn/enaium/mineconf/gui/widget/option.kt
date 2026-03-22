@@ -22,11 +22,13 @@ import imgui.ImGui
 /**
  * @author Enaium
  */
-fun OptionConf<Any>.option(id: String) {
+@Suppress("UNCHECKED_CAST")
+fun OptionConf<*>.option(id: String) {
+    this as OptionConf<Any>
     if (ImGui.beginCombo(id, this.value.toString())) {
-        this.options.forEach {
-            if (ImGui.selectable(it.toString())) {
-                this.value = it
+        this.options.forEach { option ->
+            if (ImGui.selectable(option.toString())) {
+                this.value = option
             }
         }
         ImGui.endCombo()

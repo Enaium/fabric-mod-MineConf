@@ -26,6 +26,7 @@ import imgui.type.ImString
 /**
  * @author Enaium
  */
+@Suppress("UNCHECKED_CAST")
 fun MultimapConf<*, *>.multimap(id: String) {
     this as MultimapConf<Any, Any>
 

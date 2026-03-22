@@ -15,6 +15,7 @@
  */
 package cn.enaium.mineconf
 
+import cn.enaium.mineconf.conf.Conf
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
@@ -63,7 +64,20 @@ object MineConfLoader {
         }
     }
 
+    @JvmStatic
     fun save() {
         MINE_CONF.forEach { (_, conf) -> save(conf) }
+    }
+
+    @JvmStatic
+    fun getMineConf(any: Conf<*>): MineConf? {
+        MINE_CONF.forEach { (_, mineConf) ->
+            mineConf.getConf().forEach { (_, conf) ->
+                if (any == conf) {
+                    return mineConf
+                }
+            }
+        }
+        return null
     }
 }

@@ -52,7 +52,7 @@ fun CollectionConf<*>.collection(id: String) {
         ImGui.sameLine()
         if (ImGui.button("Add $id")) {
             if (this.options?.contains(input.get()) != false) {
-                this.value = this.value + converter(input.get())
+                this.value += converter(input.get())
             }
             ImGui.closeCurrentPopup()
         }
@@ -65,7 +65,7 @@ fun CollectionConf<*>.collection(id: String) {
         ) {
             this.options?.filter { it.toString().contains(input.get()) }?.forEach {
                 if (ImGui.selectable(it.toString())) {
-                    this.value = this.value + converter(it.toString())
+                    this.value += converter(it.toString())
                     ImGui.closeCurrentPopup()
                 }
             }

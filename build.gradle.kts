@@ -8,5 +8,10 @@ allprojects {
             name = "Fabric"
             url = uri("https://maven.fabricmc.net/")
         }
+        maven {
+            name = "Minecraft"
+            url = uri("https://libraries.minecraft.net")
+        }
+        mavenLocal()
     }
 }

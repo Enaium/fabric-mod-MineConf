@@ -16,6 +16,7 @@
 package cn.enaium.mineconf.gui
 
 import cn.enaium.mineconf.MineConf
+import cn.enaium.mineconf.config.MineConfConfig
 import imgui.ImFontConfig
 import imgui.ImFontGlyphRangesBuilder
 import imgui.ImGui
@@ -42,7 +43,7 @@ object MineConfGui {
         val glyphRanges = rangesBuilder.buildRanges()
         io.fonts.addFontFromMemoryTTF(
             MineConf::class.java.getResource("/Minecraft.ttf")!!.readBytes(),
-            16f * 2,
+            16f * MineConfConfig.fontScale.value,
             glyphRanges
         )
         io.fonts.build()

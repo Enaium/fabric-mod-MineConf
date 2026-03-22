@@ -30,11 +30,12 @@ import imgui.flag.ImGuiTableFlags
  */
 @Suppress("UNCHECKED_CAST")
 object MineConfPane {
+
     fun mineConf(mineConf: MineConf) {
         if (ImGui.beginTable(mineConf.id, 2, ImGuiTableFlags.Borders)) {
             ImGui.tableSetupColumn("Name", ImGuiTableColumnFlags.WidthFixed, 0f)
             ImGui.tableSetupColumn("Widget", ImGuiTableColumnFlags.WidthStretch, 1f)
-            mineConf.confMap.forEach { (id, conf) ->
+            mineConf.getConf().forEach { (id, conf) ->
                 ImGui.tableNextRow()
                 ImGui.tableNextColumn()
                 name(conf)
@@ -54,7 +55,7 @@ object MineConfPane {
         }
     }
 
-    fun widget(conf: Conf<in Any>) {
+    fun widget(conf: Conf<*>) {
         val id = "##id_${conf.id}"
 
         when (conf) {
@@ -81,7 +82,7 @@ object MineConfPane {
                 conf.number(id)
             }
 
-            is OptionConf<Any> -> {
+            is OptionConf<*> -> {
                 conf.option(id)
             }
 

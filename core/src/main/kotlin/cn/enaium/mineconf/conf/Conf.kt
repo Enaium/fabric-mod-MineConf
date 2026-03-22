@@ -15,6 +15,7 @@
  */
 package cn.enaium.mineconf.conf
 
+import cn.enaium.mineconf.MineConfLoader
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 /**
@@ -37,10 +38,19 @@ open class Conf<T>(
     /**
      * Value of the conf.
      */
-    var value: T,
+    var defaultValue: T,
     /**
      * Widget of the conf.
      */
     @field:JsonIgnore
     var widget: Widget?
-)
+) {
+    var value
+        get() = this.defaultValue
+        set(value) {
+            this.defaultValue = value
+            MineConfLoader.getMineConf(this)?.also {
+                MineConfLoader.save()
+            }
+        }
+}

@@ -6,7 +6,7 @@ fmg = "0.0.3"
 loom = "1.15-SNAPSHOT"
 jackson = "2.21.1"
 imgui = "1.90.0"
-jspecify = "1.0.0"
+brigadier = "1.0.17"
 
 [libraries]
 kotlin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
@@ -17,7 +17,7 @@ publish = { module = "me.modmuss50.mod-publish-plugin:me.modmuss50.mod-publish-p
 fmg = { module = "cn.enaium.fabric-multi-game:cn.enaium.fabric-multi-game.gradle.plugin", version.ref = "fmg" }
 jackson = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 imgui = { module = "io.github.spair:imgui-java-app", version.ref = "imgui" }
-jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
+brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm" }

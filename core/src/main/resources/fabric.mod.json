@@ -17,12 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
+      "cn.enaium.mineconf.MineConfLoader::load",
       "cn.enaium.mineconf.Commands::client"
     ]
   },
-  "mixins": [
-    "mineconf.mixins.json"
-  ],
   "depends": {
     "fabricloader": "*",
     "minecraft": "@minecraft_version@",

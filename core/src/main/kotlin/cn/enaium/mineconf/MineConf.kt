@@ -41,7 +41,7 @@ class MineConf(
      */
     private val instance: Any
 ) {
-    val confMap: MutableMap<String, Conf<*>> = HashMap()
+    private val confMap: MutableMap<String, Conf<*>> = HashMap()
 
     init {
         update(instance)
@@ -55,7 +55,7 @@ class MineConf(
                 val conf = declaredField.get(instance) as Conf<*>
                 confMap[conf.id] = conf
             } catch (e: Throwable) {
-                throw RuntimeException("Unable to register the conf: " + declaredField.getName(), e)
+                throw RuntimeException("Unable to register the conf: " + declaredField.name, e)
             }
         }
 
@@ -87,20 +87,29 @@ class MineConf(
         getConf(instance)
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun <T> getConf(o: T): T {
-        for (declaredField in o!!.javaClass.getDeclaredFields()) {
-            declaredField.setAccessible(true)
+        o?.javaClass?.getDeclaredFields()?.forEach {
+            it.setAccessible(true)
             try {
-                val conf = declaredField.get(o) as Conf<Any?>
-                conf.value = confMap[conf.id]?.value
+                val get = it.get(o)
+                if (get is Conf<*>) {
+                    val conf = get as Conf<Any?>
+                    conf.value = confMap[conf.id]?.value
+                }
             } catch (e: IllegalAccessException) {
-                throw RuntimeException("Unable to get the conf: " + declaredField.getName(), e)
+                throw RuntimeException("Unable to get the conf: " + it.name, e)
             }
         }
+
         return o
     }
 
     fun getConf(id: String): Conf<*>? {
         return confMap[id]
+    }
+
+    fun getConf(): Map<String, Conf<*>> {
+        return confMap
     }
 }

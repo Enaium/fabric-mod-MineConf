@@ -24,7 +24,18 @@ import imgui.flag.ImGuiWindowFlags
  * @author Enaium
  */
 object MainPane {
+
     fun main() {
+        main {
+            MineConfLoader.MINE_CONF.forEach { (_, mineConf) ->
+                if (ImGui.collapsingHeader(mineConf.name)) {
+                    MineConfPane.mineConf(mineConf)
+                }
+            }
+        }
+    }
+
+    fun main(content: () -> Unit) {
         val viewport = ImGui.getMainViewport()
 
         ImGui.setNextWindowPos(viewport.posX, viewport.posY)
@@ -39,11 +50,7 @@ object MainPane {
                         or ImGuiWindowFlags.NoBringToFrontOnFocus)
             )
         ) {
-            MineConfLoader.MINE_CONF.forEach { (_, mineConf) ->
-                if (ImGui.collapsingHeader(mineConf.name)) {
-                    MineConfPane.mineConf(mineConf)
-                }
-            }
+            content()
             ImGui.end()
         }
         ImRemember.endState()
