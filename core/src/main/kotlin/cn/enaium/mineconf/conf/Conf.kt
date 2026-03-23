@@ -17,6 +17,7 @@ package cn.enaium.mineconf.conf
 
 import cn.enaium.mineconf.MineConfLoader
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.databind.ObjectMapper
 
 /**
  * @author Enaium
@@ -53,4 +54,8 @@ open class Conf<T>(
                 MineConfLoader.save()
             }
         }
+
+    fun valueString(): String {
+        return ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this.value)
+    }
 }

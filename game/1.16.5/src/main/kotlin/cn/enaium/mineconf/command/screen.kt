@@ -33,14 +33,18 @@ fun screen(dispatcher: CommandDispatcher<FabricClientCommandSource>) {
     dispatcher.register(
         CLIENT_ROOT.then(
             ClientCommandManager.literal("screen").executes {
-                MinecraftClient.getInstance()
-                    .execute { MinecraftClient.getInstance().openScreen(MainScreen()) }
+                Thread {
+                    MinecraftClient.getInstance()
+                        .execute { MinecraftClient.getInstance().openScreen(MainScreen()) }
+                }.start()
                 Command.SINGLE_SUCCESS
             }.then(ClientCommandManager.argument("id", MineConfArgumentType.mineConf()).executes { context ->
-                MinecraftClient.getInstance().execute {
-                    MinecraftClient.getInstance()
-                        .openScreen(MineConfScreen(MineConfArgumentType.getMineConf(context, "id")))
-                }
+                Thread {
+                    MinecraftClient.getInstance().execute {
+                        MinecraftClient.getInstance()
+                            .openScreen(MineConfScreen(MineConfArgumentType.getMineConf(context, "id")))
+                    }
+                }.start()
                 Command.SINGLE_SUCCESS
             })
         )

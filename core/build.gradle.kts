@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.jackson)
+    api(libs.jackson)
     implementation(libs.fabric.kotlin)
     implementation(libs.imgui)
     implementation(libs.brigadier)
