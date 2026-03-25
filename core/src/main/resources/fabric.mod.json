@@ -21,6 +21,9 @@
       "cn.enaium.mineconf.Commands::client"
     ]
   },
+  "mixins": [
+    "mineconf.mixins.json"
+  ],
   "depends": {
     "fabricloader": "*",
     "minecraft": "@minecraft_version@",

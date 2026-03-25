@@ -16,7 +16,10 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.argument
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.NumberConf
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.DoubleArgumentType
 import com.mojang.brigadier.arguments.FloatArgumentType
@@ -29,17 +32,18 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun NumberConf<*>.number(id: LiteralArgumentBuilder<Any>) {
+fun NumberConf<*>.number(id: LiteralArgumentBuilder<CommonSource>) {
     when (this.value) {
         is Long -> {
             this as NumberConf<Long>
             this.range?.also {
                 id.then(
-                    argument<Any, Long>(
+                    argument<Long>(
                         "value",
                         LongArgumentType.longArg(it.min, it.max)
                     ).executes { context ->
                         this.value = LongArgumentType.getLong(context, "value")
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     })
             }
@@ -49,11 +53,12 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<Any>) {
             this as NumberConf<Int>
             this.range?.also {
                 id.then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "value",
                         IntegerArgumentType.integer(it.min, it.max)
                     ).executes { context ->
                         this.value = IntegerArgumentType.getInteger(context, "value")
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     }
                 )
@@ -64,11 +69,12 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<Any>) {
             this as NumberConf<Short>
             this.range?.also {
                 id.then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "value",
                         IntegerArgumentType.integer(it.min.toInt(), it.max.toInt())
                     ).executes { context ->
                         this.value = IntegerArgumentType.getInteger(context, "value").toShort()
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     }
                 )
@@ -79,11 +85,12 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<Any>) {
             this as NumberConf<Byte>
             this.range?.also {
                 id.then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "value",
                         IntegerArgumentType.integer(it.min.toInt(), it.max.toInt())
                     ).executes { context ->
                         this.value = IntegerArgumentType.getInteger(context, "value").toByte()
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     }
                 )
@@ -94,11 +101,12 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<Any>) {
             this as NumberConf<Float>
             this.range?.also {
                 id.then(
-                    argument<Any, Float>(
+                    argument<Float>(
                         "value",
                         FloatArgumentType.floatArg(it.min, it.max)
                     ).executes { context ->
                         this.value = FloatArgumentType.getFloat(context, "value")
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     }
                 )
@@ -109,11 +117,12 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<Any>) {
             this as NumberConf<Double>
             this.range?.also {
                 id.then(
-                    argument<Any, Double>(
+                    argument<Double>(
                         "value",
                         DoubleArgumentType.doubleArg(it.min, it.max)
                     ).executes { context ->
                         this.value = DoubleArgumentType.getDouble(context, "value")
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     }
                 )

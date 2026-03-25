@@ -26,8 +26,27 @@ object MineConfConfig {
     @ConfField
     val fontScale =
         ConfBuilder.create()
-            .id("mineconf.font_scale")
+            .id("font_scale")
             .name("Font Scale")
             .description("Font scale of the imgui")
             .literal<Float>().build(2f)
+
+    @ConfField
+    val lang =
+        ConfBuilder.create()
+            .id("lang")
+            .name("Lang")
+            .description("Language for MineConf")
+            .enumeration<Lang>()
+            .type(Lang::class.java)
+            .build(Lang.EN_US)
+
+    enum class Lang(val title: String) {
+        EN_US("English"),
+        ZH_CN("中文");
+
+        override fun toString(): String {
+            return title
+        }
+    }
 }

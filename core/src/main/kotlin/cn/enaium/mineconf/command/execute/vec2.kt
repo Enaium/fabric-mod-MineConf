@@ -16,8 +16,11 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.argument
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.Vec2Conf
 import cn.enaium.mineconf.type.Vec2
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.DoubleArgumentType
 import com.mojang.brigadier.arguments.FloatArgumentType
@@ -30,12 +33,12 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
+fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<CommonSource>) {
     when (this.value.x) {
         is Long -> {
             this as Vec2Conf<Long>
             id.then(
-                argument<Any, Long>(
+                argument<Long>(
                     "x",
                     if (this.rangeX != null) {
                         LongArgumentType.longArg(
@@ -46,7 +49,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         LongArgumentType.longArg()
                     }
                 ).then(
-                    argument<Any, Long>(
+                    argument<Long>(
                         "y", if (this.rangeY != null) {
                             LongArgumentType.longArg(
                                 this.rangeY.min,
@@ -59,6 +62,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         val x = LongArgumentType.getLong(context, "x")
                         val y = LongArgumentType.getLong(context, "y")
                         this.value = Vec2(x, y)
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -67,7 +71,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
         is Int -> {
             this as Vec2Conf<Int>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -78,7 +82,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min,
@@ -91,6 +95,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         val x = IntegerArgumentType.getInteger(context, "x")
                         val y = IntegerArgumentType.getInteger(context, "y")
                         this.value = Vec2(x, y)
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -99,7 +104,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
         is Short -> {
             this as Vec2Conf<Short>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -110,7 +115,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min.toInt(),
@@ -123,6 +128,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         val x = IntegerArgumentType.getInteger(context, "x").toShort()
                         val y = IntegerArgumentType.getInteger(context, "y").toShort()
                         this.value = Vec2(x, y)
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -131,7 +137,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
         is Byte -> {
             this as Vec2Conf<Byte>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -142,7 +148,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min.toInt(),
@@ -155,6 +161,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         val x = IntegerArgumentType.getInteger(context, "x").toByte()
                         val y = IntegerArgumentType.getInteger(context, "y").toByte()
                         this.value = Vec2(x, y)
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -163,7 +170,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
         is Float -> {
             this as Vec2Conf<Float>
             id.then(
-                argument<Any, Float>(
+                argument<Float>(
                     "x",
                     if (this.rangeX != null) {
                         FloatArgumentType.floatArg(
@@ -174,7 +181,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         FloatArgumentType.floatArg()
                     }
                 ).then(
-                    argument<Any, Float>(
+                    argument<Float>(
                         "y", if (this.rangeY != null) {
                             FloatArgumentType.floatArg(
                                 this.rangeY.min,
@@ -187,6 +194,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         val x = FloatArgumentType.getFloat(context, "x")
                         val y = FloatArgumentType.getFloat(context, "y")
                         this.value = Vec2(x, y)
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -195,7 +203,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
         is Double -> {
             this as Vec2Conf<Double>
             id.then(
-                argument<Any, Double>(
+                argument<Double>(
                     "x",
                     if (this.rangeX != null) {
                         DoubleArgumentType.doubleArg(
@@ -206,7 +214,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         DoubleArgumentType.doubleArg()
                     }
                 ).then(
-                    argument<Any, Double>(
+                    argument<Double>(
                         "y", if (this.rangeY != null) {
                             DoubleArgumentType.doubleArg(
                                 this.rangeY.min,
@@ -219,6 +227,7 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<Any>) {
                         val x = DoubleArgumentType.getDouble(context, "x")
                         val y = DoubleArgumentType.getDouble(context, "y")
                         this.value = Vec2(x, y)
+                        context.source.sendFeedback(i18n("command.set.success"))
                         Command.SINGLE_SUCCESS
                     })
             )

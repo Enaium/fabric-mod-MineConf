@@ -17,19 +17,20 @@
 package cn.enaium.mineconf.command.execute
 
 import cn.enaium.mineconf.MineConfLoader
+import cn.enaium.mineconf.command.literal
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.CollectionConf
 import cn.enaium.mineconf.conf.MultimapConf
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
 
 /**
  * @author Enaium
  */
-fun remove(): LiteralArgumentBuilder<Any> {
-    val append = literal<Any>("remove")
+fun remove(): LiteralArgumentBuilder<CommonSource> {
+    val append = literal("remove")
     MineConfLoader.MINE_CONF.forEach { (modId, mineConf) ->
         mineConf.getConf().forEach { (id, conf) ->
-            val id = literal<Any>(id)
+            val id = literal(id)
             when (conf) {
                 is CollectionConf<*> -> {
                     conf.remove(id)
@@ -43,7 +44,7 @@ fun remove(): LiteralArgumentBuilder<Any> {
                     return@forEach
                 }
             }
-            val modId = literal<Any>(modId).then(id)
+            val modId = literal(modId).then(id)
             append.then(modId)
         }
     }

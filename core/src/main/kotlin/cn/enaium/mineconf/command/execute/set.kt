@@ -17,6 +17,8 @@
 package cn.enaium.mineconf.command.execute
 
 import cn.enaium.mineconf.MineConfLoader
+import cn.enaium.mineconf.command.literal
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.*
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
@@ -25,11 +27,11 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun set(): LiteralArgumentBuilder<Any> {
-    val set = literal<Any>("set")
+fun set(): LiteralArgumentBuilder<CommonSource> {
+    val set = literal("set")
     MineConfLoader.MINE_CONF.forEach { (modId, mineConf) ->
         mineConf.getConf().forEach { (id, conf) ->
-            val id = literal<Any>(id)
+            val id = literal(id)
 
             when (conf) {
                 is NumberConf<*> -> {
@@ -62,7 +64,7 @@ fun set(): LiteralArgumentBuilder<Any> {
                     }
                 }
             }
-            val modId = literal<Any>(modId).then(id)
+            val modId = literal(modId).then(id)
             set.then(modId)
         }
     }

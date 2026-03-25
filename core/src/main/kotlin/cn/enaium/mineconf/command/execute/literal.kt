@@ -16,81 +16,92 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.argument
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.Conf
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.*
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
 
 /**
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun Conf<*>.literal(id: LiteralArgumentBuilder<Any>): Boolean {
+fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
     when (this.value) {
         is Long -> {
-            id.then(argument<Any, Long>("value", LongArgumentType.longArg()).executes {
+            id.then(argument<Long>("value", LongArgumentType.longArg()).executes {
                 this as Conf<Long>
                 this.value = LongArgumentType.getLong(it, "value")
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
 
         is Int -> {
-            id.then(argument<Any, Int>("value", IntegerArgumentType.integer()).executes {
+            id.then(argument<Int>("value", IntegerArgumentType.integer()).executes {
                 this as Conf<Int>
                 this.value = IntegerArgumentType.getInteger(it, "value")
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
 
         is Short -> {
-            id.then(argument<Any, Int>("value", IntegerArgumentType.integer()).executes {
+            id.then(argument<Int>("value", IntegerArgumentType.integer()).executes {
                 this as Conf<Short>
                 this.value = IntegerArgumentType.getInteger(it, "value").toShort()
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
 
         is Byte -> {
-            id.then(argument<Any, Int>("value", IntegerArgumentType.integer()).executes {
+            id.then(argument<Int>("value", IntegerArgumentType.integer()).executes {
                 this as Conf<Byte>
                 this.value = IntegerArgumentType.getInteger(it, "value").toByte()
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
 
         is Float -> {
-            id.then(argument<Any, Float>("value", FloatArgumentType.floatArg()).executes {
+            id.then(argument<Float>("value", FloatArgumentType.floatArg()).executes {
                 this as Conf<Float>
                 this.value = FloatArgumentType.getFloat(it, "value")
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
 
         is Double -> {
-            id.then(argument<Any, Double>("value", DoubleArgumentType.doubleArg()).executes {
+            id.then(argument<Double>("value", DoubleArgumentType.doubleArg()).executes {
                 this as Conf<Double>
                 this.value = DoubleArgumentType.getDouble(it, "value")
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
 
         is Boolean -> {
-            id.then(argument<Any, Boolean>("value", BoolArgumentType.bool()).executes {
+            id.then(argument<Boolean>("value", BoolArgumentType.bool()).executes {
                 this as Conf<Boolean>
                 this.value = BoolArgumentType.getBool(it, "value")
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
 
         is String -> {
-            id.then(argument<Any, String>("value", StringArgumentType.string()).executes {
+            id.then(argument<String>("value", StringArgumentType.string()).executes {
                 this as Conf<String>
                 this.value = StringArgumentType.getString(it, "value")
+                it.source.sendFeedback(i18n("command.set.success"))
                 Command.SINGLE_SUCCESS
             })
         }
+
         else -> {
             return false
         }

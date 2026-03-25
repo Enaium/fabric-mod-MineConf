@@ -24,7 +24,7 @@ import imgui.ImGuiIO
  * @author Enaium
  */
 class MineConfImGui : DefaultImGui(null) {
-    override fun configure(data: ImGuiIO?) {
+    override fun configure(data: ImGuiIO) {
         super.configure(data)
         MineConfGui.initFonts()
     }

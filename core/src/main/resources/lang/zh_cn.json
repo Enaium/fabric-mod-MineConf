@@ -1,0 +1,5 @@
+{
+  "command.set.success": "设置成功",
+  "command.append.success": "添加成功",
+  "command.remove.success": "移除成功"
+}

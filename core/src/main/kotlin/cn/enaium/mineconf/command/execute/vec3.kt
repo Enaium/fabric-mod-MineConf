@@ -16,8 +16,11 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.argument
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.Vec3Conf
 import cn.enaium.mineconf.type.Vec3
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.DoubleArgumentType
 import com.mojang.brigadier.arguments.FloatArgumentType
@@ -30,12 +33,12 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
+fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<CommonSource>) {
     when (this.value.x) {
         is Long -> {
             this as Vec3Conf<Long>
             id.then(
-                argument<Any, Long>(
+                argument<Long>(
                     "x",
                     if (this.rangeX != null) {
                         LongArgumentType.longArg(
@@ -46,7 +49,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                         LongArgumentType.longArg()
                     }
                 ).then(
-                    argument<Any, Long>(
+                    argument<Long>(
                         "y", if (this.rangeY != null) {
                             LongArgumentType.longArg(
                                 this.rangeY.min,
@@ -56,7 +59,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             LongArgumentType.longArg()
                         }
                     ).then(
-                        argument<Any, Long>(
+                        argument<Long>(
                             "z", if (this.rangeZ != null) {
                                 LongArgumentType.longArg(
                                     this.rangeZ.min,
@@ -70,6 +73,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             val y = LongArgumentType.getLong(context, "y")
                             val z = LongArgumentType.getLong(context, "z")
                             this.value = Vec3(x, y, z)
+                            context.source.sendFeedback(i18n("command.set.success"))
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -79,7 +83,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
         is Int -> {
             this as Vec3Conf<Int>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -90,7 +94,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min,
@@ -100,7 +104,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             IntegerArgumentType.integer()
                         }
                     ).then(
-                        argument<Any, Int>(
+                        argument<Int>(
                             "z", if (this.rangeZ != null) {
                                 IntegerArgumentType.integer(
                                     this.rangeZ.min,
@@ -114,6 +118,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             val y = IntegerArgumentType.getInteger(context, "y")
                             val z = IntegerArgumentType.getInteger(context, "z")
                             this.value = Vec3(x, y, z)
+                            context.source.sendFeedback(i18n("command.set.success"))
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -123,7 +128,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
         is Short -> {
             this as Vec3Conf<Short>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -134,7 +139,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min.toInt(),
@@ -144,7 +149,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             IntegerArgumentType.integer()
                         }
                     ).then(
-                        argument<Any, Int>(
+                        argument<Int>(
                             "z", if (this.rangeZ != null) {
                                 IntegerArgumentType.integer(
                                     this.rangeZ.min.toInt(),
@@ -158,6 +163,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             val y = IntegerArgumentType.getInteger(context, "y").toShort()
                             val z = IntegerArgumentType.getInteger(context, "z").toShort()
                             this.value = Vec3(x, y, z)
+                            context.source.sendFeedback(i18n("command.set.success"))
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -167,7 +173,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
         is Byte -> {
             this as Vec3Conf<Byte>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -178,7 +184,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min.toInt(),
@@ -188,7 +194,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             IntegerArgumentType.integer()
                         }
                     ).then(
-                        argument<Any, Int>(
+                        argument<Int>(
                             "z", if (this.rangeZ != null) {
                                 IntegerArgumentType.integer(
                                     this.rangeZ.min.toInt(),
@@ -202,6 +208,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             val y = IntegerArgumentType.getInteger(context, "y").toByte()
                             val z = IntegerArgumentType.getInteger(context, "z").toByte()
                             this.value = Vec3(x, y, z)
+                            context.source.sendFeedback(i18n("command.set.success"))
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -211,7 +218,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
         is Float -> {
             this as Vec3Conf<Float>
             id.then(
-                argument<Any, Float>(
+                argument<Float>(
                     "x",
                     if (this.rangeX != null) {
                         FloatArgumentType.floatArg(
@@ -222,7 +229,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                         FloatArgumentType.floatArg()
                     }
                 ).then(
-                    argument<Any, Float>(
+                    argument<Float>(
                         "y", if (this.rangeY != null) {
                             FloatArgumentType.floatArg(
                                 this.rangeY.min,
@@ -232,7 +239,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             FloatArgumentType.floatArg()
                         }
                     ).then(
-                        argument<Any, Float>(
+                        argument<Float>(
                             "z", if (this.rangeZ != null) {
                                 FloatArgumentType.floatArg(
                                     this.rangeZ.min,
@@ -246,6 +253,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             val y = FloatArgumentType.getFloat(context, "y")
                             val z = FloatArgumentType.getFloat(context, "z")
                             this.value = Vec3(x, y, z)
+                            context.source.sendFeedback(i18n("command.set.success"))
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -255,7 +263,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
         is Double -> {
             this as Vec3Conf<Double>
             id.then(
-                argument<Any, Double>(
+                argument<Double>(
                     "x",
                     if (this.rangeX != null) {
                         DoubleArgumentType.doubleArg(
@@ -266,7 +274,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                         DoubleArgumentType.doubleArg()
                     }
                 ).then(
-                    argument<Any, Double>(
+                    argument<Double>(
                         "y", if (this.rangeY != null) {
                             DoubleArgumentType.doubleArg(
                                 this.rangeY.min,
@@ -276,7 +284,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             DoubleArgumentType.doubleArg()
                         }
                     ).then(
-                        argument<Any, Double>(
+                        argument<Double>(
                             "z", if (this.rangeZ != null) {
                                 DoubleArgumentType.doubleArg(
                                     this.rangeZ.min,
@@ -290,6 +298,7 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<Any>) {
                             val y = DoubleArgumentType.getDouble(context, "y")
                             val z = DoubleArgumentType.getDouble(context, "z")
                             this.value = Vec3(x, y, z)
+                            context.source.sendFeedback(i18n("command.set.success"))
                             Command.SINGLE_SUCCESS
                         })
                 )

@@ -18,7 +18,7 @@ package cn.enaium.mineconf.common;
 
 import cn.enaium.mineconf.MineConf;
 import cn.enaium.mineconf.MineConfService;
-import org.jspecify.annotations.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Enaium
@@ -28,7 +28,7 @@ public class MineConfServiceImpl implements MineConfService {
     public final static FullConfig CONFIG = new FullConfig();
 
     @Override
-    public @NonNull MineConf conf() {
+    public @NotNull MineConf conf() {
         return new MineConf("test", "Test", CONFIG);
     }
 }

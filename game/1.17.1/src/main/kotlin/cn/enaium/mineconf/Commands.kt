@@ -19,8 +19,7 @@ package cn.enaium.mineconf
 import cn.enaium.mineconf.command.execute.append
 import cn.enaium.mineconf.command.execute.remove
 import cn.enaium.mineconf.command.execute.set
-import cn.enaium.mineconf.command.getClient
-import cn.enaium.mineconf.command.getServer
+import cn.enaium.mineconf.command.execute.get
 import cn.enaium.mineconf.command.screen
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
@@ -40,9 +39,9 @@ object Commands {
     fun client() {
         screen(ClientCommandManager.DISPATCHER)
         ClientCommandManager.DISPATCHER.register(CLIENT_ROOT.then(set() as LiteralArgumentBuilder<FabricClientCommandSource>))
+        ClientCommandManager.DISPATCHER.register(CLIENT_ROOT.then(get() as LiteralArgumentBuilder<FabricClientCommandSource>))
         ClientCommandManager.DISPATCHER.register(CLIENT_ROOT.then(append() as LiteralArgumentBuilder<FabricClientCommandSource>))
         ClientCommandManager.DISPATCHER.register(CLIENT_ROOT.then(remove() as LiteralArgumentBuilder<FabricClientCommandSource>))
-        ClientCommandManager.DISPATCHER.register(CLIENT_ROOT.then(getClient()))
 
     }
 
@@ -50,9 +49,9 @@ object Commands {
     fun server() {
         CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, _ ->
             dispatcher.register(SERVER_ROOT.then(set() as LiteralArgumentBuilder<ServerCommandSource>))
+            dispatcher.register(SERVER_ROOT.then(get() as LiteralArgumentBuilder<ServerCommandSource>))
             dispatcher.register(SERVER_ROOT.then(append() as LiteralArgumentBuilder<ServerCommandSource>))
             dispatcher.register(SERVER_ROOT.then(remove() as LiteralArgumentBuilder<ServerCommandSource>))
-            dispatcher.register(SERVER_ROOT.then(getServer()))
         })
     }
 }

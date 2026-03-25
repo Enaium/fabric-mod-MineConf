@@ -12,6 +12,6 @@ allprojects {
             name = "Minecraft"
             url = uri("https://libraries.minecraft.net")
         }
-        mavenLocal()
+        maven { url = uri("https://jitpack.io") }
     }
 }

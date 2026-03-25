@@ -17,9 +17,11 @@ package cn.enaium.mineconf.gui
 
 import cn.enaium.mineconf.MineConf
 import cn.enaium.mineconf.config.MineConfConfig
+import cn.enaium.mineconf.utility.SystemFontFinder.findFontFile
 import imgui.ImFontConfig
 import imgui.ImFontGlyphRangesBuilder
 import imgui.ImGui
+import java.util.*
 
 /**
  * @author Enaium
@@ -41,11 +43,44 @@ object MineConfGui {
         fontConfig.mergeMode = true
         io.fonts.clear()
         val glyphRanges = rangesBuilder.buildRanges()
+        val sizePixels = 16f * MineConfConfig.fontScale.value
         io.fonts.addFontFromMemoryTTF(
             MineConf::class.java.getResource("/Minecraft.ttf")!!.readBytes(),
-            16f * MineConfConfig.fontScale.value,
+            sizePixels,
             glyphRanges
         )
+
+        getPreferredFonts(Locale.getDefault()).firstNotNullOfOrNull { findFontFile(it) }?.also {
+            io.fonts.addFontFromFileTTF(
+                it.absolutePath,
+                sizePixels,
+                fontConfig,
+                glyphRanges
+            )
+        }
+
         io.fonts.build()
+    }
+
+    fun getPreferredFonts(locale: Locale): List<String> {
+        return when (locale.language) {
+            "zh" -> listOf(
+                "msyh",
+                "simsun",
+                "sourcehan",
+            )
+
+            "ja" -> listOf(
+                "sourcehan"
+            )
+
+            "ko" -> listOf(
+                "sourcehan"
+            )
+
+            else -> listOf(
+                "segoeui",
+            )
+        }
     }
 }

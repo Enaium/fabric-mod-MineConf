@@ -16,57 +16,63 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.argument
+import cn.enaium.mineconf.command.literal
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.MultimapConf
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
-import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
 
 /**
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun MultimapConf<*, *>.append(id: LiteralArgumentBuilder<Any>) {
+fun MultimapConf<*, *>.append(id: LiteralArgumentBuilder<CommonSource>) {
     this as MultimapConf<Any, Any>
     this.keyOptions?.forEach { keyOption ->
-        val key = literal<Any>(keyOption.toString())
+        val key = cn.enaium.mineconf.command.literal(keyOption.toString())
         this.valueOptions?.forEach { valueOption ->
-            val value = literal<Any>(valueOption.toString()).executes {
+            val value = literal(valueOption.toString()).executes { context ->
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
+                context.source.sendFeedback(i18n("command.append.success"))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
         } ?: run {
-            key.then(argument<Any, String>("value", StringArgumentType.string()).executes { context ->
+            key.then(argument<String>("value", StringArgumentType.string()).executes { context ->
                 val valueOption = this.valueConverter(StringArgumentType.getString(context, "value"))
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
+                context.source.sendFeedback(i18n("command.append.success"))
                 Command.SINGLE_SUCCESS
             })
         }
         id.then(key)
     } ?: run {
-        val key = argument<Any, String>("key", StringArgumentType.string())
+        val key = argument<String>("key", StringArgumentType.string())
         this.valueOptions?.forEach { valueOption ->
-            val value = literal<Any>(valueOption.toString()).executes { context ->
+            val value = literal(valueOption.toString()).executes { context ->
                 val keyOption = this.keyConverter(StringArgumentType.getString(context, "key"))
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
+                context.source.sendFeedback(i18n("command.append.success"))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
         } ?: run {
-            key.then(argument<Any, String>("value", StringArgumentType.string()).executes { context ->
+            key.then(argument<String>("value", StringArgumentType.string()).executes { context ->
                 val keyOption = this.keyConverter(StringArgumentType.getString(context, "key"))
                 val valueOption = this.valueConverter(StringArgumentType.getString(context, "value"))
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
+                context.source.sendFeedback(i18n("command.append.success"))
                 Command.SINGLE_SUCCESS
             })
         }
@@ -75,45 +81,49 @@ fun MultimapConf<*, *>.append(id: LiteralArgumentBuilder<Any>) {
 }
 
 @Suppress("UNCHECKED_CAST")
-fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<Any>) {
+fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<CommonSource>) {
     this as MultimapConf<Any, Any>
     this.keyOptions?.forEach { keyOption ->
-        val key = literal<Any>(keyOption.toString()).executes {
+        val key = literal(keyOption.toString()).executes { context ->
             this.value = this.value.filter { it.key != keyOption }
+            context.source.sendFeedback(i18n("command.remove.success"))
             Command.SINGLE_SUCCESS
         }
         this.valueOptions?.forEach { valueOption ->
-            val value = literal<Any>(valueOption.toString()).executes {
+            val value = literal(valueOption.toString()).executes { context ->
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
+                context.source.sendFeedback(i18n("command.remove.success"))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
         } ?: run {
-            key.then(argument<Any, String>("value", StringArgumentType.string()).executes { context ->
+            key.then(argument<String>("value", StringArgumentType.string()).executes { context ->
                 val valueOption = this.valueConverter(StringArgumentType.getString(context, "value"))
                 this.value += this.value.filter { it.key != keyOption && it.value != valueOption }
+                context.source.sendFeedback(i18n("command.remove.success"))
                 Command.SINGLE_SUCCESS
             })
         }
         id.then(key)
     } ?: run {
-        val key = argument<Any, String>("key", StringArgumentType.string())
+        val key = argument<String>("key", StringArgumentType.string())
         this.valueOptions?.forEach { valueOption ->
-            val value = literal<Any>(valueOption.toString()).executes { context ->
+            val value = literal(valueOption.toString()).executes { context ->
                 val keyOption = this.keyConverter(StringArgumentType.getString(context, "key"))
                 this.value = this.value.filter { it.key != keyOption }
+                context.source.sendFeedback(i18n("command.remove.success"))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
         } ?: run {
-            key.then(argument<Any, String>("value", StringArgumentType.string()).executes { context ->
+            key.then(argument<String>("value", StringArgumentType.string()).executes { context ->
                 val keyOption = this.keyConverter(StringArgumentType.getString(context, "key"))
                 val valueOption = this.valueConverter(StringArgumentType.getString(context, "value"))
 
                 this.value = this.value.filter { it.key != keyOption && it.value != valueOption }
-
+                context.source.sendFeedback(i18n("command.remove.success"))
                 Command.SINGLE_SUCCESS
             })
         }

@@ -16,42 +16,46 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.argument
+import cn.enaium.mineconf.command.literal
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.CollectionConf
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
-import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
 
 /**
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun CollectionConf<*>.append(id: LiteralArgumentBuilder<Any>) {
+fun CollectionConf<*>.append(id: LiteralArgumentBuilder<CommonSource>) {
     this as CollectionConf<Any>
     this.options?.forEach {
-        id.then(literal<Any>(it.toString()).executes { _ ->
+        id.then(literal(it.toString()).executes { _ ->
             this.value += it
             Command.SINGLE_SUCCESS
         })
     } ?: run {
-        id.then(argument<Any, String>("value", StringArgumentType.string()).executes { context ->
+        id.then(argument<String>("value", StringArgumentType.string()).executes { context ->
             this.value += this.converter(StringArgumentType.getString(context, "value"))
+            context.source.sendFeedback(i18n("command.append.success"))
             Command.SINGLE_SUCCESS
         })
     }
 }
 
 @Suppress("UNCHECKED_CAST")
-fun CollectionConf<*>.remove(id: LiteralArgumentBuilder<Any>) {
+fun CollectionConf<*>.remove(id: LiteralArgumentBuilder<CommonSource>) {
     this as CollectionConf<Any>
     this.options?.forEach {
-        id.then(literal<Any>(it.toString()).executes { _ ->
+        id.then(literal(it.toString()).executes { context ->
             this.value -= it
+            context.source.sendFeedback(i18n("command.remove.success"))
             Command.SINGLE_SUCCESS
         })
     } ?: run {
-        id.then(argument<Any, String>("value", StringArgumentType.string()).executes { context ->
+        id.then(argument<String>("value", StringArgumentType.string()).executes { context ->
             this.value -= this.converter(StringArgumentType.getString(context, "value"))
             Command.SINGLE_SUCCESS
         })

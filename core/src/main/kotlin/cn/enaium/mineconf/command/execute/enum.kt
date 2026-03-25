@@ -16,20 +16,23 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.literal
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.EnumConf
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
 
 /**
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST", "UPPER_BOUND_VIOLATED_IN_TYPE_OPERATOR_OR_PARAMETER_BOUNDS_WARNING")
-fun EnumConf<*>.enum(id: LiteralArgumentBuilder<Any>) {
+fun EnumConf<*>.enum(id: LiteralArgumentBuilder<CommonSource>) {
     this as EnumConf<Enum<*>>
     this.type.enumConstants.forEach {
-        id.then(literal<Any>(it.toString()).executes { _ ->
+        id.then(literal(it.toString()).executes { context ->
             this.value = it
+            context.source.sendFeedback(i18n("command.set.success"))
             Command.SINGLE_SUCCESS
         })
     }

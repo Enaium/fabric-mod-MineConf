@@ -16,8 +16,11 @@
 
 package cn.enaium.mineconf.command.execute
 
+import cn.enaium.mineconf.command.argument
+import cn.enaium.mineconf.common.CommonSource
 import cn.enaium.mineconf.conf.Vec4Conf
 import cn.enaium.mineconf.type.Vec4
+import cn.enaium.mineconf.utility.i18n
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.DoubleArgumentType
 import com.mojang.brigadier.arguments.FloatArgumentType
@@ -30,12 +33,12 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
+fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<CommonSource>) {
     when (this.value.x) {
         is Long -> {
             this as Vec4Conf<Long>
             id.then(
-                argument<Any, Long>(
+                argument<Long>(
                     "x",
                     if (this.rangeX != null) {
                         LongArgumentType.longArg(
@@ -46,7 +49,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                         LongArgumentType.longArg()
                     }
                 ).then(
-                    argument<Any, Long>(
+                    argument<Long>(
                         "y", if (this.rangeY != null) {
                             LongArgumentType.longArg(
                                 this.rangeY.min,
@@ -56,7 +59,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                             LongArgumentType.longArg()
                         }
                     ).then(
-                        argument<Any, Long>(
+                        argument<Long>(
                             "z", if (this.rangeZ != null) {
                                 LongArgumentType.longArg(
                                     this.rangeZ.min,
@@ -66,7 +69,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 LongArgumentType.longArg()
                             }
                         ).then(
-                            argument<Any, Long>(
+                            argument<Long>(
                                 "w", if (this.rangeW != null) {
                                     LongArgumentType.longArg(
                                         this.rangeW.min,
@@ -81,6 +84,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 val z = LongArgumentType.getLong(context, "z")
                                 val w = LongArgumentType.getLong(context, "w")
                                 this.value = Vec4(x, y, z, w)
+                                context.source.sendFeedback(i18n("command.set.success"))
                                 Command.SINGLE_SUCCESS
                             })
                     )
@@ -91,7 +95,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
         is Int -> {
             this as Vec4Conf<Int>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -102,7 +106,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min,
@@ -112,7 +116,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                             IntegerArgumentType.integer()
                         }
                     ).then(
-                        argument<Any, Int>(
+                        argument<Int>(
                             "z", if (this.rangeZ != null) {
                                 IntegerArgumentType.integer(
                                     this.rangeZ.min,
@@ -122,7 +126,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 IntegerArgumentType.integer()
                             }
                         ).then(
-                            argument<Any, Int>(
+                            argument<Int>(
                                 "w", if (this.rangeW != null) {
                                     IntegerArgumentType.integer(
                                         this.rangeW.min,
@@ -137,6 +141,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 val z = IntegerArgumentType.getInteger(context, "z")
                                 val w = IntegerArgumentType.getInteger(context, "w")
                                 this.value = Vec4(x, y, z, w)
+                                context.source.sendFeedback(i18n("command.set.success"))
                                 Command.SINGLE_SUCCESS
                             })
                     )
@@ -147,7 +152,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
         is Short -> {
             this as Vec4Conf<Short>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -158,7 +163,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min.toInt(),
@@ -168,7 +173,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                             IntegerArgumentType.integer()
                         }
                     ).then(
-                        argument<Any, Int>(
+                        argument<Int>(
                             "z", if (this.rangeZ != null) {
                                 IntegerArgumentType.integer(
                                     this.rangeZ.min.toInt(),
@@ -178,7 +183,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 IntegerArgumentType.integer()
                             }
                         ).then(
-                            argument<Any, Int>(
+                            argument<Int>(
                                 "w", if (this.rangeW != null) {
                                     IntegerArgumentType.integer(
                                         this.rangeW.min.toInt(),
@@ -193,6 +198,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 val z = IntegerArgumentType.getInteger(context, "z").toShort()
                                 val w = IntegerArgumentType.getInteger(context, "w").toShort()
                                 this.value = Vec4(x, y, z, w)
+                                context.source.sendFeedback(i18n("command.set.success"))
                                 Command.SINGLE_SUCCESS
                             })
                     )
@@ -203,7 +209,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
         is Byte -> {
             this as Vec4Conf<Byte>
             id.then(
-                argument<Any, Int>(
+                argument<Int>(
                     "x",
                     if (this.rangeX != null) {
                         IntegerArgumentType.integer(
@@ -214,7 +220,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                         IntegerArgumentType.integer()
                     }
                 ).then(
-                    argument<Any, Int>(
+                    argument<Int>(
                         "y", if (this.rangeY != null) {
                             IntegerArgumentType.integer(
                                 this.rangeY.min.toInt(),
@@ -224,7 +230,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                             IntegerArgumentType.integer()
                         }
                     ).then(
-                        argument<Any, Int>(
+                        argument<Int>(
                             "z", if (this.rangeZ != null) {
                                 IntegerArgumentType.integer(
                                     this.rangeZ.min.toInt(),
@@ -234,7 +240,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 IntegerArgumentType.integer()
                             }
                         ).then(
-                            argument<Any, Int>(
+                            argument<Int>(
                                 "w", if (this.rangeW != null) {
                                     IntegerArgumentType.integer(
                                         this.rangeW.min.toInt(),
@@ -249,6 +255,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 val z = IntegerArgumentType.getInteger(context, "z").toByte()
                                 val w = IntegerArgumentType.getInteger(context, "w").toByte()
                                 this.value = Vec4(x, y, z, w)
+                                context.source.sendFeedback(i18n("command.set.success"))
                                 Command.SINGLE_SUCCESS
                             })
                     )
@@ -259,7 +266,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
         is Float -> {
             this as Vec4Conf<Float>
             id.then(
-                argument<Any, Float>(
+                argument<Float>(
                     "x",
                     if (this.rangeX != null) {
                         FloatArgumentType.floatArg(
@@ -270,7 +277,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                         FloatArgumentType.floatArg()
                     }
                 ).then(
-                    argument<Any, Float>(
+                    argument<Float>(
                         "y", if (this.rangeY != null) {
                             FloatArgumentType.floatArg(
                                 this.rangeY.min,
@@ -280,7 +287,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                             FloatArgumentType.floatArg()
                         }
                     ).then(
-                        argument<Any, Float>(
+                        argument<Float>(
                             "z", if (this.rangeZ != null) {
                                 FloatArgumentType.floatArg(
                                     this.rangeZ.min,
@@ -290,7 +297,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 FloatArgumentType.floatArg()
                             }
                         ).then(
-                            argument<Any, Float>(
+                            argument<Float>(
                                 "w", if (this.rangeW != null) {
                                     FloatArgumentType.floatArg(
                                         this.rangeW.min,
@@ -305,6 +312,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 val z = FloatArgumentType.getFloat(context, "z")
                                 val w = FloatArgumentType.getFloat(context, "w")
                                 this.value = Vec4(x, y, z, w)
+                                context.source.sendFeedback(i18n("command.set.success"))
                                 Command.SINGLE_SUCCESS
                             })
                     )
@@ -315,7 +323,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
         is Double -> {
             this as Vec4Conf<Double>
             id.then(
-                argument<Any, Double>(
+                argument<Double>(
                     "x",
                     if (this.rangeX != null) {
                         DoubleArgumentType.doubleArg(
@@ -326,7 +334,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                         DoubleArgumentType.doubleArg()
                     }
                 ).then(
-                    argument<Any, Double>(
+                    argument<Double>(
                         "y", if (this.rangeY != null) {
                             DoubleArgumentType.doubleArg(
                                 this.rangeY.min,
@@ -336,7 +344,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                             DoubleArgumentType.doubleArg()
                         }
                     ).then(
-                        argument<Any, Double>(
+                        argument<Double>(
                             "z", if (this.rangeZ != null) {
                                 DoubleArgumentType.doubleArg(
                                     this.rangeZ.min,
@@ -346,7 +354,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 DoubleArgumentType.doubleArg()
                             }
                         ).then(
-                            argument<Any, Double>(
+                            argument<Double>(
                                 "w", if (this.rangeW != null) {
                                     DoubleArgumentType.doubleArg(
                                         this.rangeW.min,
@@ -361,6 +369,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<Any>) {
                                 val z = DoubleArgumentType.getDouble(context, "z")
                                 val w = DoubleArgumentType.getDouble(context, "w")
                                 this.value = Vec4(x, y, z, w)
+                                context.source.sendFeedback(i18n("command.set.success"))
                                 Command.SINGLE_SUCCESS
                             })
                     )
