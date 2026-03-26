@@ -2,11 +2,11 @@
 kotlin = "2.3.10"
 fabricKotlin = "1.13.9+kotlin.2.3.10"
 publish = "0.8.4"
-fmg = "0.0.3"
+fmg = "0.0.7"
 loom = "1.15-SNAPSHOT"
 jackson = "2.21.1"
 imgui = "1.90.0"
-fabricImGui = "1.0.4+imgui.1.90.0"
+fabricImGui = "1.0.6+imgui.1.90.0"
 brigadier = "1.0.17"
 
 [libraries]
