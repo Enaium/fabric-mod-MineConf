@@ -17,7 +17,6 @@
 package cn.enaium.mineconf.common;
 
 import cn.enaium.mineconf.ConfBuilder;
-import cn.enaium.mineconf.annotation.ConfField;
 import cn.enaium.mineconf.conf.*;
 
 import java.util.Arrays;
@@ -26,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FullConfig {
-    @ConfField
     Conf<String> literalString
             = ConfBuilder.create()
             .id("literal.type.string")
@@ -35,7 +33,6 @@ public class FullConfig {
             .<String>literal()
             .build("Hello World!");
 
-    @ConfField
     Conf<Long> literalLong
             = ConfBuilder.create()
             .id("literal.type.long")
@@ -44,7 +41,6 @@ public class FullConfig {
             .<Long>literal()
             .build(Long.MAX_VALUE);
 
-    @ConfField
     Conf<Integer> literalInteger
             = ConfBuilder.create()
             .id("literal.type.integer")
@@ -53,7 +49,6 @@ public class FullConfig {
             .<Integer>literal()
             .build(Integer.MAX_VALUE);
 
-    @ConfField
     Conf<Short> literalShort
             = ConfBuilder.create()
             .id("literal.type.short")
@@ -62,7 +57,6 @@ public class FullConfig {
             .<Short>literal()
             .build(Short.MAX_VALUE);
 
-    @ConfField
     Conf<Byte> literalByte
             = ConfBuilder.create()
             .id("literal.type.byte")
@@ -71,7 +65,6 @@ public class FullConfig {
             .<Byte>literal()
             .build(Byte.MAX_VALUE);
 
-    @ConfField
     Conf<Boolean> literalBoolean
             = ConfBuilder.create()
             .id("literal.type.boolean")
@@ -80,7 +73,6 @@ public class FullConfig {
             .<Boolean>literal()
             .build(true);
 
-    @ConfField
     Conf<Double> literalDouble
             = ConfBuilder.create()
             .id("literal.type.double")
@@ -89,7 +81,6 @@ public class FullConfig {
             .<Double>literal()
             .build(Double.MAX_VALUE);
 
-    @ConfField
     Conf<Float> literalFloat
             = ConfBuilder.create()
             .id("literal.type.float")
@@ -98,7 +89,6 @@ public class FullConfig {
             .<Float>literal()
             .build(Float.MAX_VALUE);
 
-    @ConfField
     NumberConf<Long> numberLong
             = ConfBuilder.create()
             .id("number.type.long")
@@ -107,7 +97,6 @@ public class FullConfig {
             .<Long>number()
             .range(r -> r.min(-10L).max(10L)).step(1L).build(0L);
 
-    @ConfField
     NumberConf<Integer> numberInteger
             = ConfBuilder.create()
             .id("number.type.integer")
@@ -116,7 +105,6 @@ public class FullConfig {
             .<Integer>number()
             .range(r -> r.min(-10).max(10)).step(1).build(0);
 
-    @ConfField
     NumberConf<Short> numberShort
             = ConfBuilder.create()
             .id("number.type.short")
@@ -125,7 +113,6 @@ public class FullConfig {
             .<Short>number()
             .range(r -> r.min((short) -10).max((short) 10)).step((short) 1).build((short) 0);
 
-    @ConfField
     NumberConf<Byte> numberByte
             = ConfBuilder.create()
             .id("number.type.byte")
@@ -134,7 +121,6 @@ public class FullConfig {
             .<Byte>number()
             .range(r -> r.min((byte) -10).max((byte) 10)).step((byte) 1).build((byte) 0);
 
-    @ConfField
     NumberConf<Float> numberFloat
             = ConfBuilder.create()
             .id("number.type.float")
@@ -143,7 +129,6 @@ public class FullConfig {
             .<Float>number()
             .range(r -> r.min(-10f).max(10f)).step(0.5f).build(0f);
 
-    @ConfField
     NumberConf<Double> numberDouble
             = ConfBuilder.create()
             .id("number.type.double")
@@ -152,7 +137,6 @@ public class FullConfig {
             .<Double>number()
             .range(r -> r.min(-10.0).max(10.0)).step(0.5).build(0.0);
 
-    @ConfField
     OptionConf<String> optionString
             = ConfBuilder.create()
             .id("option.type.string")
@@ -168,7 +152,6 @@ public class FullConfig {
         METHOD3,
     }
 
-    @ConfField
     EnumConf<Method> enumConf = ConfBuilder.create()
             .id("enum.type.method")
             .name("Enum Conf")
@@ -177,7 +160,6 @@ public class FullConfig {
             .type(Method.class)
             .build(Method.METHOD1);
 
-    @ConfField
     Vec2Conf<Integer> vec2Conf
             = ConfBuilder.create()
             .id("vec2.type.integer")
@@ -185,7 +167,6 @@ public class FullConfig {
             .description("This is a vec2 conf")
             .<Integer>vec2().build(0, 0);
 
-    @ConfField
     Vec3Conf<Integer> vec3Conf
             = ConfBuilder.create()
             .id("vec3.type.integer")
@@ -194,7 +175,6 @@ public class FullConfig {
             .<Integer>vec3().build(0, 0, 0);
 
 
-    @ConfField
     Vec4Conf<Integer> vec4Conf
             = ConfBuilder.create()
             .id("vec4.type.integer")
@@ -202,7 +182,6 @@ public class FullConfig {
             .description("This is a vec4 conf")
             .<Integer>vec4().build(0, 0, 0, 0);
 
-    @ConfField
     CollectionConf<String> collectionConf = ConfBuilder.create()
             .id("collection.type.string")
             .name("Collection Conf")
@@ -217,7 +196,6 @@ public class FullConfig {
         return map;
     }
 
-    @ConfField
     MultimapConf<String, String> multimapConf = ConfBuilder.create()
             .id("multimap.type.string")
             .name("Multimap Conf")

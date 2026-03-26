@@ -2,7 +2,6 @@ package cn.enaium.mineconf.java;
 
 import cn.enaium.mineconf.ConfBuilder;
 import cn.enaium.mineconf.MineConf;
-import cn.enaium.mineconf.annotation.ConfField;
 import cn.enaium.mineconf.conf.*;
 import cn.enaium.mineconf.type.Vec2;
 import cn.enaium.mineconf.type.Vec3;
@@ -44,7 +43,6 @@ public class MineConfTest {
     }
 
     public static class Config {
-        @ConfField
         Conf<String> literalString
                 = ConfBuilder.create()
                 .id("literal.type.string")
@@ -53,7 +51,6 @@ public class MineConfTest {
                 .<String>literal()
                 .build("Hello World!");
 
-        @ConfField
         Conf<Long> literalLong
                 = ConfBuilder.create()
                 .id("literal.type.long")
@@ -62,7 +59,6 @@ public class MineConfTest {
                 .<Long>literal()
                 .build(Long.MAX_VALUE);
 
-        @ConfField
         Conf<Integer> literalInteger
                 = ConfBuilder.create()
                 .id("literal.type.integer")
@@ -71,7 +67,6 @@ public class MineConfTest {
                 .<Integer>literal()
                 .build(Integer.MAX_VALUE);
 
-        @ConfField
         Conf<Short> literalShort
                 = ConfBuilder.create()
                 .id("literal.type.short")
@@ -80,7 +75,6 @@ public class MineConfTest {
                 .<Short>literal()
                 .build(Short.MAX_VALUE);
 
-        @ConfField
         Conf<Byte> literalByte
                 = ConfBuilder.create()
                 .id("literal.type.byte")
@@ -89,7 +83,6 @@ public class MineConfTest {
                 .<Byte>literal()
                 .build(Byte.MAX_VALUE);
 
-        @ConfField
         Conf<Boolean> literalBoolean
                 = ConfBuilder.create()
                 .id("literal.type.boolean")
@@ -98,7 +91,6 @@ public class MineConfTest {
                 .<Boolean>literal()
                 .build(true);
 
-        @ConfField
         Conf<Double> literalDouble
                 = ConfBuilder.create()
                 .id("literal.type.double")
@@ -107,7 +99,6 @@ public class MineConfTest {
                 .<Double>literal()
                 .build(Double.MAX_VALUE);
 
-        @ConfField
         Conf<Float> literalFloat
                 = ConfBuilder.create()
                 .id("literal.type.float")
@@ -116,7 +107,6 @@ public class MineConfTest {
                 .<Float>literal()
                 .build(Float.MAX_VALUE);
 
-        @ConfField
         OptionConf<String> optionString
                 = ConfBuilder.create()
                 .id("option.type.string")
@@ -126,7 +116,6 @@ public class MineConfTest {
                 .options(Arrays.asList("Option 1", "Option 2", "Option 3"))
                 .build("Option 3");
 
-        @ConfField
         Vec2Conf<Integer> vec2Conf
                 = ConfBuilder.create()
                 .id("vec2.type.integer")
@@ -134,7 +123,6 @@ public class MineConfTest {
                 .description("This is a vec2 conf")
                 .<Integer>vec2().build(0, 0);
 
-        @ConfField
         Vec3Conf<Integer> vec3Conf
                 = ConfBuilder.create()
                 .id("vec3.type.integer")
@@ -143,7 +131,6 @@ public class MineConfTest {
                 .<Integer>vec3().build(0, 0, 0);
 
 
-        @ConfField
         Vec4Conf<Integer> vec4Conf
                 = ConfBuilder.create()
                 .id("vec4.type.integer")
@@ -151,7 +138,6 @@ public class MineConfTest {
                 .description("This is a vec4 conf")
                 .<Integer>vec4().build(0, 0, 0, 0);
 
-        @ConfField
         CollectionConf<String> collectionConf = ConfBuilder.create()
                 .id("collection.type.string")
                 .name("Collection Conf")
@@ -165,7 +151,6 @@ public class MineConfTest {
             return map;
         }
 
-        @ConfField
         MultimapConf<String, String> multimapConf = ConfBuilder.create()
                 .id("one-to-many.type.string")
                 .name("One-to-Many Conf")

@@ -15,7 +15,6 @@
  */
 package cn.enaium.mineconf
 
-import cn.enaium.mineconf.annotation.ConfField
 import cn.enaium.mineconf.conf.Conf
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonProcessingException
@@ -51,9 +50,10 @@ class MineConf(
         for (declaredField in instance.javaClass.getDeclaredFields()) {
             try {
                 declaredField.setAccessible(true)
-                val annotation = declaredField.getAnnotation(ConfField::class.java) ?: continue
-                val conf = declaredField.get(instance) as Conf<*>
-                confMap[conf.id] = conf
+                val get = declaredField.get(instance)
+                if (get is Conf<*>) {
+                    confMap[get.id] = get
+                }
             } catch (e: Throwable) {
                 throw RuntimeException("Unable to register the conf: " + declaredField.name, e)
             }

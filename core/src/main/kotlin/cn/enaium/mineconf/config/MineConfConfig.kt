@@ -17,13 +17,11 @@
 package cn.enaium.mineconf.config
 
 import cn.enaium.mineconf.ConfBuilder
-import cn.enaium.mineconf.annotation.ConfField
 
 /**
  * @author Enaium
  */
 object MineConfConfig {
-    @ConfField
     val fontScale =
         ConfBuilder.create()
             .id("font_scale")
@@ -31,7 +29,6 @@ object MineConfConfig {
             .description("Font scale of the imgui")
             .literal<Float>().build(2f)
 
-    @ConfField
     val lang =
         ConfBuilder.create()
             .id("lang")

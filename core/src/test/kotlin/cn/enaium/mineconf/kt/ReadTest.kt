@@ -17,7 +17,6 @@ package cn.enaium.mineconf.kt
 
 import cn.enaium.mineconf.ConfBuilder
 import cn.enaium.mineconf.MineConf
-import cn.enaium.mineconf.annotation.ConfField
 import cn.enaium.mineconf.conf.Conf
 import com.fasterxml.jackson.core.JsonProcessingException
 import org.junit.jupiter.api.Assertions
@@ -47,7 +46,6 @@ class ReadTest {
     }
 
     internal class TestConfig {
-        @ConfField
         var string: Conf<String> = ConfBuilder.create()
             .id("literal.type.string")
             .name("Good Name")
