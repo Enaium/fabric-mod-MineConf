@@ -16,9 +16,9 @@
 
 package cn.enaium.mineconf.kt
 
-import cn.enaium.mineconf.MineConfLoader
-import cn.enaium.mineconf.gui.MineConfGui
-import cn.enaium.mineconf.gui.pane.MainPane
+import cn.enaium.mineconf.core.MineConfLoader
+import cn.enaium.mineconf.core.gui.MineConfGui
+import cn.enaium.mineconf.core.gui.pane.MainPane
 import imgui.ImGui
 import imgui.app.Application
 import imgui.app.Application.launch

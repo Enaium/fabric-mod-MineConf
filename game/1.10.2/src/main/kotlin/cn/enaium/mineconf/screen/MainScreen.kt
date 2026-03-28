@@ -17,10 +17,9 @@
 package cn.enaium.mineconf.screen
 
 import cn.enaium.fabric.imgui.ImGuiRenderable
-import cn.enaium.mineconf.gui.pane.MainPane
+import cn.enaium.mineconf.core.gui.pane.MainPane
 import imgui.ImGuiIO
 import net.minecraft.client.gui.screen.Screen
-import net.minecraft.text.LiteralText
 
 /**
  * @author Enaium

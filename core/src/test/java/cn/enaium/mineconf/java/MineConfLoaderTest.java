@@ -1,6 +1,6 @@
 package cn.enaium.mineconf.java;
 
-import cn.enaium.mineconf.MineConfLoader;
+import cn.enaium.mineconf.core.MineConfLoader;
 import org.junit.jupiter.api.Test;
 
 /**

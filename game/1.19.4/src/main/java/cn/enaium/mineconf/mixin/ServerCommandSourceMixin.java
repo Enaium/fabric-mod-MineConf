@@ -16,25 +16,24 @@
 
 package cn.enaium.mineconf.mixin;
 
-import cn.enaium.mineconf.common.CommonSource;
+import cn.enaium.mineconf.core.common.CommonSource;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.function.Supplier;
-
 /**
  * @author Enaium
  */
 @Mixin(ServerCommandSource.class)
 public abstract class ServerCommandSourceMixin implements CommonSource {
+
     @Shadow
-    public abstract void sendFeedback(Supplier<Text> par1, boolean par2);
+    public abstract void sendFeedback(Text par1, boolean par2);
 
     @Override
     public void sendFeedback(@NotNull String text) {
-        sendFeedback(() -> Text.literal(text), false);
+        sendFeedback(Text.literal(text), false);
     }
 }

@@ -2,12 +2,13 @@
 kotlin = "2.3.10"
 fabricKotlin = "1.13.9+kotlin.2.3.10"
 publish = "0.8.4"
-fmg = "0.0.7"
+fmg = "0.0.8"
 loom = "1.15-SNAPSHOT"
 jackson = "2.21.1"
 imgui = "1.90.0"
-fabricImGui = "1.0.6+imgui.1.90.0"
+fabricImGui = "1.0.7+imgui.1.90.0"
 brigadier = "1.0.17"
+maven = "0.35.0"
 
 [libraries]
 kotlin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
@@ -15,10 +16,15 @@ fabric-kotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = 
 loom = { module = "net.fabricmc:fabric-loom", version.ref = "loom" }
 legacy-looming = { module = "net.legacyfabric:legacy-looming", version.ref = "loom" }
 publish = { module = "me.modmuss50.mod-publish-plugin:me.modmuss50.mod-publish-plugin.gradle.plugin", version.ref = "publish" }
+maven = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven" }
 fmg = { module = "cn.enaium.fabric-multi-game:cn.enaium.fabric-multi-game.gradle.plugin", version.ref = "fmg" }
 jackson = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
-imgui = { module = "io.github.spair:imgui-java-app", version.ref = "imgui" }
+imgui-java-binding = { module = "io.github.spair:imgui-java-binding", version.ref = "imgui" }
+imgui-java-natives-windows = { module = "io.github.spair:imgui-java-natives-windows", version.ref = "imgui" }
+imgui-java-natives-linux = { module = "io.github.spair:imgui-java-natives-linux", version.ref = "imgui" }
+imgui-java-natives-macos = { module = "io.github.spair:imgui-java-natives-macos", version.ref = "imgui" }
 brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm" }
+maven = { id = "com.vanniktech.maven.publish" }

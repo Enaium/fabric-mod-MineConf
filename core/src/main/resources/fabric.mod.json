@@ -16,8 +16,10 @@
   "icon": "assets/mineconf/icon.png",
   "environment": "*",
   "entrypoints": {
+    "main": [
+      "cn.enaium.mineconf.core.MineConfLoader::load"
+    ],
     "client": [
-      "cn.enaium.mineconf.MineConfLoader::load",
       "cn.enaium.mineconf.Commands::client"
     ]
   },

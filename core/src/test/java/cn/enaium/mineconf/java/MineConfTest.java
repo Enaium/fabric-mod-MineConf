@@ -1,11 +1,12 @@
 package cn.enaium.mineconf.java;
 
-import cn.enaium.mineconf.ConfBuilder;
-import cn.enaium.mineconf.MineConf;
+import cn.enaium.mineconf.core.ConfBuilder;
+import cn.enaium.mineconf.core.MineConf;
 import cn.enaium.mineconf.conf.*;
-import cn.enaium.mineconf.type.Vec2;
-import cn.enaium.mineconf.type.Vec3;
-import cn.enaium.mineconf.type.Vec4;
+import cn.enaium.mineconf.core.conf.*;
+import cn.enaium.mineconf.core.type.Vec2;
+import cn.enaium.mineconf.core.type.Vec3;
+import cn.enaium.mineconf.core.type.Vec4;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 

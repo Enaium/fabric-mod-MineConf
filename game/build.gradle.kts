@@ -30,7 +30,7 @@ subprojects {
     val minecraftVersion = properties["minecraft.version"]
     val imgui = "$minecraftVersion-${fabricImGui}"
 
-    if (VersionNumber.parse(imgui) > VersionNumber.parse("1.7.10")) {
+    if (VersionNumber.parse(minecraftVersion.toString()) > VersionNumber.parse("1.7.10")) {
         dependencies.add(
             if (disableObfuscation) "implementation" else "modImplementation",
             "cn.enaium:fabric-gui-imgui:${imgui}"

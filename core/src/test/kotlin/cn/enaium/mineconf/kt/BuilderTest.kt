@@ -1,6 +1,6 @@
 package cn.enaium.mineconf.kt
 
-import cn.enaium.mineconf.ConfBuilder
+import cn.enaium.mineconf.core.ConfBuilder
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.util.*

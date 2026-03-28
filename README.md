@@ -12,7 +12,7 @@ a user-friendly graphical interface to help mod developers easily manage and mai
 - **Command-Line Interface**: Supports viewing and modifying configurations via commands
 - **JSON Serialization**: Automatically serializes configurations to JSON format for easy storage and retrieval
 - **Service Loader**: Integrates with other mods using the Service Loader pattern
-- **Multi-Version Support**: Compatible with multiple Minecraft versions (1.7.10 to 1.21.11)
+- **Multi-Version Support**: Compatible with multiple Minecraft versions (1.7.10 to 26.1)
 
 ## 📦 Supported Configuration Types
 
@@ -40,19 +40,33 @@ dependencies {
 }
 ```
 
+26.1+
+
+```kotlin
+dependencies {
+    implementation("cn.enaium:mineconf:@version@")
+}
+```
+
+```kotlin
+repositories {
+  maven("https://jitpack.io")
+}
+```
+
 ### 2. Create Configuration Class
 
 ```kotlin
-package cn.enaium.mineconf.config
+package cn.enaium.mineconf.core.config
 
 object MineConfConfig {
-    val fontScale = ConfBuilder.create()
+    var fontScale = ConfBuilder.create()
         .id("font_scale")
         .name("Font Scale")
         .description("Font scale of the imgui")
         .literal<Float>().build(2f)
 
-    val playerSpeed = ConfBuilder.create()
+    var playerSpeed = ConfBuilder.create()
         .id("player_speed")
         .name("Player Speed")
         .description("Speed of the player")
@@ -61,7 +75,7 @@ object MineConfConfig {
         .step(0.1)
         .build(1.0)
 
-    val gameDifficulty = ConfBuilder.create()
+    var gameDifficulty = ConfBuilder.create()
         .id("game_difficulty")
         .name("Game Difficulty")
         .description("Difficulty level of the game")
@@ -78,7 +92,7 @@ enum class Difficulty {
 ### 3. Implement Service Interface
 
 ```kotlin
-package cn.enaium.mineconf.config
+package cn.enaium.mineconf.core.config
 
 class MineConfServiceImpl : MineConfService {
     override fun conf(): MineConf {

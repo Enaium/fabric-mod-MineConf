@@ -16,8 +16,10 @@
 
 package cn.enaium.mineconf.command
 
-import cn.enaium.mineconf.command.type.MineConfArgumentType
-import cn.enaium.mineconf.common.CommonSource
+import cn.enaium.mineconf.core.command.argument
+import cn.enaium.mineconf.core.command.literal
+import cn.enaium.mineconf.core.command.type.MineConfArgumentType
+import cn.enaium.mineconf.core.common.CommonSource
 import cn.enaium.mineconf.screen.MainScreen
 import cn.enaium.mineconf.screen.MineConfScreen
 import com.mojang.brigadier.Command

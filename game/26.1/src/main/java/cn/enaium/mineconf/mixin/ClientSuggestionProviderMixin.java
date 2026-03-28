@@ -16,7 +16,7 @@
 
 package cn.enaium.mineconf.mixin;
 
-import cn.enaium.mineconf.common.CommonSource;
+import cn.enaium.mineconf.core.common.CommonSource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientSuggestionProvider;
 import net.minecraft.network.chat.Component;

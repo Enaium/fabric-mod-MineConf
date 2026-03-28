@@ -16,7 +16,7 @@
 
 package cn.enaium.mineconf.mixin;
 
-import cn.enaium.mineconf.common.CommonSource;
+import cn.enaium.mineconf.core.common.CommonSource;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;

@@ -2,7 +2,9 @@ import me.modmuss50.mpp.PublishModTask
 import org.gradle.util.internal.VersionNumber
 
 plugins {
+    java
     id("me.modmuss50.mod-publish-plugin")
+    id("com.vanniktech.maven.publish")
 }
 
 afterEvaluate {
@@ -38,6 +40,42 @@ afterEvaluate {
 
         tasks.withType<PublishModTask>().configureEach {
             dependsOn(tasks.named(if (disableObfuscation) "jar" else "remapJar"))
+        }
+    }
+}
+
+mavenPublishing {
+
+    publishToMavenCentral(automaticRelease = true)
+
+    signAllPublications()
+
+    coordinates(
+        groupId = project.group.toString(),
+        artifactId = rootProject.name,
+        version = project.version.toString()
+    )
+
+    pom {
+        name = "MineConf"
+        description = "Minecraft Config Library"
+        url = "https://github.com/Enaium/fabric-mod-MineConf"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                name = "Enaium"
+                url = "https://github.com/Enaium"
+            }
+        }
+        scm {
+            connection.set("scm:git:git://github.com/Enaium/fabric-mod-MineConf.git")
+            developerConnection.set("scm:git:ssh://github.com/Enaium/fabric-mod-MineConf.git")
+            url.set("https://github.com/Enaium/fabric-mod-MineConf")
         }
     }
 }

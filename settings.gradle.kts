@@ -1,5 +1,6 @@
-rootProject.name = "MineConf"
+rootProject.name = "mineconf"
 
+include(":api")
 include(":core")
 include(":game:1.7.10")
 include(":game:1.8.9")

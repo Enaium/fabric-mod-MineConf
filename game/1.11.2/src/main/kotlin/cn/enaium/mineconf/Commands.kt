@@ -17,10 +17,10 @@
 package cn.enaium.mineconf
 
 import cn.enaium.mineconf.command.MineConfCommand
-import cn.enaium.mineconf.command.execute.append
-import cn.enaium.mineconf.command.execute.get
-import cn.enaium.mineconf.command.execute.remove
-import cn.enaium.mineconf.command.execute.set
+import cn.enaium.mineconf.core.command.execute.append
+import cn.enaium.mineconf.core.command.execute.get
+import cn.enaium.mineconf.core.command.execute.remove
+import cn.enaium.mineconf.core.command.execute.set
 import cn.enaium.mineconf.command.screen
 import net.legacyfabric.fabric.api.registry.CommandRegistry
 

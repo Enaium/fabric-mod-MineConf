@@ -16,9 +16,9 @@
 
 package cn.enaium.mineconf.java;
 
-import cn.enaium.mineconf.ConfBuilder;
-import cn.enaium.mineconf.MineConf;
-import cn.enaium.mineconf.conf.Conf;
+import cn.enaium.mineconf.core.ConfBuilder;
+import cn.enaium.mineconf.core.MineConf;
+import cn.enaium.mineconf.core.conf.Conf;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 

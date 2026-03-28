@@ -17,7 +17,7 @@
 package cn.enaium.mineconf
 
 import cn.enaium.fabric.imgui.DefaultImGui
-import cn.enaium.mineconf.gui.MineConfGui
+import cn.enaium.mineconf.core.gui.MineConfGui
 import imgui.ImGuiIO
 
 /**

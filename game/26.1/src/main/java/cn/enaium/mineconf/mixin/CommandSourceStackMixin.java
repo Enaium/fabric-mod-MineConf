@@ -16,7 +16,7 @@
 
 package cn.enaium.mineconf.mixin;
 
-import cn.enaium.mineconf.common.CommonSource;
+import cn.enaium.mineconf.core.common.CommonSource;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;

@@ -16,7 +16,7 @@
 
 package cn.enaium.mineconf.kt
 
-import cn.enaium.mineconf.utility.SystemFontFinder.findFontFile
+import cn.enaium.mineconf.core.utility.SystemFontFinder.findFontFile
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

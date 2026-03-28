@@ -16,8 +16,8 @@
 
 package cn.enaium.mineconf.common;
 
-import cn.enaium.mineconf.MineConf;
-import cn.enaium.mineconf.MineConfService;
+import cn.enaium.mineconf.core.MineConf;
+import cn.enaium.mineconf.core.MineConfService;
 import org.jetbrains.annotations.NotNull;
 
 /**

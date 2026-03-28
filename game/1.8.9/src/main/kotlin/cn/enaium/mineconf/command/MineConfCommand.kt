@@ -16,7 +16,7 @@
 
 package cn.enaium.mineconf.command
 
-import cn.enaium.mineconf.common.CommonSource
+import cn.enaium.mineconf.core.common.CommonSource
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.command.AbstractCommand
 import net.minecraft.command.CommandSource

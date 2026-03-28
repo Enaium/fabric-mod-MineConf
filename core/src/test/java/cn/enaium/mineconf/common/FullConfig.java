@@ -16,8 +16,9 @@
 
 package cn.enaium.mineconf.common;
 
-import cn.enaium.mineconf.ConfBuilder;
+import cn.enaium.mineconf.core.ConfBuilder;
 import cn.enaium.mineconf.conf.*;
+import cn.enaium.mineconf.core.conf.*;
 
 import java.util.Arrays;
 import java.util.Collection;

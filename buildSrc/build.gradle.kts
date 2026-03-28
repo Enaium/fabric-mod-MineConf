@@ -13,6 +13,7 @@ repositories {
         url = uri("https://repo.legacyfabric.net/repository/legacyfabric/")
     }
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -20,5 +21,6 @@ dependencies {
     implementation(libs.loom)
     implementation(libs.legacy.looming)
     implementation(libs.publish)
+    implementation(libs.maven)
     implementation(libs.fmg)
 }

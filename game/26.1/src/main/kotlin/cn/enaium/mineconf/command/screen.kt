@@ -17,7 +17,7 @@
 package cn.enaium.mineconf.command
 
 import cn.enaium.mineconf.CLIENT_ROOT
-import cn.enaium.mineconf.command.type.MineConfArgumentType
+import cn.enaium.mineconf.core.command.type.MineConfArgumentType
 import cn.enaium.mineconf.screen.MainScreen
 import cn.enaium.mineconf.screen.MineConfScreen
 import com.mojang.brigadier.Command
