@@ -8,9 +8,9 @@
     "Enaium"
   ],
   "contact": {
-    "homepage": "https://github.com/Enaium/fabric-mod-AntiDrop",
-    "sources": "https://github.com/Enaium/fabric-mod-AntiDrop",
-    "issues": "https://github.com/Enaium/fabric-mod-AntiDrop/issues"
+    "homepage": "https://github.com/Enaium/fabric-mod-MineConf",
+    "sources": "https://github.com/Enaium/fabric-mod-MineConf",
+    "issues": "https://github.com/Enaium/fabric-mod-MineConf/issues"
   },
   "license": "Apache-2.0",
   "icon": "assets/mineconf/icon.png",

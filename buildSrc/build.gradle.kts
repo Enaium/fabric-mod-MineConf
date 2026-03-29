@@ -13,7 +13,6 @@ repositories {
         url = uri("https://repo.legacyfabric.net/repository/legacyfabric/")
     }
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {

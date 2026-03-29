@@ -3,6 +3,11 @@
 MineConf is a powerful configuration library for Minecraft Fabric mods, providing a simple and intuitive API along with
 a user-friendly graphical interface to help mod developers easily manage and maintain configuration files.
 
+[![Version](https://img.shields.io/github/v/tag/Enaium/fabric-mod-MineConf?label=version&style=flat-square&logo=github)](https://github.com/Enaium/fabric-mod-MineConf/releases)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1486586?style=flat-square&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/mineconf)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/NfULUoHI?style=flat-square&logo=modrinth)](https://modrinth.com/mod/MineConf)
+
+
 ## 🚀 Features
 
 - **Multiple Configuration Types**: Supports Literal, Number, Vec2, Vec3, Vec4, Option, Enum, Collection, Multimap, and
@@ -40,13 +45,23 @@ dependencies {
 }
 ```
 
-26.1+
+26.1+:
 
 ```kotlin
 dependencies {
     implementation("cn.enaium:mineconf:@version@")
 }
 ```
+
+Common api:
+
+```kotlin
+dependencies {
+    implementation("cn.enaium:mineconf-api:@version@")
+}
+```
+
+1.7.10-1.12.2:
 
 ```kotlin
 repositories {
@@ -103,10 +118,10 @@ class MineConfServiceImpl : MineConfService {
 
 ### 4. Register Service
 
-Create a new file `META-INF/services/cn.enaium.mineconf.MineConfService` and add the following content:
+Create a new file `META-INF/services/cn.enaium.mineconf.core.MineConfService` and add the following content:
 
 ```
-cn.enaium.mineconf.config.MineConfServiceImpl
+cn.enaium.mineconf.core.config.MineConfServiceImpl
 ```
 
 ## 📚 Detailed Usage

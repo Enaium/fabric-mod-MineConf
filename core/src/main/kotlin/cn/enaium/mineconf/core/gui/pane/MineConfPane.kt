@@ -32,19 +32,17 @@ import imgui.flag.ImGuiTableFlags
 object MineConfPane {
 
     fun mineConf(mineConf: MineConf) {
-        MainPane.main {
-            if (ImGui.beginTable(mineConf.id, 2, ImGuiTableFlags.Borders)) {
-                ImGui.tableSetupColumn("Name", ImGuiTableColumnFlags.WidthFixed, 0f)
-                ImGui.tableSetupColumn("Widget", ImGuiTableColumnFlags.WidthStretch, 1f)
-                mineConf.getConf().forEach { (id, conf) ->
-                    ImGui.tableNextRow()
-                    ImGui.tableNextColumn()
-                    name(conf)
-                    ImGui.tableNextColumn()
-                    widget(conf as Conf<Any>)
-                }
-                ImGui.endTable()
+        if (ImGui.beginTable(mineConf.id, 2, ImGuiTableFlags.Borders)) {
+            ImGui.tableSetupColumn("Name", ImGuiTableColumnFlags.WidthFixed, 0f)
+            ImGui.tableSetupColumn("Widget", ImGuiTableColumnFlags.WidthStretch, 1f)
+            mineConf.getConf().forEach { (id, conf) ->
+                ImGui.tableNextRow()
+                ImGui.tableNextColumn()
+                name(conf)
+                ImGui.tableNextColumn()
+                widget(conf as Conf<Any>)
             }
+            ImGui.endTable()
         }
     }
 
