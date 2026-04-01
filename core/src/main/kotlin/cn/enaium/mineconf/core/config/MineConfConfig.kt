@@ -26,8 +26,9 @@ internal object MineConfConfig {
         ConfBuilder.create()
             .id("font_scale")
             .name("Font Scale")
-            .description("Font scale of the imgui")
-            .literal<Float>().build(2f)
+            .description("Font scale of the ImGui")
+            .number<Float>().range { it.min(1f).max(5f) }
+            .step(0.1f).build(2f)
 
     val lang =
         ConfBuilder.create()

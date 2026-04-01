@@ -17,7 +17,6 @@
 package cn.enaium.mineconf.common;
 
 import cn.enaium.mineconf.core.ConfBuilder;
-import cn.enaium.mineconf.conf.*;
 import cn.enaium.mineconf.core.conf.*;
 
 import java.util.Arrays;
@@ -175,6 +174,29 @@ public class FullConfig {
             .description("This is a vec3 conf")
             .<Integer>vec3().build(0, 0, 0);
 
+    Vec3Conf<Byte> colorEdit3Conf
+            = ConfBuilder.create()
+            .id("vec3.type.color_edit3_byte")
+            .name("Color Edit3")
+            .description("This is a vec3 color conf")
+            .widget(Widget.COLOR_EDIT)
+            .<Byte>vec3().build((byte) 0x11, (byte) 0x45, (byte) 0x14);
+
+    Vec3Conf<Float> colorEdit3FloatConf
+            = ConfBuilder.create()
+            .id("vec3.type.color_edit3_float")
+            .name("Color Edit3 Float")
+            .description("This is a vec3 color conf")
+            .widget(Widget.COLOR_EDIT)
+            .<Float>vec3().build(1f, 1f, 1f);
+
+    Vec4Conf<Byte> colorEdit4Conf
+            = ConfBuilder.create()
+            .id("vec3.type.color_edit4")
+            .name("Color Edit4")
+            .description("This is a vec4 color conf")
+            .widget(Widget.COLOR_EDIT)
+            .<Byte>vec4().build((byte) 0x19, (byte) 0x19, (byte) 0x08, (byte) 0x10);
 
     Vec4Conf<Integer> vec4Conf
             = ConfBuilder.create()
@@ -182,6 +204,38 @@ public class FullConfig {
             .name("Vec4 Conf")
             .description("This is a vec4 conf")
             .<Integer>vec4().build(0, 0, 0, 0);
+
+    Vec3Conf<Byte> colorPicker3Conf
+            = ConfBuilder.create()
+            .id("vec3.type.color_picker3")
+            .name("Color Picker3")
+            .description("This is a vec3 color conf")
+            .widget(Widget.COLOR_PICKER)
+            .<Byte>vec3().build((byte) 0x11, (byte) 0x45, (byte) 0x14);
+
+    Vec3Conf<Float> colorPicker3FloatConf
+            = ConfBuilder.create()
+            .id("vec3.type.color_picker3_float")
+            .name("Color Picker3 Float")
+            .description("This is a vec3 color conf")
+            .widget(Widget.COLOR_PICKER)
+            .<Float>vec3().build(1f, 1f, 1f);
+
+    Vec4Conf<Byte> colorPicker4Conf
+            = ConfBuilder.create()
+            .id("vec4.type.color_picker4")
+            .name("Color Picker4")
+            .description("This is a vec4 color conf")
+            .widget(Widget.COLOR_PICKER)
+            .<Byte>vec4().build((byte) 0x19, (byte) 0x19, (byte) 0x08, (byte) 0x10);
+
+    Vec4Conf<Float> colorEdit4FloatConf
+            = ConfBuilder.create()
+            .id("vec4.type.color_edit4_float")
+            .name("Color Picker4 Float")
+            .description("This is a vec4 color conf")
+            .widget(Widget.COLOR_PICKER)
+            .<Float>vec4().build(1f, 1f, 1f, 1f);
 
     CollectionConf<String> collectionConf = ConfBuilder.create()
             .id("collection.type.string")

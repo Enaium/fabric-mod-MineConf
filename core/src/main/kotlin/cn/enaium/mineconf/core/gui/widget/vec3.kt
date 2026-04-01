@@ -17,6 +17,7 @@
 package cn.enaium.mineconf.core.gui.widget
 
 import cn.enaium.mineconf.core.conf.Vec3Conf
+import cn.enaium.mineconf.core.conf.Widget
 import cn.enaium.mineconf.core.type.Vec3
 import imgui.type.*
 
@@ -25,248 +26,254 @@ import imgui.type.*
  */
 @Suppress("UNCHECKED_CAST")
 fun Vec3Conf<*>.vec3(id: String) {
-    run {
-        val id = "X$id"
-        when (this.value.x) {
-            is Long -> {
-                this as Vec3Conf<Long>
-                val value = this.value.x
-                val imLong = ImLong(value)
-                val min = this.rangeX?.min
-                val max = this.rangeX?.max
-                val step = this.stepX
+    when (widget) {
+        Widget.COLOR_EDIT -> color3(id)
+        Widget.COLOR_PICKER -> color3(id)
+        else -> {
+            run {
+                val id = "X$id"
+                when (this.value.x) {
+                    is Long -> {
+                        this as Vec3Conf<Long>
+                        val value = this.value.x
+                        val imLong = ImLong(value)
+                        val min = this.rangeX?.min
+                        val max = this.rangeX?.max
+                        val step = this.stepX
 
-                if (InputWidget.input(id, widget, imLong, min, max, step)) {
-                    this.value = Vec3(imLong.get(), this.value.y, this.value.z)
+                        if (InputWidget.input(id, widget, imLong, min, max, step)) {
+                            this.value = Vec3(imLong.get(), this.value.y, this.value.z)
+                        }
+                    }
+
+                    is Int -> {
+                        this as Vec3Conf<Int>
+                        val value = this.value.x
+                        val imInt = ImInt(value)
+                        val min = this.rangeX?.min
+                        val max = this.rangeX?.max
+                        val step = this.stepX
+
+                        if (InputWidget.input(id, widget, imInt, min, max, step)) {
+                            this.value = Vec3(imInt.get(), this.value.y, this.value.z)
+                        }
+                    }
+
+                    is Short -> {
+                        this as Vec3Conf<Short>
+                        val value = this.value.x
+                        val imShort = ImShort(value)
+                        val min = this.rangeX?.min
+                        val max = this.rangeX?.max
+                        val step = this.stepX
+
+                        if (InputWidget.input(id, widget, imShort, min, max, step)) {
+                            this.value = Vec3(imShort.get(), this.value.y, this.value.z)
+                        }
+                    }
+
+                    is Byte -> {
+                        this as Vec3Conf<Byte>
+                        val value = this.value.x
+                        val imShort = ImShort(value.toShort())
+                        val min = this.rangeX?.min
+                        val max = this.rangeX?.max
+                        val step = this.stepX
+
+                        if (InputWidget.input(id, widget, imShort, min, max, step)) {
+                            this.value = Vec3(imShort.get().toByte(), this.value.y, this.value.z)
+                        }
+                    }
+
+                    is Float -> {
+                        this as Vec3Conf<Float>
+                        val value = this.value.x
+                        val imFloat = ImFloat(value)
+                        val min = this.rangeX?.min
+                        val max = this.rangeX?.max
+                        val step = this.stepX
+
+                        if (InputWidget.input(id, widget, imFloat, min, max, step)) {
+                            this.value = Vec3(imFloat.get(), this.value.y, this.value.z)
+                        }
+                    }
+
+                    is Double -> {
+                        this as Vec3Conf<Double>
+                        val value = this.value.x
+                        val imDouble = ImDouble(value)
+                        val min = this.rangeX?.min
+                        val max = this.rangeX?.max
+                        val step = this.stepX
+
+                        if (InputWidget.input(id, widget, imDouble, min, max, step)) {
+                            this.value = Vec3(imDouble.get(), this.value.y, this.value.z)
+                        }
+                    }
                 }
             }
+            run {
+                val id = "Y$id"
+                when (this.value.y) {
+                    is Long -> {
+                        this as Vec3Conf<Long>
+                        val value = this.value.y
+                        val imLong = ImLong(value)
+                        val min = this.rangeY?.min
+                        val max = this.rangeY?.max
+                        val step = this.stepY
 
-            is Int -> {
-                this as Vec3Conf<Int>
-                val value = this.value.x
-                val imInt = ImInt(value)
-                val min = this.rangeX?.min
-                val max = this.rangeX?.max
-                val step = this.stepX
+                        if (InputWidget.input(id, widget, imLong, min, max, step)) {
+                            this.value = Vec3(this.value.x, imLong.get(), this.value.z)
+                        }
+                    }
 
-                if (InputWidget.input(id, widget, imInt, min, max, step)) {
-                    this.value = Vec3(imInt.get(), this.value.y, this.value.z)
+                    is Int -> {
+                        this as Vec3Conf<Int>
+                        val value = this.value.y
+                        val imInt = ImInt(value)
+                        val min = this.rangeY?.min
+                        val max = this.rangeY?.max
+                        val step = this.stepY
+
+                        if (InputWidget.input(id, widget, imInt, min, max, step)) {
+                            this.value = Vec3(this.value.x, imInt.get(), this.value.z)
+                        }
+                    }
+
+                    is Short -> {
+                        this as Vec3Conf<Short>
+                        val value = this.value.y
+                        val imShort = ImShort(value)
+                        val min = this.rangeY?.min
+                        val max = this.rangeY?.max
+                        val step = this.stepY
+
+                        if (InputWidget.input(id, widget, imShort, min, max, step)) {
+                            this.value = Vec3(this.value.x, imShort.get(), this.value.z)
+                        }
+                    }
+
+                    is Byte -> {
+                        this as Vec3Conf<Byte>
+                        val value = this.value.y
+                        val imShort = ImShort(value.toShort())
+                        val min = this.rangeY?.min
+                        val max = this.rangeY?.max
+                        val step = this.stepY
+
+                        if (InputWidget.input(id, widget, imShort, min, max, step)) {
+                            this.value = Vec3(this.value.x, imShort.get().toByte(), this.value.z)
+                        }
+                    }
+
+                    is Float -> {
+                        this as Vec3Conf<Float>
+                        val value = this.value.y
+                        val imFloat = ImFloat(value)
+                        val min = this.rangeY?.min
+                        val max = this.rangeY?.max
+                        val step = this.stepY
+
+                        if (InputWidget.input(id, widget, imFloat, min, max, step)) {
+                            this.value = Vec3(this.value.x, imFloat.get(), this.value.z)
+                        }
+                    }
+
+                    is Double -> {
+                        this as Vec3Conf<Double>
+                        val value = this.value.y
+                        val imDouble = ImDouble(value)
+                        val min = this.rangeY?.min
+                        val max = this.rangeY?.max
+                        val step = this.stepY
+
+                        if (InputWidget.input(id, widget, imDouble, min, max, step)) {
+                            this.value = Vec3(this.value.x, imDouble.get(), this.value.z)
+                        }
+                    }
                 }
             }
+            run {
+                val id = "Z$id"
+                when (this.value.z) {
+                    is Long -> {
+                        this as Vec3Conf<Long>
+                        val value = this.value.z
+                        val imLong = ImLong(value)
+                        val min = this.rangeZ?.min
+                        val max = this.rangeZ?.max
+                        val step = this.stepZ
 
-            is Short -> {
-                this as Vec3Conf<Short>
-                val value = this.value.x
-                val imShort = ImShort(value)
-                val min = this.rangeX?.min
-                val max = this.rangeX?.max
-                val step = this.stepX
+                        if (InputWidget.input(id, widget, imLong, min, max, step)) {
+                            this.value = Vec3(this.value.x, this.value.y, imLong.get())
+                        }
+                    }
 
-                if (InputWidget.input(id, widget, imShort, min, max, step)) {
-                    this.value = Vec3(imShort.get(), this.value.y, this.value.z)
-                }
-            }
+                    is Int -> {
+                        this as Vec3Conf<Int>
+                        val value = this.value.z
+                        val imInt = ImInt(value)
+                        val min = this.rangeZ?.min
+                        val max = this.rangeZ?.max
+                        val step = this.stepZ
 
-            is Byte -> {
-                this as Vec3Conf<Byte>
-                val value = this.value.x
-                val imShort = ImShort(value.toShort())
-                val min = this.rangeX?.min
-                val max = this.rangeX?.max
-                val step = this.stepX
+                        if (InputWidget.input(id, widget, imInt, min, max, step)) {
+                            this.value = Vec3(this.value.x, this.value.y, imInt.get())
+                        }
+                    }
 
-                if (InputWidget.input(id, widget, imShort, min, max, step)) {
-                    this.value = Vec3(imShort.get().toByte(), this.value.y, this.value.z)
-                }
-            }
+                    is Short -> {
+                        this as Vec3Conf<Short>
+                        val value = this.value.z
+                        val imShort = ImShort(value)
+                        val min = this.rangeZ?.min
+                        val max = this.rangeZ?.max
+                        val step = this.stepZ
 
-            is Float -> {
-                this as Vec3Conf<Float>
-                val value = this.value.x
-                val imFloat = ImFloat(value)
-                val min = this.rangeX?.min
-                val max = this.rangeX?.max
-                val step = this.stepX
+                        if (InputWidget.input(id, widget, imShort, min, max, step)) {
+                            this.value = Vec3(this.value.x, this.value.y, imShort.get())
+                        }
+                    }
 
-                if (InputWidget.input(id, widget, imFloat, min, max, step)) {
-                    this.value = Vec3(imFloat.get(), this.value.y, this.value.z)
-                }
-            }
+                    is Byte -> {
+                        this as Vec3Conf<Byte>
+                        val value = this.value.z
+                        val imShort = ImShort(value.toShort())
+                        val min = this.rangeZ?.min
+                        val max = this.rangeZ?.max
+                        val step = this.stepZ
 
-            is Double -> {
-                this as Vec3Conf<Double>
-                val value = this.value.x
-                val imDouble = ImDouble(value)
-                val min = this.rangeX?.min
-                val max = this.rangeX?.max
-                val step = this.stepX
+                        if (InputWidget.input(id, widget, imShort, min, max, step)) {
+                            this.value = Vec3(this.value.x, this.value.y, imShort.get().toByte())
+                        }
+                    }
 
-                if (InputWidget.input(id, widget, imDouble, min, max, step)) {
-                    this.value = Vec3(imDouble.get(), this.value.y, this.value.z)
-                }
-            }
-        }
-    }
-    run {
-        val id = "Y$id"
-        when (this.value.y) {
-            is Long -> {
-                this as Vec3Conf<Long>
-                val value = this.value.y
-                val imLong = ImLong(value)
-                val min = this.rangeY?.min
-                val max = this.rangeY?.max
-                val step = this.stepY
+                    is Float -> {
+                        this as Vec3Conf<Float>
+                        val value = this.value.z
+                        val imFloat = ImFloat(value)
+                        val min = this.rangeZ?.min
+                        val max = this.rangeZ?.max
+                        val step = this.stepZ
 
-                if (InputWidget.input(id, widget, imLong, min, max, step)) {
-                    this.value = Vec3(this.value.x, imLong.get(), this.value.z)
-                }
-            }
+                        if (InputWidget.input(id, widget, imFloat, min, max, step)) {
+                            this.value = Vec3(this.value.x, this.value.y, imFloat.get())
+                        }
+                    }
 
-            is Int -> {
-                this as Vec3Conf<Int>
-                val value = this.value.y
-                val imInt = ImInt(value)
-                val min = this.rangeY?.min
-                val max = this.rangeY?.max
-                val step = this.stepY
+                    is Double -> {
+                        this as Vec3Conf<Double>
+                        val value = this.value.z
+                        val imDouble = ImDouble(value)
+                        val min = this.rangeZ?.min
+                        val max = this.rangeZ?.max
+                        val step = this.stepZ
 
-                if (InputWidget.input(id, widget, imInt, min, max, step)) {
-                    this.value = Vec3(this.value.x, imInt.get(), this.value.z)
-                }
-            }
-
-            is Short -> {
-                this as Vec3Conf<Short>
-                val value = this.value.y
-                val imShort = ImShort(value)
-                val min = this.rangeY?.min
-                val max = this.rangeY?.max
-                val step = this.stepY
-
-                if (InputWidget.input(id, widget, imShort, min, max, step)) {
-                    this.value = Vec3(this.value.x, imShort.get(), this.value.z)
-                }
-            }
-
-            is Byte -> {
-                this as Vec3Conf<Byte>
-                val value = this.value.y
-                val imShort = ImShort(value.toShort())
-                val min = this.rangeY?.min
-                val max = this.rangeY?.max
-                val step = this.stepY
-
-                if (InputWidget.input(id, widget, imShort, min, max, step)) {
-                    this.value = Vec3(this.value.x, imShort.get().toByte(), this.value.z)
-                }
-            }
-
-            is Float -> {
-                this as Vec3Conf<Float>
-                val value = this.value.y
-                val imFloat = ImFloat(value)
-                val min = this.rangeY?.min
-                val max = this.rangeY?.max
-                val step = this.stepY
-
-                if (InputWidget.input(id, widget, imFloat, min, max, step)) {
-                    this.value = Vec3(this.value.x, imFloat.get(), this.value.z)
-                }
-            }
-
-            is Double -> {
-                this as Vec3Conf<Double>
-                val value = this.value.y
-                val imDouble = ImDouble(value)
-                val min = this.rangeY?.min
-                val max = this.rangeY?.max
-                val step = this.stepY
-
-                if (InputWidget.input(id, widget, imDouble, min, max, step)) {
-                    this.value = Vec3(this.value.x, imDouble.get(), this.value.z)
-                }
-            }
-        }
-    }
-    run {
-        val id = "Z$id"
-        when (this.value.z) {
-            is Long -> {
-                this as Vec3Conf<Long>
-                val value = this.value.z
-                val imLong = ImLong(value)
-                val min = this.rangeZ?.min
-                val max = this.rangeZ?.max
-                val step = this.stepZ
-
-                if (InputWidget.input(id, widget, imLong, min, max, step)) {
-                    this.value = Vec3(this.value.x, this.value.y, imLong.get())
-                }
-            }
-
-            is Int -> {
-                this as Vec3Conf<Int>
-                val value = this.value.z
-                val imInt = ImInt(value)
-                val min = this.rangeZ?.min
-                val max = this.rangeZ?.max
-                val step = this.stepZ
-
-                if (InputWidget.input(id, widget, imInt, min, max, step)) {
-                    this.value = Vec3(this.value.x, this.value.y, imInt.get())
-                }
-            }
-
-            is Short -> {
-                this as Vec3Conf<Short>
-                val value = this.value.z
-                val imShort = ImShort(value)
-                val min = this.rangeZ?.min
-                val max = this.rangeZ?.max
-                val step = this.stepZ
-
-                if (InputWidget.input(id, widget, imShort, min, max, step)) {
-                    this.value = Vec3(this.value.x, this.value.y, imShort.get())
-                }
-            }
-
-            is Byte -> {
-                this as Vec3Conf<Byte>
-                val value = this.value.z
-                val imShort = ImShort(value.toShort())
-                val min = this.rangeZ?.min
-                val max = this.rangeZ?.max
-                val step = this.stepZ
-
-                if (InputWidget.input(id, widget, imShort, min, max, step)) {
-                    this.value = Vec3(this.value.x, this.value.y, imShort.get().toByte())
-                }
-            }
-
-            is Float -> {
-                this as Vec3Conf<Float>
-                val value = this.value.z
-                val imFloat = ImFloat(value)
-                val min = this.rangeZ?.min
-                val max = this.rangeZ?.max
-                val step = this.stepZ
-
-                if (InputWidget.input(id, widget, imFloat, min, max, step)) {
-                    this.value = Vec3(this.value.x, this.value.y, imFloat.get())
-                }
-            }
-
-            is Double -> {
-                this as Vec3Conf<Double>
-                val value = this.value.z
-                val imDouble = ImDouble(value)
-                val min = this.rangeZ?.min
-                val max = this.rangeZ?.max
-                val step = this.stepZ
-
-                if (InputWidget.input(id, widget, imDouble, min, max, step)) {
-                    this.value = Vec3(this.value.x, this.value.y, imDouble.get())
+                        if (InputWidget.input(id, widget, imDouble, min, max, step)) {
+                            this.value = Vec3(this.value.x, this.value.y, imDouble.get())
+                        }
+                    }
                 }
             }
         }

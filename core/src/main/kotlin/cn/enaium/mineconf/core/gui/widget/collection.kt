@@ -29,6 +29,7 @@ import imgui.type.ImString
 @Suppress("UNCHECKED_CAST")
 fun CollectionConf<*>.collection(id: String) {
     this as CollectionConf<Any>
+    ImGui.setNextItemWidth(-Float.MIN_VALUE)
     if (ImGui.beginListBox("${id}_list")) {
         this.value.forEachIndexed { index, item ->
             if (ImGui.selectable("${item}${id}_box_item")) {
@@ -46,8 +47,10 @@ fun CollectionConf<*>.collection(id: String) {
     }
 
     ImGui.setNextWindowSizeConstraints(ImVec2(0f, 0f), ImVec2(Float.MAX_VALUE, Float.MAX_VALUE))
+    ImGui.setNextItemWidth(-Float.MIN_VALUE)
     if (ImGui.beginCombo("${id}_combo", "")) {
         val input by ImRemember.remember { ImString() }
+        ImGui.setNextItemWidth(ImGui.getContentRegionAvail().x - ImGui.calcTextSize("Add").x * 1.5f)
         ImGui.inputTextWithHint("${id}_search", "", input)
         ImGui.sameLine()
         if (ImGui.button("Add $id")) {

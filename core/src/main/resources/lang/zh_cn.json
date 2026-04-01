@@ -1,5 +1,8 @@
 {
   "command.set.success": "设置成功",
   "command.append.success": "添加成功",
-  "command.remove.success": "移除成功"
+  "command.remove.success": "移除成功",
+  "ui.button.confirm": "确认",
+  "ui.mineconf.button.reset": "重置",
+  "ui.mineconf.text.reset": "确定要重置这个配置吗?"
 }

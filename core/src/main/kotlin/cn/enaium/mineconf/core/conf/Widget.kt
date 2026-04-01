@@ -25,5 +25,6 @@ enum class Widget {
     COMBO,
     DRAG,
     SLIDER,
-    COLOR
+    COLOR_EDIT,
+    COLOR_PICKER
 }

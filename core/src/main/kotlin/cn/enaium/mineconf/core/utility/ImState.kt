@@ -61,7 +61,7 @@ object ImRemember {
         explicitKey: String? = null,
         init: () -> T
     ): ImState<T> {
-        val windowName = ImGui.getWindowViewport().id.toString()
+        val windowName = ImGui.getItemID().toString()
 
         val indexCounter = windowIndices.getOrPut(windowName) { AtomicInteger(0) }
 

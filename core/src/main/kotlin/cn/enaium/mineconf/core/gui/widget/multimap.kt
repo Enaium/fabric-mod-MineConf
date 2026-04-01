@@ -22,7 +22,6 @@ import imgui.ImGui
 import imgui.ImVec2
 import imgui.flag.ImGuiChildFlags
 import imgui.type.ImString
-import kotlin.collections.get
 
 /**
  * @author Enaium
@@ -43,6 +42,7 @@ fun MultimapConf<*, *>.multimap(id: String) {
             ImGuiChildFlags.AutoResizeY or ImGuiChildFlags.AlwaysAutoResize
         )
     ) {
+        ImGui.setNextItemWidth(-Float.MIN_VALUE)
         if (ImGui.beginListBox("${id}_key_list")) {
             this.value.keys.forEachIndexed { index, item ->
                 if (ImGui.selectable("${item}${id}_box_item", item == currentKey)) {
@@ -62,8 +62,10 @@ fun MultimapConf<*, *>.multimap(id: String) {
         }
 
         ImGui.setNextWindowSizeConstraints(ImVec2(0f, 0f), ImVec2(Float.MAX_VALUE, Float.MAX_VALUE))
+        ImGui.setNextItemWidth(-Float.MIN_VALUE)
         if (ImGui.beginCombo("${id}_key_combo", "")) {
             val input by ImRemember.remember { ImString() }
+            ImGui.setNextItemWidth(ImGui.getContentRegionAvail().x - ImGui.calcTextSize("Add").x * 1.5f)
             ImGui.inputTextWithHint("${id}_search", "", input)
             ImGui.sameLine()
             if (ImGui.button("Add $id")) {
@@ -99,6 +101,7 @@ fun MultimapConf<*, *>.multimap(id: String) {
         )
     ) {
         ImGui.beginDisabled(currentKey == null)
+        ImGui.setNextItemWidth(-Float.MIN_VALUE)
         if (ImGui.beginListBox("${id}_value_list")) {
             this.value[currentKey]?.forEachIndexed { index, item ->
                 if (ImGui.selectable("${item}${id}_box_item")) {
@@ -116,8 +119,10 @@ fun MultimapConf<*, *>.multimap(id: String) {
         }
 
         ImGui.setNextWindowSizeConstraints(ImVec2(0f, 0f), ImVec2(Float.MAX_VALUE, Float.MAX_VALUE))
+        ImGui.setNextItemWidth(-Float.MIN_VALUE)
         if (ImGui.beginCombo("${id}_value_combo", "")) {
             val input by ImRemember.remember { ImString() }
+            ImGui.setNextItemWidth(ImGui.getContentRegionAvail().x - ImGui.calcTextSize("Add").x * 1.5f)
             ImGui.inputTextWithHint("${id}_search", "", input)
             ImGui.sameLine()
             if (ImGui.button("Add $id")) {

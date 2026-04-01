@@ -25,6 +25,7 @@ import imgui.ImGui
 @Suppress("UNCHECKED_CAST")
 fun OptionConf<*>.option(id: String) {
     this as OptionConf<Any>
+    ImGui.setNextItemWidth(-Float.MIN_VALUE)
     if (ImGui.beginCombo(id, this.value.toString())) {
         this.options.forEach { option ->
             if (ImGui.selectable(option.toString())) {
