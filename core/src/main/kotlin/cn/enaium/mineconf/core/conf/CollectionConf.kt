@@ -26,7 +26,7 @@ data class CollectionConf<T>(
     override val description: String,
     override var defaultValue: Collection<T>,
     override var widget: Widget?,
-    @field:JsonIgnore
+    @get:JsonIgnore
     val converter: (String) -> T,
     val options: Collection<T>?
 ) : Conf<Collection<T>>(id, name, description, defaultValue, widget)

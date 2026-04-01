@@ -26,10 +26,10 @@ data class MultimapConf<O, M>(
     override val description: String,
     override var defaultValue: Map<O, Collection<M>>,
     override var widget: Widget?,
-    @field:JsonIgnore
+    @get:JsonIgnore
     val keyConverter: (String) -> O,
     val keyOptions: Collection<O>?,
-    @field:JsonIgnore
+    @get:JsonIgnore
     val valueConverter: (String) -> M,
     val valueOptions: Collection<M>?
 ) : Conf<Map<O, Collection<M>>>(id, name, description, defaultValue, widget)

@@ -2,7 +2,6 @@ package cn.enaium.mineconf.java;
 
 import cn.enaium.mineconf.core.ConfBuilder;
 import cn.enaium.mineconf.core.MineConf;
-import cn.enaium.mineconf.conf.*;
 import cn.enaium.mineconf.core.conf.*;
 import cn.enaium.mineconf.core.type.Vec2;
 import cn.enaium.mineconf.core.type.Vec3;

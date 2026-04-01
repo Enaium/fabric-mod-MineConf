@@ -25,6 +25,7 @@ import imgui.ImGui
 @Suppress("UNCHECKED_CAST", "UPPER_BOUND_VIOLATED_IN_TYPE_OPERATOR_OR_PARAMETER_BOUNDS_WARNING")
 fun EnumConf<*>.enum(id: String) {
     this as EnumConf<Enum<*>>
+    ImGui.setNextItemWidth(-Float.MIN_VALUE)
     if (ImGui.beginCombo(id, this.value.toString())) {
         this.type.enumConstants.forEach {
             if (ImGui.selectable(it.toString())) {

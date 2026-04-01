@@ -32,6 +32,7 @@ object InputWidget {
         max: Number? = null,
         step: Number? = null
     ): Boolean {
+        ImGui.setNextItemWidth(ImGui.getContentRegionAvail().x - ImGui.calcTextSize(id.substringBefore("#")).x)
         when (value) {
             is ImLong -> {
                 val min = min?.toLong()

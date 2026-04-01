@@ -26,7 +26,7 @@ open class Conf<T>(
     /**
      * Unique id of the conf.
      */
-    @field:JsonIgnore
+    @get:JsonIgnore
     open val id: String,
     /**
      * Name of the conf.
@@ -39,18 +39,19 @@ open class Conf<T>(
     /**
      * Value of the conf.
      */
-    @field:JsonIgnore
-    protected open var defaultValue: T,
+    @get:JsonIgnore
+    open val defaultValue: T,
     /**
      * Widget of the conf.
      */
-    @field:JsonIgnore
+    @get:JsonIgnore
     open var widget: Widget?
 ) {
+    private var _value = defaultValue
     var value
-        get() = this.defaultValue
+        get() = _value ?: defaultValue
         set(value) {
-            this.defaultValue = value
+            _value = value
             MineConfLoader.getMineConf(this)?.also {
                 MineConfLoader.save()
             }

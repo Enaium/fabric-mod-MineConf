@@ -19,9 +19,11 @@ package cn.enaium.mineconf.core.gui.pane
 import cn.enaium.mineconf.core.MineConf
 import cn.enaium.mineconf.core.conf.*
 import cn.enaium.mineconf.core.gui.widget.*
+import cn.enaium.mineconf.core.utility.i18n
 import imgui.ImGui
 import imgui.ImVec2
 import imgui.flag.ImGuiSelectableFlags
+import imgui.flag.ImGuiStyleVar
 import imgui.flag.ImGuiTableColumnFlags
 import imgui.flag.ImGuiTableFlags
 
@@ -32,18 +34,26 @@ import imgui.flag.ImGuiTableFlags
 object MineConfPane {
 
     fun mineConf(mineConf: MineConf) {
-        if (ImGui.beginTable(mineConf.id, 2, ImGuiTableFlags.Borders)) {
+        ImGui.pushStyleVar(ImGuiStyleVar.CellPadding, ImVec2(5f, 5f))
+        if (ImGui.beginTable(mineConf.id, 3, ImGuiTableFlags.Borders)) {
             ImGui.tableSetupColumn("Name", ImGuiTableColumnFlags.WidthFixed, 0f)
             ImGui.tableSetupColumn("Widget", ImGuiTableColumnFlags.WidthStretch, 1f)
+            ImGui.tableSetupColumn("Reset", ImGuiTableColumnFlags.WidthFixed, 0f)
             mineConf.getConf().forEach { (id, conf) ->
                 ImGui.tableNextRow()
-                ImGui.tableNextColumn()
-                name(conf)
-                ImGui.tableNextColumn()
-                widget(conf as Conf<Any>)
+                if (ImGui.tableNextColumn()) {
+                    name(conf)
+                }
+                if (ImGui.tableNextColumn()) {
+                    widget(conf as Conf<Any>)
+                }
+                if (ImGui.tableNextColumn()) {
+                    reset(conf)
+                }
             }
             ImGui.endTable()
         }
+        ImGui.popStyleVar()
     }
 
     fun name(conf: Conf<*>) {
@@ -113,6 +123,25 @@ object MineConfPane {
             else -> {
                 conf.literal(id)
             }
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun reset(conf: Conf<*>) {
+        val id = "##id_${conf.id}"
+
+        if (ImGui.button("${i18n("ui.mineconf.button.reset")}${id}")) {
+            ImGui.openPopup("${id}_reset")
+        }
+
+        if (ImGui.beginPopup("${id}_reset")) {
+            ImGui.text(i18n("ui.mineconf.text.reset"))
+            if (ImGui.button(i18n("ui.button.confirm"))) {
+                conf as Conf<Any>
+                conf.value = conf.defaultValue
+                ImGui.closeCurrentPopup()
+            }
+            ImGui.endPopup()
         }
     }
 }

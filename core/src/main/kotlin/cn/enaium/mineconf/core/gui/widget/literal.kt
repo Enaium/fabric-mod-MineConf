@@ -35,7 +35,7 @@ fun Conf<*>.literal(id: String) {
             widget = Widget.CHECKBOX
         }
     }
-
+    ImGui.setNextItemWidth(-Float.MIN_VALUE)
     when (this.value) {
         is Long -> {
             this as Conf<Long>

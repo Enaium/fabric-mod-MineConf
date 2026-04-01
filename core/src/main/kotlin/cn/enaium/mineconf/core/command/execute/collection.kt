@@ -32,8 +32,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder
 fun CollectionConf<*>.append(id: LiteralArgumentBuilder<CommonSource>) {
     this as CollectionConf<Any>
     this.options?.forEach {
-        id.then(literal(it.toString()).executes { _ ->
+        id.then(literal(it.toString()).executes { context ->
             this.value += it
+            context.source.sendFeedback(i18n("command.append.success"))
             Command.SINGLE_SUCCESS
         })
     } ?: run {

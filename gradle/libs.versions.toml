@@ -1,7 +1,7 @@
 [versions]
-kotlin = "2.3.10"
-fabricKotlin = "1.13.9+kotlin.2.3.10"
-publish = "0.8.4"
+kotlin = "2.3.20"
+fabricKotlin = "1.13.10+kotlin.2.3.20"
+publish = "1.1.0"
 fmg = "0.0.8"
 loom = "1.15-SNAPSHOT"
 jackson = "2.21.1"
@@ -23,6 +23,7 @@ imgui-java-binding = { module = "io.github.spair:imgui-java-binding", version.re
 imgui-java-natives-windows = { module = "io.github.spair:imgui-java-natives-windows", version.ref = "imgui" }
 imgui-java-natives-linux = { module = "io.github.spair:imgui-java-natives-linux", version.ref = "imgui" }
 imgui-java-natives-macos = { module = "io.github.spair:imgui-java-natives-macos", version.ref = "imgui" }
+imgui-java-app = { module = "io.github.spair:imgui-java-app", version.ref = "imgui" }
 brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }
 
 [plugins]

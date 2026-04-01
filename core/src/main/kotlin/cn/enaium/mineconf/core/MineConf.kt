@@ -80,8 +80,8 @@ class MineConf(
                 val value = conf.value
                 try {
                     conf.value = ObjectMapper().readValue(o.get("value").toString(), value.javaClass)
-                } catch (e: JsonProcessingException) {
-                    throw RuntimeException("Unable to read config: " + conf.id, e)
+                } catch (e: Throwable) {
+                    RuntimeException("Unable to read config: " + conf.id, e).printStackTrace()
                 }
             }
         }
@@ -97,8 +97,8 @@ class MineConf(
                     val conf = get as Conf<Any?>
                     conf.value = confMap[conf.id]?.value
                 }
-            } catch (e: IllegalAccessException) {
-                throw RuntimeException("Unable to get the conf: " + it.name, e)
+            } catch (e: Throwable) {
+                RuntimeException("Unable to get the conf: " + it.name, e).printStackTrace()
             }
         }
 
