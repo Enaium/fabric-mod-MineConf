@@ -7,7 +7,6 @@ a user-friendly graphical interface to help mod developers easily manage and mai
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/1486586?style=flat-square&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/mineconf)
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/NfULUoHI?style=flat-square&logo=modrinth)](https://modrinth.com/mod/MineConf)
 
-
 ## 🚀 Features
 
 - **Multiple Configuration Types**: Supports Literal, Number, Vec2, Vec3, Vec4, Option, Enum, Collection, Multimap, and
@@ -65,7 +64,7 @@ dependencies {
 
 ```kotlin
 repositories {
-  maven("https://jitpack.io")
+    maven("https://jitpack.io")
 }
 ```
 
@@ -201,7 +200,8 @@ MineConf provides a complete command-line interface for viewing and modifying co
 |-----------------------------------------------------|---------------------------------------------------------------------|
 | `/mineconf screen`                                  | Open the configuration interface for all mods                       |
 | `/mineconf screen <mod_id>`                         | Open the configuration interface for a specific mod                 |
-| `/mineconf get <mod_id> <conf_id>`                  | Get a configuration value                                           |
+| `/mineconf get <mod_id> <conf_id>`                  | Get a configuration basic info                                      |
+| `/mineconf get <mod_id> <conf_id> value`            | Get a configuration value info                                      |
 | `/mineconf set <mod_id> <conf_id> <value>`          | Set a value for literal type configurations                         |
 | `/mineconf append <mod_id> <conf_id> <value>`       | Append an element to a collection type configuration                |
 | `/mineconf append <mod_id> <conf_id> <key> <value>` | Append a key-value pair to a multimap type configuration            |

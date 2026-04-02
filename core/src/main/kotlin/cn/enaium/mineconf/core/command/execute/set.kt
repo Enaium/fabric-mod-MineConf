@@ -18,12 +18,7 @@ package cn.enaium.mineconf.core.command.execute
 
 import cn.enaium.mineconf.core.MineConfLoader
 import cn.enaium.mineconf.core.common.CommonSource
-import cn.enaium.mineconf.core.conf.EnumConf
-import cn.enaium.mineconf.core.conf.NumberConf
-import cn.enaium.mineconf.core.conf.OptionConf
-import cn.enaium.mineconf.core.conf.Vec2Conf
-import cn.enaium.mineconf.core.conf.Vec3Conf
-import cn.enaium.mineconf.core.conf.Vec4Conf
+import cn.enaium.mineconf.core.conf.*
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 
 /**

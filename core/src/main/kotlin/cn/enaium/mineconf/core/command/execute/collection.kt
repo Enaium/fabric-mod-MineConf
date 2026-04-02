@@ -19,6 +19,7 @@ package cn.enaium.mineconf.core.command.execute
 import cn.enaium.mineconf.core.command.argument
 import cn.enaium.mineconf.core.command.literal
 import cn.enaium.mineconf.core.common.CommonSource
+import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.CollectionConf
 import cn.enaium.mineconf.core.utility.i18n
 import com.mojang.brigadier.Command
@@ -34,13 +35,13 @@ fun CollectionConf<*>.append(id: LiteralArgumentBuilder<CommonSource>) {
     this.options?.forEach {
         id.then(literal(it.toString()).executes { context ->
             this.value += it
-            context.source.sendFeedback(i18n("command.append.success"))
+            context.source.sendFeedback(Text(i18n("command.append.success")))
             Command.SINGLE_SUCCESS
         })
     } ?: run {
         id.then(argument<String>("value", StringArgumentType.string()).executes { context ->
             this.value += this.converter(StringArgumentType.getString(context, "value"))
-            context.source.sendFeedback(i18n("command.append.success"))
+            context.source.sendFeedback(Text(i18n("command.append.success")))
             Command.SINGLE_SUCCESS
         })
     }
@@ -52,7 +53,7 @@ fun CollectionConf<*>.remove(id: LiteralArgumentBuilder<CommonSource>) {
     this.options?.forEach {
         id.then(literal(it.toString()).executes { context ->
             this.value -= it
-            context.source.sendFeedback(i18n("command.remove.success"))
+            context.source.sendFeedback(Text(i18n("command.remove.success")))
             Command.SINGLE_SUCCESS
         })
     } ?: run {

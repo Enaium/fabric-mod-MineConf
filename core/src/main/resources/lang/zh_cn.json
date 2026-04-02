@@ -2,6 +2,13 @@
   "command.set.success": "设置成功",
   "command.append.success": "添加成功",
   "command.remove.success": "移除成功",
+  "command.get.id": "标识",
+  "command.get.name": "名称",
+  "command.get.description": "描述",
+  "command.get.range": "范围",
+  "command.get.step": "步进",
+  "command.get.options": "选项",
+  "command.get.enumerations": "枚举",
   "ui.button.confirm": "确认",
   "ui.mineconf.button.reset": "重置",
   "ui.mineconf.text.reset": "确定要重置这个配置吗?"

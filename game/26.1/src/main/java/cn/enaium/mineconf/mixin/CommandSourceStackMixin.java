@@ -17,11 +17,14 @@
 package cn.enaium.mineconf.mixin;
 
 import cn.enaium.mineconf.core.common.CommonSource;
+import cn.enaium.mineconf.core.common.text.Text;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+
+import static cn.enaium.mineconf.utility.UtilityKt.toMinecraft;
 
 /**
  * @author Enaium
@@ -32,7 +35,7 @@ public abstract class CommandSourceStackMixin implements CommonSource {
     public abstract void sendSystemMessage(Component message);
 
     @Override
-    public void sendFeedback(@NotNull String text) {
-        sendSystemMessage(Component.literal(text));
+    public void sendFeedback(@NotNull Text text) {
+        sendSystemMessage(toMinecraft(text));
     }
 }

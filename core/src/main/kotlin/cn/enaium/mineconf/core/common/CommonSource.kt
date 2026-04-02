@@ -16,9 +16,11 @@
 
 package cn.enaium.mineconf.core.common
 
+import cn.enaium.mineconf.core.common.text.Text
+
 /**
  * @author Enaium
  */
 interface CommonSource {
-    fun sendFeedback(text: String)
+    fun sendFeedback(text: Text)
 }

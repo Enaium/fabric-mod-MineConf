@@ -15,17 +15,7 @@
  */
 package cn.enaium.mineconf.core
 
-import cn.enaium.mineconf.core.conf.CollectionConf
-import cn.enaium.mineconf.core.conf.Conf
-import cn.enaium.mineconf.core.conf.EnumConf
-import cn.enaium.mineconf.core.conf.MultimapConf
-import cn.enaium.mineconf.core.conf.NumberConf
-import cn.enaium.mineconf.core.conf.OptionConf
-import cn.enaium.mineconf.core.conf.Range
-import cn.enaium.mineconf.core.conf.Vec2Conf
-import cn.enaium.mineconf.core.conf.Vec3Conf
-import cn.enaium.mineconf.core.conf.Vec4Conf
-import cn.enaium.mineconf.core.conf.Widget
+import cn.enaium.mineconf.core.conf.*
 import cn.enaium.mineconf.core.type.Vec2
 import cn.enaium.mineconf.core.type.Vec3
 import cn.enaium.mineconf.core.type.Vec4

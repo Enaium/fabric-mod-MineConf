@@ -19,6 +19,7 @@ package cn.enaium.mineconf.core.command.execute
 import cn.enaium.mineconf.core.command.argument
 import cn.enaium.mineconf.core.command.literal
 import cn.enaium.mineconf.core.common.CommonSource
+import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.MultimapConf
 import cn.enaium.mineconf.core.utility.i18n
 import com.mojang.brigadier.Command
@@ -38,7 +39,7 @@ fun MultimapConf<*, *>.append(id: LiteralArgumentBuilder<CommonSource>) {
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
-                context.source.sendFeedback(i18n("command.append.success"))
+                context.source.sendFeedback(Text(i18n("command.append.success")))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
@@ -48,7 +49,7 @@ fun MultimapConf<*, *>.append(id: LiteralArgumentBuilder<CommonSource>) {
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
-                context.source.sendFeedback(i18n("command.append.success"))
+                context.source.sendFeedback(Text(i18n("command.append.success")))
                 Command.SINGLE_SUCCESS
             })
         }
@@ -61,7 +62,7 @@ fun MultimapConf<*, *>.append(id: LiteralArgumentBuilder<CommonSource>) {
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
-                context.source.sendFeedback(i18n("command.append.success"))
+                context.source.sendFeedback(Text(i18n("command.append.success")))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
@@ -72,7 +73,7 @@ fun MultimapConf<*, *>.append(id: LiteralArgumentBuilder<CommonSource>) {
                 this.value += this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) + valueOption
                 )
-                context.source.sendFeedback(i18n("command.append.success"))
+                context.source.sendFeedback(Text(i18n("command.append.success")))
                 Command.SINGLE_SUCCESS
             })
         }
@@ -86,7 +87,7 @@ fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<CommonSource>) {
     this.keyOptions?.forEach { keyOption ->
         val key = literal(keyOption.toString()).executes { context ->
             this.value = this.value.filter { it.key != keyOption }
-            context.source.sendFeedback(i18n("command.remove.success"))
+            context.source.sendFeedback(Text(i18n("command.remove.success")))
             Command.SINGLE_SUCCESS
         }
         this.valueOptions?.forEach { valueOption ->
@@ -94,7 +95,7 @@ fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<CommonSource>) {
                 this.value = this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) - valueOption
                 )
-                context.source.sendFeedback(i18n("command.remove.success"))
+                context.source.sendFeedback(Text(i18n("command.remove.success")))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
@@ -105,7 +106,7 @@ fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<CommonSource>) {
                     keyOption to (this.value[keyOption] ?: emptyList()) - valueOption
                 )
 
-                context.source.sendFeedback(i18n("command.remove.success"))
+                context.source.sendFeedback(Text(i18n("command.remove.success")))
                 Command.SINGLE_SUCCESS
             })
         }
@@ -114,7 +115,7 @@ fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<CommonSource>) {
         val key = argument<String>("key", StringArgumentType.string()).executes { context ->
             val keyOption = this.keyConverter(StringArgumentType.getString(context, "key"))
             this.value = this.value.filter { it.key != keyOption }
-            context.source.sendFeedback(i18n("command.remove.success"))
+            context.source.sendFeedback(Text(i18n("command.remove.success")))
             Command.SINGLE_SUCCESS
         }
         this.valueOptions?.forEach { valueOption ->
@@ -123,7 +124,7 @@ fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<CommonSource>) {
                 this.value = this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) - valueOption
                 )
-                context.source.sendFeedback(i18n("command.remove.success"))
+                context.source.sendFeedback(Text(i18n("command.remove.success")))
                 Command.SINGLE_SUCCESS
             }
             key.then(value)
@@ -135,7 +136,7 @@ fun MultimapConf<*, *>.remove(id: LiteralArgumentBuilder<CommonSource>) {
                 this.value = this.value.filter { it.key != keyOption } + mapOf(
                     keyOption to (this.value[keyOption] ?: emptyList()) - valueOption
                 )
-                context.source.sendFeedback(i18n("command.remove.success"))
+                context.source.sendFeedback(Text(i18n("command.remove.success")))
                 Command.SINGLE_SUCCESS
             })
         }

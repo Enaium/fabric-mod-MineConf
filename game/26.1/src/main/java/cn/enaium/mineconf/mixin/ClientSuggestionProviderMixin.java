@@ -17,13 +17,15 @@
 package cn.enaium.mineconf.mixin;
 
 import cn.enaium.mineconf.core.common.CommonSource;
+import cn.enaium.mineconf.core.common.text.Text;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientSuggestionProvider;
-import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+
+import static cn.enaium.mineconf.utility.UtilityKt.toMinecraft;
 
 /**
  * @author Enaium
@@ -35,8 +37,8 @@ class ClientSuggestionProviderMixin implements CommonSource {
     private Minecraft minecraft;
 
     @Override
-    public void sendFeedback(@NotNull String text) {
-        this.minecraft.gui.getChat().addClientSystemMessage(Component.literal(text));
-        this.minecraft.getNarrator().saySystemChatQueued(Component.literal(text));
+    public void sendFeedback(@NotNull Text text) {
+        this.minecraft.gui.getChat().addClientSystemMessage(toMinecraft(text));
+        this.minecraft.getNarrator().saySystemChatQueued(toMinecraft(text));
     }
 }

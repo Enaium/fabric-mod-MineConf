@@ -17,10 +17,11 @@
 package cn.enaium.mineconf.command
 
 import cn.enaium.mineconf.core.common.CommonSource
+import cn.enaium.mineconf.core.common.text.Text
+import cn.enaium.mineconf.utility.toMinecraft
 import com.mojang.brigadier.CommandDispatcher
 import net.minecraft.command.AbstractCommand
 import net.minecraft.command.CommandSource
-import net.minecraft.text.LiteralText
 
 /**
  * @author Enaium
@@ -44,8 +45,8 @@ class MineConfCommand : AbstractCommand() {
 
     override fun execute(commandSource: CommandSource, args: Array<String>) {
         val source = object : CommonSource {
-            override fun sendFeedback(text: String) {
-                commandSource.sendMessage(LiteralText(text))
+            override fun sendFeedback(text: Text) {
+                commandSource.sendMessage(text.toMinecraft())
             }
         }
         dispatcher.execute(dispatcher.parse(args.joinToString(" "), source))
@@ -56,8 +57,8 @@ class MineConfCommand : AbstractCommand() {
         strings: Array<out String>
     ): List<String> {
         val source = object : CommonSource {
-            override fun sendFeedback(text: String) {
-                commandSource.sendMessage(LiteralText(text))
+            override fun sendFeedback(text: Text) {
+                commandSource.sendMessage(text.toMinecraft())
             }
         }
         return dispatcher.getCompletionSuggestions(

@@ -19,11 +19,12 @@ package cn.enaium.mineconf.mixin;
 import cn.enaium.mineconf.core.common.CommonSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientCommandSource;
-import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+
+import static cn.enaium.mineconf.utility.UtilityKt.toMinecraft;
 
 /**
  * @author Enaium
@@ -35,8 +36,8 @@ class ClientCommandSourceMixin implements CommonSource {
     private MinecraftClient client;
 
     @Override
-    public void sendFeedback(@NotNull String text) {
-        this.client.inGameHud.getChatHud().addMessage(Text.literal(text));
-        this.client.getNarratorManager().narrate(Text.literal(text));
+    public void sendFeedback(@NotNull cn.enaium.mineconf.core.common.text.Text text) {
+        this.client.inGameHud.getChatHud().addMessage(toMinecraft(text));
+        this.client.getNarratorManager().narrate(toMinecraft(text));
     }
 }

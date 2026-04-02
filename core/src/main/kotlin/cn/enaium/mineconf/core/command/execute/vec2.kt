@@ -18,6 +18,8 @@ package cn.enaium.mineconf.core.command.execute
 
 import cn.enaium.mineconf.core.command.argument
 import cn.enaium.mineconf.core.common.CommonSource
+import cn.enaium.mineconf.core.common.text.Color
+import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.Vec2Conf
 import cn.enaium.mineconf.core.type.Vec2
 import cn.enaium.mineconf.core.utility.i18n
@@ -61,7 +63,9 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<CommonSource>) {
                         val x = LongArgumentType.getLong(context, "x")
                         val y = LongArgumentType.getLong(context, "y")
                         this.value = Vec2(x, y)
-                        context.source.sendFeedback(i18n("command.set.success"))
+                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                            color = Color.GREEN
+                        })
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -94,7 +98,9 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<CommonSource>) {
                         val x = IntegerArgumentType.getInteger(context, "x")
                         val y = IntegerArgumentType.getInteger(context, "y")
                         this.value = Vec2(x, y)
-                        context.source.sendFeedback(i18n("command.set.success"))
+                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                            color = Color.GREEN
+                        })
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -127,7 +133,9 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<CommonSource>) {
                         val x = IntegerArgumentType.getInteger(context, "x").toShort()
                         val y = IntegerArgumentType.getInteger(context, "y").toShort()
                         this.value = Vec2(x, y)
-                        context.source.sendFeedback(i18n("command.set.success"))
+                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                            color = Color.GREEN
+                        })
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -160,7 +168,9 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<CommonSource>) {
                         val x = IntegerArgumentType.getInteger(context, "x").toByte()
                         val y = IntegerArgumentType.getInteger(context, "y").toByte()
                         this.value = Vec2(x, y)
-                        context.source.sendFeedback(i18n("command.set.success"))
+                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                            color = Color.GREEN
+                        })
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -193,7 +203,9 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<CommonSource>) {
                         val x = FloatArgumentType.getFloat(context, "x")
                         val y = FloatArgumentType.getFloat(context, "y")
                         this.value = Vec2(x, y)
-                        context.source.sendFeedback(i18n("command.set.success"))
+                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                            color = Color.GREEN
+                        })
                         Command.SINGLE_SUCCESS
                     })
             )
@@ -226,7 +238,9 @@ fun Vec2Conf<*>.vec2(id: LiteralArgumentBuilder<CommonSource>) {
                         val x = DoubleArgumentType.getDouble(context, "x")
                         val y = DoubleArgumentType.getDouble(context, "y")
                         this.value = Vec2(x, y)
-                        context.source.sendFeedback(i18n("command.set.success"))
+                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                            color = Color.GREEN
+                        })
                         Command.SINGLE_SUCCESS
                     })
             )
