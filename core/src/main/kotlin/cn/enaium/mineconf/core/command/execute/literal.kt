@@ -19,9 +19,9 @@ package cn.enaium.mineconf.core.command.execute
 import cn.enaium.mineconf.core.command.argument
 import cn.enaium.mineconf.core.common.CommonSource
 import cn.enaium.mineconf.core.common.text.Color
-import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.Conf
 import cn.enaium.mineconf.core.utility.i18n
+import cn.enaium.mineconf.core.utility.text
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.*
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
@@ -36,7 +36,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<Long>("value", LongArgumentType.longArg()).executes {
                 this as Conf<Long>
                 this.value = LongArgumentType.getLong(it, "value")
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS
@@ -47,7 +47,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<Int>("value", IntegerArgumentType.integer()).executes {
                 this as Conf<Int>
                 this.value = IntegerArgumentType.getInteger(it, "value")
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS
@@ -58,7 +58,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<Int>("value", IntegerArgumentType.integer()).executes {
                 this as Conf<Short>
                 this.value = IntegerArgumentType.getInteger(it, "value").toShort()
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS
@@ -69,7 +69,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<Int>("value", IntegerArgumentType.integer()).executes {
                 this as Conf<Byte>
                 this.value = IntegerArgumentType.getInteger(it, "value").toByte()
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS
@@ -80,7 +80,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<Float>("value", FloatArgumentType.floatArg()).executes {
                 this as Conf<Float>
                 this.value = FloatArgumentType.getFloat(it, "value")
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS
@@ -91,7 +91,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<Double>("value", DoubleArgumentType.doubleArg()).executes {
                 this as Conf<Double>
                 this.value = DoubleArgumentType.getDouble(it, "value")
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS
@@ -102,7 +102,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<Boolean>("value", BoolArgumentType.bool()).executes {
                 this as Conf<Boolean>
                 this.value = BoolArgumentType.getBool(it, "value")
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS
@@ -113,7 +113,7 @@ fun Conf<*>.literal(id: LiteralArgumentBuilder<CommonSource>): Boolean {
             id.then(argument<String>("value", StringArgumentType.string()).executes {
                 this as Conf<String>
                 this.value = StringArgumentType.getString(it, "value")
-                it.source.sendFeedback(Text(i18n("command.set.success")).style {
+                it.source.sendFeedback(i18n("command.set.success").text().style {
                     color = Color.GREEN
                 })
                 Command.SINGLE_SUCCESS

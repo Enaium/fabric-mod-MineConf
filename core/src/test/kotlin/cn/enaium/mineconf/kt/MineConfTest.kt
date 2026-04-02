@@ -2,13 +2,7 @@ package cn.enaium.mineconf.kt
 
 import cn.enaium.mineconf.core.ConfBuilder
 import cn.enaium.mineconf.core.MineConf
-import cn.enaium.mineconf.core.conf.CollectionConf
-import cn.enaium.mineconf.core.conf.Conf
-import cn.enaium.mineconf.core.conf.MultimapConf
-import cn.enaium.mineconf.core.conf.OptionConf
-import cn.enaium.mineconf.core.conf.Vec2Conf
-import cn.enaium.mineconf.core.conf.Vec3Conf
-import cn.enaium.mineconf.core.conf.Vec4Conf
+import cn.enaium.mineconf.core.conf.*
 import cn.enaium.mineconf.core.type.Vec2
 import cn.enaium.mineconf.core.type.Vec3
 import cn.enaium.mineconf.core.type.Vec4

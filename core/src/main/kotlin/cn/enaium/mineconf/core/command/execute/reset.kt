@@ -16,11 +16,11 @@
 
 package cn.enaium.mineconf.core.command.execute
 
+import cn.enaium.mineconf.core.MineConfLoader
 import cn.enaium.mineconf.core.command.literal
 import cn.enaium.mineconf.core.common.CommonSource
 import cn.enaium.mineconf.core.common.text.Color
-import cn.enaium.mineconf.core.common.text.Text
-import cn.enaium.mineconf.core.conf.OptionConf
+import cn.enaium.mineconf.core.conf.Conf
 import cn.enaium.mineconf.core.utility.i18n
 import cn.enaium.mineconf.core.utility.text
 import com.mojang.brigadier.Command
@@ -30,15 +30,19 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun OptionConf<*>.option(id: LiteralArgumentBuilder<CommonSource>) {
-    this as OptionConf<Any>
-    this.options.forEach {
-        id.then(literal(it.toString()).executes { context ->
-            this.value = it
-            context.source.sendFeedback(i18n("command.set.success").text().style {
-                color = Color.GREEN
-            })
-            Command.SINGLE_SUCCESS
-        })
+fun reset(): LiteralArgumentBuilder<CommonSource> {
+    val reset = literal("reset")
+    MineConfLoader.MINE_CONF.forEach { (modId, mineConf) ->
+        mineConf.getConf().forEach { (id, conf) ->
+            reset.then(literal(modId).then(literal(id).executes {
+                conf as Conf<Any>
+                conf.value = conf.defaultValue
+                it.source.sendFeedback(i18n("command.reset.success").text().style {
+                    color = Color.GREEN
+                })
+                Command.SINGLE_SUCCESS
+            }))
+        }
     }
+    return reset
 }

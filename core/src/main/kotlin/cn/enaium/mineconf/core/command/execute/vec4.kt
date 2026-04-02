@@ -23,6 +23,7 @@ import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.Vec4Conf
 import cn.enaium.mineconf.core.type.Vec4
 import cn.enaium.mineconf.core.utility.i18n
+import cn.enaium.mineconf.core.utility.text
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.DoubleArgumentType
 import com.mojang.brigadier.arguments.FloatArgumentType
@@ -85,7 +86,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<CommonSource>) {
                                 val z = LongArgumentType.getLong(context, "z")
                                 val w = LongArgumentType.getLong(context, "w")
                                 this.value = Vec4(x, y, z, w)
-                                context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                context.source.sendFeedback(i18n("command.set.success").text().style {
                                     color = Color.GREEN
                                 })
                                 Command.SINGLE_SUCCESS
@@ -144,7 +145,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<CommonSource>) {
                                 val z = IntegerArgumentType.getInteger(context, "z")
                                 val w = IntegerArgumentType.getInteger(context, "w")
                                 this.value = Vec4(x, y, z, w)
-                                context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                context.source.sendFeedback(i18n("command.set.success").text().style {
                                     color = Color.GREEN
                                 })
                                 Command.SINGLE_SUCCESS
@@ -203,7 +204,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<CommonSource>) {
                                 val z = IntegerArgumentType.getInteger(context, "z").toShort()
                                 val w = IntegerArgumentType.getInteger(context, "w").toShort()
                                 this.value = Vec4(x, y, z, w)
-                                context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                context.source.sendFeedback(i18n("command.set.success").text().style {
                                     color = Color.GREEN
                                 })
                                 Command.SINGLE_SUCCESS
@@ -262,7 +263,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<CommonSource>) {
                                 val z = IntegerArgumentType.getInteger(context, "z").toByte()
                                 val w = IntegerArgumentType.getInteger(context, "w").toByte()
                                 this.value = Vec4(x, y, z, w)
-                                context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                context.source.sendFeedback(i18n("command.set.success").text().style {
                                     color = Color.GREEN
                                 })
                                 Command.SINGLE_SUCCESS
@@ -321,7 +322,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<CommonSource>) {
                                 val z = FloatArgumentType.getFloat(context, "z")
                                 val w = FloatArgumentType.getFloat(context, "w")
                                 this.value = Vec4(x, y, z, w)
-                                context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                context.source.sendFeedback(i18n("command.set.success").text().style {
                                     color = Color.GREEN
                                 })
                                 Command.SINGLE_SUCCESS
@@ -380,7 +381,7 @@ fun Vec4Conf<*>.vec4(id: LiteralArgumentBuilder<CommonSource>) {
                                 val z = DoubleArgumentType.getDouble(context, "z")
                                 val w = DoubleArgumentType.getDouble(context, "w")
                                 this.value = Vec4(x, y, z, w)
-                                context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                context.source.sendFeedback(i18n("command.set.success").text().style {
                                     color = Color.GREEN
                                 })
                                 Command.SINGLE_SUCCESS

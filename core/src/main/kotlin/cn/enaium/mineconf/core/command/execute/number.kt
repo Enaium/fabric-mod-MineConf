@@ -19,9 +19,9 @@ package cn.enaium.mineconf.core.command.execute
 import cn.enaium.mineconf.core.command.argument
 import cn.enaium.mineconf.core.common.CommonSource
 import cn.enaium.mineconf.core.common.text.Color
-import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.NumberConf
 import cn.enaium.mineconf.core.utility.i18n
+import cn.enaium.mineconf.core.utility.text
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.DoubleArgumentType
 import com.mojang.brigadier.arguments.FloatArgumentType
@@ -44,7 +44,7 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<CommonSource>) {
                         LongArgumentType.longArg(it.min, it.max)
                     ).executes { context ->
                         this.value = LongArgumentType.getLong(context, "value")
-                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                        context.source.sendFeedback(i18n("command.set.success").text().style {
                             color = Color.GREEN
                         })
                         Command.SINGLE_SUCCESS
@@ -61,7 +61,7 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<CommonSource>) {
                         IntegerArgumentType.integer(it.min, it.max)
                     ).executes { context ->
                         this.value = IntegerArgumentType.getInteger(context, "value")
-                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                        context.source.sendFeedback(i18n("command.set.success").text().style {
                             color = Color.GREEN
                         })
                         Command.SINGLE_SUCCESS
@@ -79,7 +79,7 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<CommonSource>) {
                         IntegerArgumentType.integer(it.min.toInt(), it.max.toInt())
                     ).executes { context ->
                         this.value = IntegerArgumentType.getInteger(context, "value").toShort()
-                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                        context.source.sendFeedback(i18n("command.set.success").text().style {
                             color = Color.GREEN
                         })
                         Command.SINGLE_SUCCESS
@@ -97,7 +97,7 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<CommonSource>) {
                         IntegerArgumentType.integer(it.min.toInt(), it.max.toInt())
                     ).executes { context ->
                         this.value = IntegerArgumentType.getInteger(context, "value").toByte()
-                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                        context.source.sendFeedback(i18n("command.set.success").text().style {
                             color = Color.GREEN
                         })
                         Command.SINGLE_SUCCESS
@@ -115,7 +115,7 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<CommonSource>) {
                         FloatArgumentType.floatArg(it.min, it.max)
                     ).executes { context ->
                         this.value = FloatArgumentType.getFloat(context, "value")
-                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                        context.source.sendFeedback(i18n("command.set.success").text().style {
                             color = Color.GREEN
                         })
                         Command.SINGLE_SUCCESS
@@ -133,7 +133,7 @@ fun NumberConf<*>.number(id: LiteralArgumentBuilder<CommonSource>) {
                         DoubleArgumentType.doubleArg(it.min, it.max)
                     ).executes { context ->
                         this.value = DoubleArgumentType.getDouble(context, "value")
-                        context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                        context.source.sendFeedback(i18n("command.set.success").text().style {
                             color = Color.GREEN
                         })
                         Command.SINGLE_SUCCESS

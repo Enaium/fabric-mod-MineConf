@@ -47,4 +47,23 @@ internal object MineConfConfig {
             return title
         }
     }
+
+    val style = ConfBuilder.create()
+        .id("style")
+        .name("Style")
+        .description("Style of the ImGui")
+        .enumeration<Style>()
+        .type(Style::class.java)
+        .build(Style.DEFAULT)
+
+    enum class Style(val title: String) {
+        DEFAULT("Default"),
+        CLASSIC("Classic"),
+        LIGHT("Light"),
+        DARK("Dark");
+
+        override fun toString(): String {
+            return title
+        }
+    }
 }
