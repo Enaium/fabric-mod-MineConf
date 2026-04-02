@@ -17,10 +17,7 @@
 package cn.enaium.mineconf
 
 import cn.enaium.mineconf.command.screen
-import cn.enaium.mineconf.core.command.execute.append
-import cn.enaium.mineconf.core.command.execute.get
-import cn.enaium.mineconf.core.command.execute.remove
-import cn.enaium.mineconf.core.command.execute.set
+import cn.enaium.mineconf.core.command.execute.*
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
@@ -41,6 +38,8 @@ object Commands {
             dispatcher.register(CLIENT_ROOT.then(get() as LiteralArgumentBuilder<FabricClientCommandSource>))
             dispatcher.register(CLIENT_ROOT.then(append() as LiteralArgumentBuilder<FabricClientCommandSource>))
             dispatcher.register(CLIENT_ROOT.then(remove() as LiteralArgumentBuilder<FabricClientCommandSource>))
+            dispatcher.register(CLIENT_ROOT.then(reset() as LiteralArgumentBuilder<FabricClientCommandSource>))
+            dispatcher.register(CLIENT_ROOT.then(reload() as LiteralArgumentBuilder<FabricClientCommandSource>))
         })
     }
 
@@ -51,6 +50,8 @@ object Commands {
             dispatcher.register(SERVER_ROOT.then(get() as LiteralArgumentBuilder<CommandSourceStack>))
             dispatcher.register(SERVER_ROOT.then(append() as LiteralArgumentBuilder<CommandSourceStack>))
             dispatcher.register(SERVER_ROOT.then(remove() as LiteralArgumentBuilder<CommandSourceStack>))
+            dispatcher.register(SERVER_ROOT.then(reset() as LiteralArgumentBuilder<CommandSourceStack>))
+            dispatcher.register(SERVER_ROOT.then(reload() as LiteralArgumentBuilder<CommandSourceStack>))
         })
     }
 }

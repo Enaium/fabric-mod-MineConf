@@ -33,9 +33,7 @@ fun Text.toMinecraft(): Component {
         this@toMinecraft.siblings.forEach {
             this.append(it.toMinecraft())
         }
-        this@toMinecraft.style?.also {
-            this.style = it.toMinecraft()
-        }
+        this.style = this@toMinecraft.style.toMinecraft()
     }
 }
 

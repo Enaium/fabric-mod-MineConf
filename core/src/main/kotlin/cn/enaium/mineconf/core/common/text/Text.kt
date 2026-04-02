@@ -22,7 +22,7 @@ package cn.enaium.mineconf.core.common.text
 data class Text(
     val text: String,
     val siblings: List<Text> = listOf<Text>(),
-    var style: Style? = null
+    var style: Style = Style()
 ) {
     fun style(style: Style.() -> Unit): Text {
         return this.copy(style = Style().apply(style))

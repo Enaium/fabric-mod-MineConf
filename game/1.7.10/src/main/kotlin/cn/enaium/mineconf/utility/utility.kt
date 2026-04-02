@@ -29,9 +29,7 @@ fun Text.toMinecraft(): net.minecraft.text.Text {
         this@toMinecraft.siblings.forEach {
             this.append(it.toMinecraft())
         }
-        this@toMinecraft.style?.also {
-            this.style = it.toMinecraft()
-        }
+        this.style = this@toMinecraft.style.toMinecraft()
     }
 }
 

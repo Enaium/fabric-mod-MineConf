@@ -62,7 +62,7 @@ object MineConfGui {
         io.fonts.build()
     }
 
-    fun getPreferredFonts(locale: Locale): List<String> {
+    private fun getPreferredFonts(locale: Locale): List<String> {
         return when (locale.language) {
             "zh" -> listOf(
                 "msyh",
@@ -81,6 +81,15 @@ object MineConfGui {
             else -> listOf(
                 "segoeui",
             )
+        }
+    }
+
+    fun initStyle() {
+        when (MineConfConfig.style.value) {
+            MineConfConfig.Style.DEFAULT -> {}
+            MineConfConfig.Style.CLASSIC -> ImGui.styleColorsClassic()
+            MineConfConfig.Style.LIGHT -> ImGui.styleColorsLight()
+            MineConfConfig.Style.DARK -> ImGui.styleColorsDark()
         }
     }
 }

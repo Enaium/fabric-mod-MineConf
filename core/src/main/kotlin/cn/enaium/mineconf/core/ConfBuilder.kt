@@ -206,7 +206,7 @@ object ConfBuilder {
             }
 
             fun stepZ(yStep: T): Vec3Builder<T> {
-                this.yStep = yStep
+                this.zStep = yStep
                 return this
             }
 
@@ -280,12 +280,12 @@ object ConfBuilder {
             }
 
             fun stepZ(yStep: T): Vec4Builder<T> {
-                this.yStep = yStep
+                this.zStep = yStep
                 return this
             }
 
             fun stepW(yStep: T): Vec4Builder<T> {
-                this.yStep = yStep
+                this.wStep = yStep
                 return this
             }
 
@@ -379,7 +379,7 @@ object ConfBuilder {
                 return this
             }
 
-            fun build(defaultValue: MutableCollection<T>): CollectionConf<T> {
+            fun build(defaultValue: Collection<T>): CollectionConf<T> {
                 return CollectionConf(
                     id,
                     name,
@@ -422,7 +422,7 @@ object ConfBuilder {
                 return this
             }
 
-            fun build(defaultValue: MutableMap<O, Collection<M>>): MultimapConf<O, M> {
+            fun build(defaultValue: Map<O, Collection<M>>): MultimapConf<O, M> {
                 return MultimapConf(
                     id,
                     name,

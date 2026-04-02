@@ -39,6 +39,7 @@ class GuiTest {
                 super.init(config)
                 ImGui.getIO().iniFilename = null
                 MineConfGui.initFonts()
+                MineConfGui.initStyle()
             }
 
             override fun process() {
