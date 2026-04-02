@@ -18,6 +18,8 @@ package cn.enaium.mineconf.core.command.execute
 
 import cn.enaium.mineconf.core.command.literal
 import cn.enaium.mineconf.core.common.CommonSource
+import cn.enaium.mineconf.core.common.text.Color
+import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.EnumConf
 import cn.enaium.mineconf.core.utility.i18n
 import com.mojang.brigadier.Command
@@ -30,9 +32,11 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder
 fun EnumConf<*>.enum(id: LiteralArgumentBuilder<CommonSource>) {
     this as EnumConf<Enum<*>>
     this.type.enumConstants.forEach {
-        id.then(literal(it.toString()).executes { context ->
+        id.then(literal(it.name).executes { context ->
             this.value = it
-            context.source.sendFeedback(i18n("command.set.success"))
+            context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                color = Color.GREEN
+            })
             Command.SINGLE_SUCCESS
         })
     }

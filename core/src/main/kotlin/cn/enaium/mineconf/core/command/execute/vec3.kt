@@ -18,6 +18,8 @@ package cn.enaium.mineconf.core.command.execute
 
 import cn.enaium.mineconf.core.command.argument
 import cn.enaium.mineconf.core.common.CommonSource
+import cn.enaium.mineconf.core.common.text.Color
+import cn.enaium.mineconf.core.common.text.Text
 import cn.enaium.mineconf.core.conf.Vec3Conf
 import cn.enaium.mineconf.core.type.Vec3
 import cn.enaium.mineconf.core.utility.i18n
@@ -72,7 +74,9 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<CommonSource>) {
                             val y = LongArgumentType.getLong(context, "y")
                             val z = LongArgumentType.getLong(context, "z")
                             this.value = Vec3(x, y, z)
-                            context.source.sendFeedback(i18n("command.set.success"))
+                            context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                color = Color.GREEN
+                            })
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -117,7 +121,9 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<CommonSource>) {
                             val y = IntegerArgumentType.getInteger(context, "y")
                             val z = IntegerArgumentType.getInteger(context, "z")
                             this.value = Vec3(x, y, z)
-                            context.source.sendFeedback(i18n("command.set.success"))
+                            context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                color = Color.GREEN
+                            })
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -162,7 +168,9 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<CommonSource>) {
                             val y = IntegerArgumentType.getInteger(context, "y").toShort()
                             val z = IntegerArgumentType.getInteger(context, "z").toShort()
                             this.value = Vec3(x, y, z)
-                            context.source.sendFeedback(i18n("command.set.success"))
+                            context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                color = Color.GREEN
+                            })
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -207,7 +215,9 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<CommonSource>) {
                             val y = IntegerArgumentType.getInteger(context, "y").toByte()
                             val z = IntegerArgumentType.getInteger(context, "z").toByte()
                             this.value = Vec3(x, y, z)
-                            context.source.sendFeedback(i18n("command.set.success"))
+                            context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                color = Color.GREEN
+                            })
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -252,7 +262,9 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<CommonSource>) {
                             val y = FloatArgumentType.getFloat(context, "y")
                             val z = FloatArgumentType.getFloat(context, "z")
                             this.value = Vec3(x, y, z)
-                            context.source.sendFeedback(i18n("command.set.success"))
+                            context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                color = Color.GREEN
+                            })
                             Command.SINGLE_SUCCESS
                         })
                 )
@@ -297,7 +309,9 @@ fun Vec3Conf<*>.vec3(id: LiteralArgumentBuilder<CommonSource>) {
                             val y = DoubleArgumentType.getDouble(context, "y")
                             val z = DoubleArgumentType.getDouble(context, "z")
                             this.value = Vec3(x, y, z)
-                            context.source.sendFeedback(i18n("command.set.success"))
+                            context.source.sendFeedback(Text(i18n("command.set.success")).style {
+                                color = Color.GREEN
+                            })
                             Command.SINGLE_SUCCESS
                         })
                 )

@@ -2,6 +2,13 @@
   "command.set.success": "Set successfully",
   "command.append.success": "Append successfully",
   "command.remove.success": "Remove successfully",
+  "command.get.id": "ID",
+  "command.get.name": "Name",
+  "command.get.description": "Description",
+  "command.get.range": "Range",
+  "command.get.step": "Step",
+  "command.get.options": "Options",
+  "command.get.enumerations": "Enumerations",
   "ui.button.confirm": "Confirm",
   "ui.mineconf.button.reset": "Reset",
   "ui.mineconf.text.reset": "Are you sure you want to reset the config?"

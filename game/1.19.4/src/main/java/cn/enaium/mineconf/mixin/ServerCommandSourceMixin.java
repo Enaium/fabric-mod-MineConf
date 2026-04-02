@@ -23,6 +23,8 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import static cn.enaium.mineconf.utility.UtilityKt.toMinecraft;
+
 /**
  * @author Enaium
  */
@@ -33,7 +35,7 @@ public abstract class ServerCommandSourceMixin implements CommonSource {
     public abstract void sendFeedback(Text par1, boolean par2);
 
     @Override
-    public void sendFeedback(@NotNull String text) {
-        sendFeedback(Text.literal(text), false);
+    public void sendFeedback(@NotNull cn.enaium.mineconf.core.common.text.Text text) {
+        sendFeedback(toMinecraft(text), false);
     }
 }

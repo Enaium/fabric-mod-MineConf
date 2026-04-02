@@ -16,7 +16,6 @@
 package cn.enaium.mineconf.core.gui.pane
 
 import cn.enaium.mineconf.core.MineConfLoader
-import cn.enaium.mineconf.core.config.MineConfConfig
 import cn.enaium.mineconf.core.utility.ImRemember
 import imgui.ImGui
 import imgui.flag.ImGuiWindowFlags
