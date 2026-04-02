@@ -16,11 +16,10 @@
 
 package cn.enaium.mineconf.core.command.execute
 
+import cn.enaium.mineconf.core.MineConfLoader
 import cn.enaium.mineconf.core.command.literal
 import cn.enaium.mineconf.core.common.CommonSource
 import cn.enaium.mineconf.core.common.text.Color
-import cn.enaium.mineconf.core.common.text.Text
-import cn.enaium.mineconf.core.conf.OptionConf
 import cn.enaium.mineconf.core.utility.i18n
 import cn.enaium.mineconf.core.utility.text
 import com.mojang.brigadier.Command
@@ -30,15 +29,12 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder
  * @author Enaium
  */
 @Suppress("UNCHECKED_CAST")
-fun OptionConf<*>.option(id: LiteralArgumentBuilder<CommonSource>) {
-    this as OptionConf<Any>
-    this.options.forEach {
-        id.then(literal(it.toString()).executes { context ->
-            this.value = it
-            context.source.sendFeedback(i18n("command.set.success").text().style {
-                color = Color.GREEN
-            })
-            Command.SINGLE_SUCCESS
+fun reload(): LiteralArgumentBuilder<CommonSource> {
+    return literal("reload").executes {
+        MineConfLoader.load()
+        it.source.sendFeedback(i18n("command.reload.success").text().style {
+            color = Color.GREEN
         })
+        Command.SINGLE_SUCCESS
     }
 }

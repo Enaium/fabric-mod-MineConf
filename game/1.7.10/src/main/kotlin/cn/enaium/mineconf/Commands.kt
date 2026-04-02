@@ -17,10 +17,7 @@
 package cn.enaium.mineconf
 
 import cn.enaium.mineconf.command.MineConfCommand
-import cn.enaium.mineconf.core.command.execute.append
-import cn.enaium.mineconf.core.command.execute.get
-import cn.enaium.mineconf.core.command.execute.remove
-import cn.enaium.mineconf.core.command.execute.set
+import cn.enaium.mineconf.core.command.execute.*
 import net.legacyfabric.fabric.api.registry.CommandRegistry
 
 /**
@@ -34,6 +31,8 @@ object Commands {
             dispatcher.register(get())
             dispatcher.register(append())
             dispatcher.register(remove())
+            dispatcher.register(reset())
+            dispatcher.register(reload())
         })
     }
 
@@ -44,6 +43,8 @@ object Commands {
             dispatcher.register(get())
             dispatcher.register(append())
             dispatcher.register(remove())
+            dispatcher.register(reset())
+            dispatcher.register(reload())
         })
     }
 }
