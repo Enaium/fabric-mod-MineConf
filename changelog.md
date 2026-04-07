@@ -1,3 +1,3 @@
-## 🆕 Features
+## 🛠️ Changes
 
-- Add command info
+- Add required dependencies
