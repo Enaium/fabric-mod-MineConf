@@ -23,6 +23,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.commands.CommandSourceStack
 
 /**
@@ -33,7 +34,9 @@ object Commands {
     @JvmStatic
     fun client() {
         ClientCommandRegistrationCallback.EVENT.register(ClientCommandRegistrationCallback { dispatcher: CommandDispatcher<FabricClientCommandSource>, _ ->
-            screen(dispatcher)
+            if (FabricLoader.getInstance().allMods.any { it.metadata.id == "fabric-gui-imgui" }) {
+                screen(dispatcher)
+            }
             dispatcher.register(CLIENT_ROOT.then(set() as LiteralArgumentBuilder<FabricClientCommandSource>))
             dispatcher.register(CLIENT_ROOT.then(get() as LiteralArgumentBuilder<FabricClientCommandSource>))
             dispatcher.register(CLIENT_ROOT.then(append() as LiteralArgumentBuilder<FabricClientCommandSource>))

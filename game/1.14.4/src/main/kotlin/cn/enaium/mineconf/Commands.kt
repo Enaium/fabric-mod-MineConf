@@ -22,6 +22,7 @@ import cn.enaium.mineconf.core.command.execute.*
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.server.command.ServerCommandSource
 
 /**
@@ -32,7 +33,9 @@ object Commands {
     @JvmStatic
     fun client() {
         CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource>, _ ->
-            screen(dispatcher)
+            if (FabricLoader.getInstance().allMods.any { it.metadata.id == "fabric-gui-imgui" }) {
+                screen(dispatcher)
+            }
             dispatcher.register(CLIENT_ROOT.then(set() as LiteralArgumentBuilder<ServerCommandSource>))
             dispatcher.register(CLIENT_ROOT.then(get() as LiteralArgumentBuilder<ServerCommandSource>))
             dispatcher.register(CLIENT_ROOT.then(append() as LiteralArgumentBuilder<ServerCommandSource>))

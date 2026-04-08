@@ -30,10 +30,9 @@
     "fabricloader": "*",
     "minecraft": "@minecraft_version@",
     "java": ">=@java_version@",
-    "fabric-language-kotlin": "*",
-    "fabric-gui-imgui": "*"
+    "fabric-language-kotlin": "*"
   },
   "suggests": {
-    "another-mod": "*"
+    "fabric-gui-imgui": "*"
   }
 }

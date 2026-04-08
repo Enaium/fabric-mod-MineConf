@@ -19,6 +19,7 @@ package cn.enaium.mineconf
 import cn.enaium.mineconf.command.MineConfCommand
 import cn.enaium.mineconf.command.screen
 import cn.enaium.mineconf.core.command.execute.*
+import net.fabricmc.loader.api.FabricLoader
 import net.legacyfabric.fabric.api.registry.CommandRegistry
 
 /**
@@ -28,7 +29,9 @@ object Commands {
     @JvmStatic
     fun client() {
         CommandRegistry.INSTANCE.register(MineConfCommand().apply {
-            dispatcher.register(screen())
+            if (FabricLoader.getInstance().allMods.any { it.metadata.id == "fabric-gui-imgui" }) {
+                dispatcher.register(screen())
+            }
             dispatcher.register(set())
             dispatcher.register(get())
             dispatcher.register(append())

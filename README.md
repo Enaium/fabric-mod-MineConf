@@ -12,7 +12,7 @@ a user-friendly graphical interface to help mod developers easily manage and mai
 - **Multiple Configuration Types**: Supports Literal, Number, Vec2, Vec3, Vec4, Option, Enum, Collection, Multimap, and
   more
 - **Flexible API**: Uses a fluent builder pattern to create configuration entries
-- **Graphical Interface**: Provides an intuitive ImGui-based GUI for users to adjust settings
+- **Graphical Interface**: Provides an intuitive ImGui-based GUI for users to adjust settings(Required [fabric-gui-imgui](https://github.com/Enaium/fabric-mod-ImGui))
 - **Command-Line Interface**: Supports viewing and modifying configurations via commands
 - **JSON Serialization**: Automatically serializes configurations to JSON format for easy storage and retrieval
 - **Service Loader**: Integrates with other mods using the Service Loader pattern
