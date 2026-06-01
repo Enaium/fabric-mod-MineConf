@@ -27,6 +27,13 @@ import java.util.*
  * @author Enaium
  */
 object MineConfGui {
+
+    private val minecraftFont by lazy {
+        MineConf::class.java
+            .getResource("/Minecraft.ttf")!!
+            .readBytes()
+    }
+
     fun initFonts() {
         val rangesBuilder = ImFontGlyphRangesBuilder()
         val io = ImGui.getIO()
@@ -39,14 +46,15 @@ object MineConfGui {
         rangesBuilder.addRanges(io.fonts.glyphRangesCyrillic)
         rangesBuilder.addRanges(io.fonts.glyphRangesThai)
         rangesBuilder.addRanges(io.fonts.glyphRangesVietnamese)
-        val fontConfig = ImFontConfig()
-        fontConfig.mergeMode = true
         io.fonts.clear()
         val glyphRanges = rangesBuilder.buildRanges()
         val sizePixels = 16f * MineConfConfig.fontScale.value
         io.fonts.addFontFromMemoryTTF(
-            MineConf::class.java.getResource("/Minecraft.ttf")!!.readBytes(),
+            minecraftFont,
             sizePixels,
+            ImFontConfig().apply {
+                fontDataOwnedByAtlas = false
+            },
             glyphRanges
         )
 
@@ -54,7 +62,9 @@ object MineConfGui {
             io.fonts.addFontFromFileTTF(
                 it.absolutePath,
                 sizePixels,
-                fontConfig,
+                ImFontConfig().apply {
+                    mergeMode = true
+                },
                 glyphRanges
             )
         }
