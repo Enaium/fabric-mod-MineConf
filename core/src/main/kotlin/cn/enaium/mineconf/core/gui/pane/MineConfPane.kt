@@ -57,7 +57,7 @@ object MineConfPane {
     }
 
     fun name(conf: Conf<*>) {
-        ImGui.selectable(conf.name, false, ImGuiSelectableFlags.AllowItemOverlap, ImVec2(0f, 0f))
+        ImGui.selectable(conf.name, false, ImGuiSelectableFlags.AllowOverlap, ImVec2(0f, 0f))
         if (ImGui.isItemHovered()) {
             ImGui.beginTooltip()
             ImGui.text(conf.description)

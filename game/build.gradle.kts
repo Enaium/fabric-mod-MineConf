@@ -38,11 +38,23 @@ subprojects {
     }
 
     afterEvaluate {
+
+        val publishing = gradle.startParameter.taskNames.any {
+            it.split(":").any { split -> split.startsWith("publishToMaven") }
+        }
+
+        fun include(dependency: Any) {
+            if (publishing) {
+                return
+            }
+            dependencies.add("includeAndExpose", dependency)
+        }
+
         dependencies {
-            includeAndExpose(libs.jackson)
+            include(libs.jackson)
 
             if (VersionNumber.parse(minecraftVersion.toString()) < VersionNumber.parse("1.14")) {
-                includeAndExpose(libs.brigadier)
+                include(libs.brigadier)
             }
         }
 

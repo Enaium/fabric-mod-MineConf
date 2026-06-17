@@ -1,12 +1,12 @@
 [versions]
-kotlin = "2.3.20"
-fabricKotlin = "1.13.10+kotlin.2.3.20"
+kotlin = "2.4.0"
+fabricKotlin = "1.13.12+kotlin.2.4.0"
 publish = "1.1.0"
 fmg = "0.0.8"
 loom = "1.16-SNAPSHOT"
 jackson = "2.21.1"
-imgui = "1.90.0"
-fabricImGui = "1.0.7+imgui.1.92.0"
+imgui = "1.92.0"
+fabricImGui = "1.0.11+imgui.1.92.0"
 brigadier = "1.0.17"
 maven = "0.35.0"
 
