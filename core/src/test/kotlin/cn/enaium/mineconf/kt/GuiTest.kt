@@ -34,9 +34,9 @@ class GuiTest {
         System.setProperty("user.dir", "run")
 
         launch(object : Application() {
-            override fun init(config: Configuration) {
+            override fun initImGui(config: Configuration) {
                 MineConfLoader.load()
-                super.init(config)
+                super.initImGui(config)
                 ImGui.getIO().iniFilename = null
                 MineConfGui.initFonts()
                 MineConfGui.initStyle()
@@ -46,9 +46,9 @@ class GuiTest {
                 MainPane.main()
             }
 
-            override fun dispose() {
+            override fun disposeImGui() {
                 MineConfLoader.save()
-                super.dispose()
+                super.disposeImGui()
             }
         })
     }
