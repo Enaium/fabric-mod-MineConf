@@ -16,7 +16,7 @@ a user-friendly graphical interface to help mod developers easily manage and mai
 - **Command-Line Interface**: Supports viewing and modifying configurations via commands
 - **JSON Serialization**: Automatically serializes configurations to JSON format for easy storage and retrieval
 - **Service Loader**: Integrates with other mods using the Service Loader pattern
-- **Multi-Version Support**: Compatible with multiple Minecraft versions (1.7.10 to 26.1)
+- **Multi-Version Support**: Compatible with multiple Minecraft versions (1.7.10 to 26.3)
 
 ## 📦 Supported Configuration Types
 

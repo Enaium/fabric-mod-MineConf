@@ -1,4 +1,4 @@
 ## 🛠️ Changes
 
-- Required dependencies change to suggests
-- Update to ImGui 1.92
+- Support Minecraft 26.3
+- Update to ImGui 1.2.0
