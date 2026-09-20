@@ -73,10 +73,8 @@ object MineConfLoader {
     @JvmStatic
     fun getMineConf(any: Conf<*>): MineConf? {
         MINE_CONF.forEach { (_, mineConf) ->
-            mineConf.getConf().forEach { (_, conf) ->
-                if (any == conf) {
-                    return mineConf
-                }
+            if (mineConf.getConf().containsKey(any.id)) {
+                return mineConf
             }
         }
         return null

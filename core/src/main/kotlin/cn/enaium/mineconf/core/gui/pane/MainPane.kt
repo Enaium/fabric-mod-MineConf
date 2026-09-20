@@ -16,6 +16,7 @@
 package cn.enaium.mineconf.core.gui.pane
 
 import cn.enaium.mineconf.core.MineConfLoader
+import cn.enaium.mineconf.core.gui.MineConfGui
 import cn.enaium.mineconf.core.utility.ImRemember
 import imgui.ImGui
 import imgui.flag.ImGuiWindowFlags
@@ -36,6 +37,8 @@ object MainPane {
     }
 
     fun main(content: () -> Unit) {
+        MineConfGui.pushFont()
+
         val viewport = ImGui.getMainViewport()
 
         ImGui.setNextWindowPos(viewport.posX, viewport.posY)
@@ -54,5 +57,7 @@ object MainPane {
             ImGui.end()
         }
         ImRemember.endState()
+
+        MineConfGui.popFont()
     }
 }

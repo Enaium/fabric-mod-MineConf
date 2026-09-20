@@ -15,6 +15,7 @@
  */
 package cn.enaium.mineconf.core.conf
 
+import cn.enaium.mineconf.core.MineConf
 import cn.enaium.mineconf.core.MineConfLoader
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 /**
  * @author Enaium
  */
+@Suppress("UNCHECKED_CAST")
 open class Conf<T>(
     /**
      * Unique id of the conf.
@@ -47,15 +49,44 @@ open class Conf<T>(
     @get:JsonIgnore
     open var widget: Widget?
 ) {
-    private var _value = defaultValue
-    var value
-        get() = _value ?: defaultValue
+    /**
+     * The [MineConf] this conf is registered to. The current value is kept there, so the value is not lost
+     * when the conf instance is replaced by a copy, e.g. to change the options or the default value.
+     */
+    @get:JsonIgnore
+    @set:JsonIgnore
+    internal var owner: MineConf? = null
+
+    /**
+     * Value of a conf that is not registered yet.
+     */
+    private var local: T? = null
+
+    var value: T
+        get() = owner?.confValue(id) as T? ?: local ?: defaultValue
         set(value) {
-            _value = value
-            MineConfLoader.getMineConf(this)?.also {
+            val owner = owner ?: MineConfLoader.getMineConf(this).also { this.owner = it }
+            if (owner == null) {
+                local = value
+            } else {
+                owner.putConfValue(id, value)
                 MineConfLoader.save()
             }
         }
+
+    /**
+     * Binds this conf to [mineConf] and moves a value that was set before the registration over.
+     */
+    internal fun bind(mineConf: MineConf) {
+        if (owner === mineConf) {
+            return
+        }
+        owner = mineConf
+        local?.also {
+            mineConf.putConfValueIfAbsent(id, it)
+            local = null
+        }
+    }
 
     fun valueString(): String {
         return ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this.value)

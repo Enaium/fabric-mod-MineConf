@@ -42,8 +42,28 @@ class MineConf(
 ) {
     private val confMap: MutableMap<String, Conf<*>> = HashMap()
 
+    /**
+     * Current values of the confs, keyed by the conf id. Kept here, so a conf keeps its value when the
+     * instance in the config object is replaced by a copy.
+     */
+    private val confValues: MutableMap<String, Any?> = HashMap()
+
     init {
         update(instance)
+    }
+
+    internal fun confValue(id: String): Any? {
+        return confValues[id]
+    }
+
+    internal fun putConfValue(id: String, value: Any?) {
+        confValues[id] = value
+    }
+
+    internal fun putConfValueIfAbsent(id: String, value: Any?) {
+        if (!confValues.containsKey(id)) {
+            confValues[id] = value
+        }
     }
 
     private fun update(instance: Any) {
@@ -53,6 +73,7 @@ class MineConf(
                 val get = declaredField.get(instance)
                 if (get is Conf<*>) {
                     confMap[get.id] = get
+                    get.bind(this)
                 }
             } catch (e: Throwable) {
                 throw RuntimeException("Unable to register the conf: " + declaredField.name, e)
@@ -74,33 +95,30 @@ class MineConf(
             .readValue(text, object : TypeReference<MutableMap<String, ObjectNode>>() {})
 
         stringValueMap.forEach { (id: String, o: ObjectNode) ->
-            if (confMap.containsKey(id)) {
-                val conf = confMap[id] as Conf<Any>
-                val value = conf.value
-                try {
-                    conf.value = ObjectMapper().readValue(o.get("value").toString(), value.javaClass)
-                } catch (e: Throwable) {
-                    RuntimeException("Unable to read config: " + conf.id, e).printStackTrace()
+            val conf = confMap[id] as? Conf<Any> ?: return@forEach
+            val node = o.get("value") ?: return@forEach
+            if (node.isNull) {
+                return@forEach
+            }
+            try {
+                val value = ObjectMapper().readValue(node.toString(), conf.value.javaClass)
+                // An empty collection or map is not a value, so the default of the conf is kept.
+                if (value is Collection<*> && value.isEmpty()) {
+                    return@forEach
                 }
+                if (value is Map<*, *> && value.isEmpty()) {
+                    return@forEach
+                }
+                putConfValue(id, value)
+            } catch (e: Throwable) {
+                RuntimeException("Unable to read config: " + conf.id, e).printStackTrace()
             }
         }
-        getConf(instance)
+        update(instance)
     }
 
     fun <T> getConf(o: T): T {
-        o?.javaClass?.getDeclaredFields()?.forEach {
-            it.setAccessible(true)
-            try {
-                val get = it.get(o)
-                if (get is Conf<*>) {
-                    val conf = get as Conf<Any?>
-                    conf.value = confMap[conf.id]?.value
-                }
-            } catch (e: Throwable) {
-                RuntimeException("Unable to get the conf: " + it.name, e).printStackTrace()
-            }
-        }
-
+        update(instance)
         return o
     }
 
