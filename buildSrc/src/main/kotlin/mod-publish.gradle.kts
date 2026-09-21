@@ -22,6 +22,8 @@ afterEvaluate {
             projectId = "1486586"
             accessToken = providers.gradleProperty("curseforge.token")
             minecraftVersions.add(property("minecraft.version").toString())
+            clientRequired = true
+            serverRequired = true
             requires("fabric-language-kotlin", if (modern) "fabric-api" else "legacy-fabric-api")
             optional("fabric-gui-imgui")
         }
